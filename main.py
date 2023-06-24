@@ -40,28 +40,34 @@ recipes = [
 ]
 ingredients=[
 	  {"title":"Avocado",
-	  "image":"https://cdn.britannica.com/72/170772-050-D52BF8C2/Avocado-fruits.jpg"
+	  "image":"https://cdn.britannica.com/72/170772-050-D52BF8C2/Avocado-fruits.jpg",
+	  "recipes":["Avocado Turkey Burger", "Carrot and Avocado Salad"]
 	  },
 	  {"title":"Turkey",
-	  "image":"https://pngimg.com/d/turkey_food_PNG18.png"
+	  "image":"https://pngimg.com/d/turkey_food_PNG18.png",
+	  "recipes":["Avocado Turkey Burger"]
 	  },
 	  {"title":"Olive Oil",
-	  "image":"https://images.heb.com/is/image/HEBGrocery/000972208-1"
+	  "image":"https://images.heb.com/is/image/HEBGrocery/000972208-1",
+	  "recipes":["Carrot and Avocado Salad", "Kale Pizza"]
 	  },
   ]
 
 dietgroups=[
 	  {"title":"Halal",
 	  "image":"https://static.trip101.com/paragraph_media/pictures/001/595/541/large/pexels-photo-958545.jpeg?1553522832",
-	  "desc":"Includes food prepared and handled according to Sharia law, excludes pork and alcohol."
+	  "desc":"Includes food prepared and handled according to Sharia law, excludes pork and alcohol.",
+	  "recipes":["Avocado Turkey Burger", "Carrot and Avocado Salad", "Kale Pizza"]
 	  },
 	  {"title":"Vegetarian",
 	  "image":"https://images.everydayhealth.com/images/what-is-a-vegan-diet-benefits-food-list-beginners-guide-alt-1440x810.jpg",
-	  "desc":"Includes food derived from plant sources, excludes meat, poulty, and seafood."
+	  "desc":"Includes food derived from plant sources, excludes meat, poultry, and seafood.",
+	  "recipes":["Carrot and Avocado Salad", "Kale Pizza"]
 	  },
 	  {"title":"Gluten-free",
 	  "image":"https://www.restaurantware.com/media/magefan_blog/gluten_free_article_-_Thumbnail.png",
-	 "desc":"Excludes grain products containing gluten such as bread, pasta, and tortillas."
+	 "desc":"Excludes grain products containing gluten such as bread, pasta, and tortillas.",
+	 "recipes":["Carrot and Avocado Salad"]
 	 },       
   ]
 
@@ -73,7 +79,7 @@ def show_splash():
 	return render_template('index.html')
 
 # ------------
-# book
+# pages
 # ------------	
 @app.route('/about-us/')
 def show_about_us():
@@ -83,20 +89,34 @@ def show_about_us():
 def show_diet_groups():
 	return render_template('diet-groups.html', dietgroups=dietgroups)
 
+@app.route('/diet-groups/<string:name>/')
+def show_diet_groups_instance(name):
+	for d in dietgroups:
+		if d["title"].lower() == name.lower():
+			return render_template('dg-instance.html', diet = d)
+	return name + " diet group not found"
+
 @app.route('/recipes/')
 def show_recipes():
 	return render_template('recipes.html',recipes=recipes)
 
 @app.route('/recipes/<string:name>/')
-def show_ingredient_instance(name):
+def show_recipe_instance(name):
 	for r in recipes:
-		if r["title"] == name:
+		if r["title"].lower() == name.lower():
 			return render_template('recipe-instance.html', recipe = r)
 	return name + " recipe not found"
 
 @app.route('/ingredients/')
 def show_ingredients():
 	return render_template('ingredients.html', ingredients=ingredients)
+
+@app.route('/ingredients/<string:name>/')
+def show_ingredient_instance(name):
+	for i in ingredients:
+		if i["title"].lower() == name.lower():
+			return render_template('ingredients-instance.html', ingredient = i)
+	return name + " ingredient not found"
 
 # debug=True to avoid restart the local development server manually after each change to your code. 
 # host='0.0.0.0' to make the server publicly available. 

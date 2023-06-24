@@ -1,4 +1,22 @@
 <!DOCTYPE html>
 <html>
-    
+    <head></head> 
+    <body>
+        <p>i love diet groups like {{diet["title"]}}</p>
+        <p>{{diet["desc"]}}</p>
+        <p>some recipes that are {{diet["title"]}} are 
+            {% if diet["recipes"] == [] %}
+            <p>! No recipes exist !</p>	
+        {% else %}
+            {% for i in diet["recipes"] %}
+                {% if loop.last %}
+                    <a href="../../recipes/{{i}}">{{i}}</a>
+                {% else %}
+                    <a href="../../recipes/{{i}}">{{i}}</a>, 
+                {% endif %}
+            {% endfor %}
+        {% endif %}</p>
+        <p>here is a pretty picture of it</p>
+        <img src="" alt="the picture was too pretty to show"/>
+    </body>
 </html>
