@@ -1,11 +1,55 @@
 <!DOCTYPE html>
 <html>
-    <head></head> 
-    <body>
-        <p>i love recipes like {{recipe["title"]}}</p>
-        <p>the ingredients of the {{recipe["title"]}} are {{recipe["ingredients"]}}</p>
-        <p>it is part of the {{recipe["dietgroup"]}} diet group(s)</p>
-        <p>here is a pretty picture of it</p>
-        <img src={{recipe.image}} alt="the picture was too pretty to show"/>
-    </body>
+  <head>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <section class="py-5">
+      <div class="container px-4 px-lg-5 my-5">
+        <div class="row gx-4 gx-lg-5 align-items-center">
+          <div class="col-md-6 col-lg-6">
+            <img class="card-img-top mb-5 mb-md-0" src="{{recipe["image"]}}"
+            alt="..." style = "width: 450px; margin-top:30px"/>
+          </div>
+          <div class="col-md-6">
+            <div
+              class="mb-1"
+              style="
+                text-transform: uppercase;
+                font-size: 20px;
+                font-weight: bold;
+              "
+            >
+              Diet-group: {{recipe["dietgroup"]}}
+            </div>
+            <div class="fs-5 mb-5">
+              <span style="text-transform: uppercase; font-size: 17px"
+                >cuisine type: {{recipe["cuisinetype"]}}</span
+              >
+            </div>
+            <h1 class="display-5 fw-bolder">{{recipe["title"]}}</h1>
+
+            <p class="lead">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Praesentium at dolorem quidem modi. Nam sequi consequatur
+              obcaecati excepturi alias magni, accusamus eius blanditiis
+              delectus ipsam minima ea iste laborum vero?
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <p>i love recipes like {{recipe["title"]}}</p>
+    <p>
+      the ingredients of the {{recipe["title"]}} are {{recipe["ingredients"]}}
+    </p>
+    <p>it is part of the {{recipe["dietgroup"]}} diet group(s)</p>
+    <p>here is a pretty picture of it</p>
+    <img src="" alt="the picture was too pretty to show" />
+  </body>
 </html>
