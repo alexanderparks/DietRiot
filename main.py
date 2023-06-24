@@ -72,6 +72,13 @@ def show_diet_groups():
 def show_recipes():
 	return render_template('recipes.html',recipes=recipes)
 
+@app.route('/recipes/<string:name>/')
+def show_ingredient_instance(name):
+	for r in recipes:
+		if r["title"] == name:
+			return render_template('recipe-instance.html', recipe = r)
+	return name + " recipe not found"
+
 @app.route('/ingredients/')
 def show_ingredients():
 	return render_template('ingredients.html', ingredients=ingredients)
