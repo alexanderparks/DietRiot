@@ -3,8 +3,30 @@
     <head></head> 
     <body>
         <p>i love recipes like {{recipe["title"]}}</p>
-        <p>the ingredients of the {{recipe["title"]}} are {{recipe["ingredients"]}}</p>
-        <p>it is part of the {{recipe["dietgroup"]}} diet group(s)</p>
+        <p>the ingredients of the {{recipe["title"]}} are 
+            {% if recipe["ingredients"] == [] %}
+            <p>! No ingredients exist !</p>	
+        {% else %}
+            {% for i in recipe["ingredients"] %}
+                {% if loop.last %}
+                    <a href="../../ingredients/{{i}}">{{i}}</a>
+                {% else %}
+                    <a href="../../ingredients/{{i}}">{{i}}</a>, 
+                {% endif %}
+            {% endfor %}
+        {% endif %}</p>
+        <p>it is part of the 
+            {% if recipe["dietgroup"] == [] %}
+            <p>! No diet groups exist !</p>	
+        {% else %}
+            {% for i in recipe["dietgroup"] %}
+                {% if loop.last %}
+                    <a href="../../diet-groups/{{i}}">{{i}}</a>
+                {% else %}
+                    <a href="../../diet-groups/{{i}}">{{i}}</a>, 
+                {% endif %}
+            {% endfor %}
+        {% endif %} diet group(s)</p>
         <p>here is a pretty picture of it</p>
         <img src={{recipe.image}} alt="the picture was too pretty to show"/>
     </body>

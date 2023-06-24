@@ -2,6 +2,20 @@
 <html>
     <head></head> 
     <body>
-        <p>i love ingredients</p>
+        <p>i love ingredients like {{ingredient["title"]}}</p>
+        <p>some recipes that include {{ingredient["title"]}} are the
+        {% if ingredient["recipes"] == [] %}
+            <p>! No recipes exist !</p>	
+        {% else %}
+            {% for i in ingredient["recipes"] %}
+                {% if loop.last %}
+                    <a href="../../recipes/{{i}}">{{i}}</a>
+                {% else %}
+                    <a href="../../recipes/{{i}}">{{i}}</a>, 
+                {% endif %}
+            {% endfor %}
+        {% endif %}</p>
+        <p>here is a pretty picture of it</p>
+        <img src={{ingredient.image}} alt="the picture was too pretty to show"/>
     </body>
 </html>
