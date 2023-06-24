@@ -37,7 +37,7 @@ recipes = [
 	"mealtype": "lunch/dinner",
 	"time":"15 min"
   },
-];
+]
 ingredients=[
 	  {"title":"Avocado",
 	  "image":"https://cdn.britannica.com/72/170772-050-D52BF8C2/Avocado-fruits.jpg"
@@ -48,6 +48,21 @@ ingredients=[
 	  {"title":"Olive Oil",
 	  "image":"https://images.heb.com/is/image/HEBGrocery/000972208-1"
 	  },
+  ]
+
+dietgroups=[
+	  {"title":"Halal",
+	  "image":"https://static.trip101.com/paragraph_media/pictures/001/595/541/large/pexels-photo-958545.jpeg?1553522832",
+	  "desc":"Includes food prepared and handled according to Sharia law, excludes pork and alcohol."
+	  },
+	  {"title":"Vegetarian",
+	  "image":"https://images.everydayhealth.com/images/what-is-a-vegan-diet-benefits-food-list-beginners-guide-alt-1440x810.jpg",
+	  "desc":"Includes food derived from plant sources, excludes meat, poulty, and seafood."
+	  },
+	  {"title":"Gluten-free",
+	  "image":"https://www.restaurantware.com/media/magefan_blog/gluten_free_article_-_Thumbnail.png",
+	 "desc":"Excludes grain products containing gluten such as bread, pasta, and tortillas."
+	 },       
   ]
 
 # ------------
@@ -66,7 +81,7 @@ def show_about_us():
 
 @app.route('/diet-groups/')
 def show_diet_groups():
-	return render_template('diet-groups.html')
+	return render_template('diet-groups.html', dietgroups=dietgroups)
 
 @app.route('/recipes/')
 def show_recipes():
