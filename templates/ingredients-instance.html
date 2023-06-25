@@ -1,21 +1,104 @@
 <!DOCTYPE html>
 <html>
-    <head></head> 
-    <body>
-        <p>I love ingredients like {{ingredient["title"]}}</p>
-        <p>Some recipes that include {{ingredient["title"]}} are the
-        {% if ingredient["recipes"] == [] %}
-            <p>! No recipes exist !</p>	
-        {% else %}
-            {% for i in ingredient["recipes"] %}
-                {% if loop.last %}
-                    and the <a href="../../recipes/{{i}}">{{i}}</a>.
-                {% else %}
-                    <a href="../../recipes/{{i}}">{{i}}</a>, 
-                {% endif %}
-            {% endfor %}
-        {% endif %}</p>
-        <p>Here is a pretty picture of it.</p>
-        <img src={{ingredient.image}} alt="the picture was too pretty to show"/>
-    </body>
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <style>
+      .all {
+        background-color: rgba(214, 165, 91, 0.2);
+      }
+      hr {
+        background-color: black;
+        height: 2px;
+        border: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="all">
+      <div
+        style="
+          font-size: 40px;
+          padding: 30px 0px 0px 60px;
+          font-family: gill sans;
+          font-weight: bold;
+        "
+      >
+        {{ingredient["title"]}}
+      </div>
+      <hr />
+      <div class="row">
+        <div
+          class="col-sm-8 col-md-6 col-lg-6"
+          style="padding-left: 60px; padding-right: 60px"
+        >
+          <div
+            style="
+              text-align: center;
+              font-family: gill sans;
+              color: black;
+              background: rgba(214, 165, 91, 0.5);
+              outline: 3px dashed #cfaa70;
+              outline-offset: -10px;
+              margin-top: 60px;
+              padding: 20px 20px 20px 20px;
+            "
+          >
+            <div
+              class="mb-1"
+              style="
+                text-transform: uppercase;
+                font-size: 20px;
+                font-weight: bold;
+              "
+            >
+              Ingredient attribute
+            </div>
+            <div class="fs-5 mb-5">
+              <span style="text-transform: uppercase; font-size: 17px"
+                >ATTRIBUTE</span
+              >
+            </div>
+            <h1 class="display-5 fw-bolder"></h1>
+
+            <p class="lead" style="font-weight: bold">Ingredient attribute</p>
+            <br />
+            <p style="font-size: 23px; font-weight: bold; margin-top: 18 px">
+              Ingredient attribute
+            </p>
+          </div>
+          <div
+            style="
+              text-align: center;
+              font-family: gill sans;
+              color: black;
+              background: rgba(227, 198, 154, 0.5);
+              outline: 3px dashed #cfaa70;
+              outline-offset: -10px;
+              margin-top: 50px;
+              padding: 20px 20px 20px 20px;
+            "
+          >
+            <h1 style="font-size: 23px; font-weight: bold; margin-top: 18 px">
+              Ingredient attribute
+            </h1>
+
+            <a
+              href=""
+              style="font-size: 23px; font-weight: bold; margin-top: 18 px"
+              >LINK TO RECIPE</a
+            >
+          </div>
+        </div>
+        <div class="col-sm-4 col-md-6 col-lg-6">
+          <div class="text-center">
+            <img src="{{ingredient["image"]}}" class="rounded" alt="..."
+            style="width: 450px; margin-top: 60px" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>

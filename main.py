@@ -158,17 +158,26 @@ dietgroups=[
 	  {"title":"Halal",
 	  "image":"https://static.trip101.com/paragraph_media/pictures/001/595/541/large/pexels-photo-958545.jpeg?1553522832",
 	  "desc":"Includes food prepared and handled according to Sharia law, excludes pork and alcohol.",
-	  "recipes":["Avocado Turkey Burger", "Carrot and Avocado Salad", "Kale Pizza"]
+	  "recipes":["Avocado Turkey Burger", "Carrot and Avocado Salad", "Kale Pizza"],
+	  "pagedesc":"Halal food does not use artificial hormones, supplements, and other things that may harm the animal to be consumed.",
+	  "prohibits":"Halal diets prohibit foods that contain blood, alcohol and foods prepared with it, and certain types of meat, including pork, most reptiles, birds of prey, and carnivorous animals.",
+	  "percentage":"There are now an estimated 8 million halal consumers in the U.S., and halal consumers represent approximately 25% of the world's population."
 	  },
 	  {"title":"Vegetarian",
 	  "image":"https://images.everydayhealth.com/images/what-is-a-vegan-diet-benefits-food-list-beginners-guide-alt-1440x810.jpg",
 	  "desc":"Includes food derived from plant sources, excludes meat, poultry, and seafood.",
-	  "recipes":["Carrot and Avocado Salad", "Kale Pizza"]
+	  "recipes":["Carrot and Avocado Salad", "Kale Pizza"],
+	  "pagedesc":"A vegetarian diet is one that does not include any meat or seafood. However, there are many variations to this – some people following a vegetarian diet may eat eggs and dairy foods, while others may avoid one or both.",
+	  "prohibits":"Vegetarian diets prohibit meat, such as beef, pork, and game poultry, such as chicken, turkey, and duck, fish and shellfish, insects, rennet, gelatin, and other types of animal protein, and stock or fats that derive from animal slaughter.",
+	  "percentage":"About 5% of the U.S. is made up of vegetarians, but about 1.5 billion people are vegetarian across the world."
 	  },
 	  {"title":"Gluten-free",
 	  "image":"https://www.restaurantware.com/media/magefan_blog/gluten_free_article_-_Thumbnail.png",
 	 "desc":"Excludes grain products containing gluten such as bread, pasta, and tortillas.",
-	 "recipes":["Carrot and Avocado Salad"]
+	 "recipes":["Carrot and Avocado Salad"],
+	 "pagedesc":"A gluten-free diet is essential for managing signs and symptoms of celiac disease and other medical conditions associated with gluten. A gluten-free diet is also popular among people who haven't been diagnosed with a gluten-related medical condition. The claimed benefits of the diet are improved health, weight loss and increased energy, but more research is needed.",
+	  "prohibits":"This diet excludes grain products containing gluten such as bread, pasta, and tortillas.",
+	  "percentage":"An estimated 25% of Americans follow a gluten-free diet, and anywhere from 0.6% to 6% of the global population is gluten-free."
 	 },       
   ]
 

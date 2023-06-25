@@ -73,9 +73,9 @@
 {% else %}
 {% for i in recipe["ingredients"] %}
 {% if loop.last %}
-• <a href="../../ingredients/{{i}}">{{i}}</a>
+• <a href="../../{{ingredient}}">{{i}}</a>
 {% else %}
-• <a href="../../ingredients/{{i}}">{{i}}</a>,<br>
+• <a href="../../{{ingredient}}">{{i}}</a>,<br>
 {% endif %}
 {% endfor %}
 {% endif %}</p></p>
