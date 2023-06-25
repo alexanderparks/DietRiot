@@ -44,12 +44,30 @@
         </div>
       </div>
     </section>
-    <p>i love recipes like {{recipe["title"]}}</p>
-    <p>
-      the ingredients of the {{recipe["title"]}} are {{recipe["ingredients"]}}
-    </p>
-    <p>it is part of the {{recipe["dietgroup"]}} diet group(s)</p>
-    <p>here is a pretty picture of it</p>
-    <img src="" alt="the picture was too pretty to show" />
+    <p>I love recipes like {{recipe["title"]}}</p>
+    <p>The ingredients of the {{recipe["title"]}} are 
+        {% if recipe["ingredients"] == [] %}
+        <p>! No ingredients exist !</p>	
+    {% else %}
+        {% for i in recipe["ingredients"] %}
+            {% if loop.last %}
+                and <a href="../../ingredients/{{i}}">{{i}}</a>.
+            {% else %}
+                <a href="../../ingredients/{{i}}">{{i}}</a>, 
+            {% endif %}
+        {% endfor %}
+    {% endif %}</p>
+    <p>It is part of the 
+        {% if recipe["dietgroup"] == [] %}
+        <p>! No diet groups exist !</p>	
+    {% else %}
+        {% for i in recipe["dietgroup"] %}
+            {% if loop.last %}
+                and <a href="../../diet-groups/{{i}}">{{i}}</a>
+            {% else %}
+                <a href="../../diet-groups/{{i}}">{{i}}</a>, 
+            {% endif %}
+        {% endfor %}
+    {% endif %} diet group(s).</p>
   </body>
 </html>
