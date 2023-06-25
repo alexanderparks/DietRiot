@@ -47,8 +47,16 @@
               This dish belongs to the following diet groups:
             </p>
             <p>
-              {% for item in recipe["dietgroup"] %} {{ item }}{% if not
-              loop.last %}, {% endif %}{% endfor %}
+            {% for i in recipe["dietgroup"] %} 
+                {% if i.lower() in diet_bag %}
+                    <a href="../../diet-groups/{{i}}">{{i}}</a>
+                {% else %}
+                    {{i}}
+                {% endif %}
+                {% if not loop.last %}
+                    •
+                {% endif %}
+            {% endfor %}
             </p>
             <br>
             <p style="font-size: 23px; font-weight: bold; margin-top: 18 px">
@@ -68,17 +76,18 @@
             </h1>
 
             <p>
-{% if recipe["ingredients"] == [] %}
-<p>! No ingredients exist !</p>
-{% else %}
-{% for i in recipe["ingredients"] %}
-{% if loop.last %}
-• <a href="../../ingredients/{{i}}">{{i}}</a>
-{% else %}
-• <a href="../../ingredients/{{i}}">{{i}}</a>,<br>
-{% endif %}
-{% endfor %}
-{% endif %}</p></p>
+            {% if recipe["ing"] == [] %}
+                <p>! No ingredients exist !</p>
+            {% else %}
+                {% for i in recipe["ing"] %}    
+                    {% if i.lower() in ing_bag %}
+                        • <a href="../../ingredients/{{i}}">{{i}}</a><br>
+                    {% else %}
+                        • {{i}}<br>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        </p></p>
            <a href="{{recipe["url"]}}" style="font-size: 23px; font-weight: bold; margin-top: 18 px">LINK TO RECIPE</a>
         </div>  
         </div>

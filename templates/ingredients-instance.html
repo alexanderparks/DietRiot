@@ -8,7 +8,7 @@
             <p>! No recipes exist !</p>	
         {% else %}
             {% for i in ingredient["recipes"] %}
-                {% if loop.last %}
+                {% if loop.last and not loop.first%}
                     and the <a href="../../recipes/{{i}}">{{i}}</a>.
                 {% else %}
                     <a href="../../recipes/{{i}}">{{i}}</a>, 
