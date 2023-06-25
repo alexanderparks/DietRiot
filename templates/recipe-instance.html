@@ -1,22 +1,31 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
-      crossorigin="anonymous"
-    />
-  </head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<style>
+    .all{
+        background-color:rgba(214, 165, 91, 0.1);
+    }
+    hr{
+        background-color: black;
+        height:2px;
+        border:none;
+    }
+</style>  
+</head>
   <body>
-    <section class="py-5">
-      <div class="container px-4 px-lg-5 my-5">
-        <div class="row gx-4 gx-lg-5 align-items-center">
-          <div class="col-md-6 col-lg-6">
-            <img class="card-img-top mb-5 mb-md-0" src="{{recipe["image"]}}"
-            alt="..." style = "width: 450px; margin-top:30px"/>
-          </div>
-          <div class="col-md-6">
+    <div class="all">
+    <div  style="font-size:40px; padding: 30px 0px 0px 60px; font-family: gill sans; font-weight:bold">{{recipe["title"]}}</div><hr>
+ <div class="row">
+          <div class="col-sm-8 col-md-6 col-lg-6" style="padding-left:60px; padding-right:60px">
+            <div style=" text-align: center;
+              font-family: gill sans;
+              color: black;
+              background: rgba(214, 165, 91, 0.5);
+              outline: 3px dashed #cfaa70;
+              outline-offset: -10px;
+              margin-top:60px;
+              padding: 20px 20px 20px 20px">
             <div
               class="mb-1"
               style="
@@ -25,31 +34,54 @@
                 font-weight: bold;
               "
             >
-              Diet-group: {{recipe["dietgroup"]}}
+              Yield: {{recipe["yield"]}} servings
             </div>
             <div class="fs-5 mb-5">
               <span style="text-transform: uppercase; font-size: 17px"
                 >cuisine type: {{recipe["cuisinetype"]}}</span
               >
             </div>
-            <h1 class="display-5 fw-bolder">{{recipe["title"]}}</h1>
+            <h1 class="display-5 fw-bolder"></h1>
 
-            <p class="lead">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Praesentium at dolorem quidem modi. Nam sequi consequatur
-              obcaecati excepturi alias magni, accusamus eius blanditiis
-              delectus ipsam minima ea iste laborum vero?
+            <p class="lead" style="font-weight: bold">
+              This dish belongs to the following diet groups:
             </p>
-          </div>
+            <p>
+              {% for item in recipe["dietgroup"] %} {{ item }}{% if not
+              loop.last %}, {% endif %}{% endfor %}
+            </p>
+            <br>
+            <p style="font-size: 23px; font-weight: bold; margin-top: 18 px">
+            TOTAL CALORIES: {{ recipe["calories"]|float|round }}
+            </p>
+            </div>
+            <div style=" text-align: center;
+              font-family: gill sans;
+              color: black;
+              background: rgba(227, 198, 154, 0.5);
+              outline: 3px dashed #cfaa70;
+              outline-offset: -10px;
+              margin-top:50px;
+              padding: 20px 20px 20px 20px">
+            <h1 style="font-size: 23px; font-weight: bold; margin-top: 18 px">
+              INGREDIENTS
+            </h1>
+            <p>
+              {% for item in recipe["ingredients"] %} • {{ item }}{% if not
+              loop.last %}<br />
+              {% endif %}{% endfor %}
+            </p>
+           <a href="{{recipe["url"]}}" style="font-size: 23px; font-weight: bold; margin-top: 18 px">LINK TO RECIPE</a>
+        </div>  
         </div>
-      </div>
-    </section>
-    <p>i love recipes like {{recipe["title"]}}</p>
-    <p>
-      the ingredients of the {{recipe["title"]}} are {{recipe["ingredients"]}}
-    </p>
-    <p>it is part of the {{recipe["dietgroup"]}} diet group(s)</p>
-    <p>here is a pretty picture of it</p>
-    <img src="" alt="the picture was too pretty to show" />
+         <div class="col-sm-4 col-md-6 col-lg-6">
+    <div class="text-center">
+            <img src="{{recipe["image"]}}"
+            class="rounded" alt="..." style = "width: 450px; margin-top:60px"/>
+
+        </div>  
+    </div>
+        </div>
+        </div>
   </body>
 </html>
