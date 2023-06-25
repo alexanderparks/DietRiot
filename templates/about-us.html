@@ -1,16 +1,110 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+    <style>
+      .card {
+        box-shadow: 0px 0px 15px -5px;
+        transition: 0.5s;
+        animation: ease-in-out;
+        margin: 15px 15px 15px 15px;
+        display: flex;
+        border: none;
+      }
+      .card:hover {
+        transform: scale(1.05);
+        box-shadow: 0px 0px 15px 0px;
+      }
+      .bg-cover {
+        background-size: cover !important;
+        height: 300px;
+      }
+      .jumbotron bg-cover text-white:before {
+        filter: 40%;
+      }
+      .row {
+        margin-left: 15px;
+        margin-right: 15px;
+      }
+      .all {
+        background-image: radial-gradient(#07450c, #6d9c71);
+      }
+      .display-4 font-weight-bold {
+        font-weight: strong;
+      }
+      .font-italic text-muted {
+        color: white;
+      }
+      .container py-5 {
+        color: white;
+      }
+      .btn {
+        width: 150px;
+        justify-content: center;
+        padding: 0/5rem;
+        background-color: rgba(7, 69, 12, 0.2);
+        transition: 0.2s;
+        border-radius: 3px;
+      }
+      .btn-container {
+        display: flex;
+        justify-content: center;
+      }
+
+      .btn:hover {
+        background: rgba(27, 156, 252, 0.1);
+        transform: scale();
+      }
+
+      a {
+        text-transform: uppercase;
+        color: #189cfc;
+        text-decoration: none;
+        font-weight: bold;
+      }
+      .card-img-top {
+        width: 305px;
+        height: 200px;
+      }
+      .rounded-square {
+        border-radius: 10px;
+      }
+      .highlight {
+        font-weight: bold;
+      }
+      .social-icons {
+        display: flex;
+        justify-content: center;
+      }
+      .social-icon i {
+        font-size: 120px !important;
+        margin: 0 10px;
+      }
+      .card-text a {
+        text-transform: none;
+      }
+      div.all {
+        padding-bottom: 50px;
+      }
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+      crossorigin="anonymous"
+    />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script defer src="js/bootstrap.bundle.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <script defer src="js/bootstrap.bundle.min.js"></script> 
   </head>
   <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">Website Name</a>
+        <a class="navbar-brand" href="#">DietRiot</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -69,6 +163,358 @@
         </div>
       </div>
     </nav>
-    <p class="test">This is about us.</p1>
+
+    <div class="all">
+      <!-- Bootstrap Static Header -->
+      <div
+        style="
+          background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+            url(assets/gdc.jpg);
+        "
+        class="jumbotron bg-cover text-white"
+      >
+        <div class="container py-5 text-center">
+          <h1
+            style="
+              font-weight: 300px;
+              font-size: 60px;
+              font-family: gill sans;
+              padding-top: 60px;
+            "
+          >
+            ABOUT US
+          </h1>
+        </div>
+      </div>
+
+      <!-- For Team Members -->
+      <div class="container py-5">
+        <div class="row" style="justify-content: center">
+          <p
+            style="
+              text-align: center;
+              font-weight: 300px;
+              font-family: gill sans;
+              font-size: 20px;
+              color: black;
+              width: 300px;
+              height: 80px;
+              background: rgba(255, 255, 255, 0.8);
+              float: left;
+              padding: 25px;
+              outline: 1px dashed #07450c;
+              outline-offset: -10px;
+            "
+          >
+            Meet the team!
+          </p>
+        </div>
+      </div>
+
+      <!-- Profile Cards -->
+      <div class="d-flex flex-column justify-content-center">
+        <div class="d-flex justify-content-center">
+          <!-- Monique -->
+          <div class="card" style="width: 19rem; margin-right: 20px">
+            <img
+              class="img-fluid img-profile rounded-square mx-auto mb-2"
+              src="assets/monique.jpg"
+              alt="monique_profile"
+            />
+            <div class="card-body">
+              <h5 class="card-title text-center">Monique Tran</h5>
+              <p class="card-text">I am a third year undergraduate, and while my professional interests lie outside of SWE, I enjoy learning new skills and programming languages! </p>
+            </div>
+            <div class="card-footer">
+              <div><span class="highlight">Responsibilities:</span> Group Leader and creating the model cards using the restful API and Bootstrap.</div>
+              <div><span class="highlight">Number of commits:</span> <span id="monique-commits">[loading...]</span></div>
+              <div><span class="highlight">Number of issues:</span> <span id="monique-issues">[loading...]</span></div>
+            </div>
+          </div>
+
+          <!-- Thomas -->
+          <div class="card" style="width: 19rem; margin-right: 20px">
+            <img
+              class="img-fluid img-profile rounded-square mx-auto mb-2"
+              src="assets/thomas.jpg"
+              alt="thomas_profile"
+            />
+            <div class="card-body">
+              <h5 class="card-title text-center">Thomas Skrovan</h5>
+              <p class="card-text">I am an undergraduate computer science student in the class of 2025. Outside of programming, I enjoy playing sports, competing with the <a href="https://sites.utexas.edu/mensclubvolleyball/" target="_blank">Texas Men’s Volleyball Club</a>, and spending time with friends.</p>
+            </div>
+            <div class="card-footer">
+              <div><span class="highlight">Responsibilities:</span> Designing the restful API using Postman and getting a URL for the website.</div>
+              <div><span class="highlight">Number of commits:</span> <span id="thomas-commits">[loading...]</span></div>
+              <div><span class="highlight">Number of issues:</span> <span id="thomas-issues">[loading...]</span></div>
+            </div>
+          </div>
+
+          <!-- Rey -->
+          <div class="card" style="width: 19rem; margin-right: 20px">
+            <img
+              class="img-fluid img-profile rounded-square mx-auto mb-2"
+              src="assets/rey.jpg"
+              alt="rey_profile"
+            />
+            <div class="card-body">
+              <h5 class="card-title text-center">Rey Sanchez Samper</h5>
+              <p class="card-text">I'm a senior computer science student. Outside of school, I enjoy drawing and spending my time listening to history and science podcasts.</p>
+            </div>
+            <div class="card-footer">
+              <div><span class="highlight">Responsibilities:</span> Creating the about page dynamically from Gitlab using Bootstrap.</div>
+              <div><span class="highlight">Number of commits:</span> <span id="rey-commits">[loading...]</span></div>
+              <div><span class="highlight">Number of issues:</span> <span id="rey-issues">[loading...]</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-center">
+          <!-- Alex -->
+          <div class="card" style="width: 19rem; margin-right: 20px">
+            <img
+              class="img-fluid img-profile rounded-square mx-auto mb-2"
+              src="assets/alex.jpg"
+              alt="alex_profile"
+            />
+            <div class="card-body">
+              <h5 class="card-title text-center">Alex Parks</h5>
+              <p class="card-text">Hello! I am a third-year UT-Austin student double majoring in Computer Science and Mathematics. My academic and career interests include data science, machine learning, artificial intelligence, and software engineering. Outside of academics, I enjoy watching films, playing or watching sports, hiking, and travelling!</p>
+            </div>
+            <div class="card-footer">
+              <div><span class="highlight">Responsibilities:</span> Writing an initial technical report using GitLab Wiki.</div>
+              <div><span class="highlight">Number of commits:</span> <span id="alex-commits">[loading...]</span></div>
+              <div><span class="highlight">Number of issues:</span> <span id="alex-issues">[loading...]</span></div>
+            </div>
+          </div>
+
+          <!-- Regina -->
+          <div class="card" style="width: 19rem; margin-right: 20px">
+            <img
+              class="img-fluid img-profile rounded-square mx-auto mb-2"
+              src="assets/regina.jpg"
+              alt="regina_profile"
+            />
+            <div class="card-body">
+              <h5 class="card-title text-center">Regina Zhou</h5>
+              <p class="card-text"> I am a junior undergraduate student studying Computer Science at UT Austin. I have a passion for coding, and I also enjoy creating mini-games in my spare time.</p>
+            </div>
+            <div class="card-footer">
+              <div><span class="highlight">Responsibilities:</span> Creating the home/splash page and the navbar for all pages using Bootstrap.</div>
+              <div><span class="highlight">Number of commits:</span> <span id="regina-commits">[loading...]</span></div>
+              <div><span class="highlight">Number of issues:</span> <span id="regina-issues">[loading...]</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="container py-5">
+        <div class="row" style="justify-content: center">
+          <p
+            style="
+              text-align: center;
+              font-weight: 300px;
+              font-family: gill sans;
+              font-size: 20px;
+              color: black;
+              width: 300px;
+              height: 80px;
+              background: rgba(255, 255, 255, 0.8);
+              float: left;
+              padding: 25px;
+              outline: 1px dashed #07450c;
+              outline-offset: -10px;
+            "
+          >
+            Stats
+          </p>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <div class="card" style="width: 300px; height: 250px;">
+          <div class="card-body">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item" id="total-commits">Total no. of commits: [loading...]</li>
+              <li class="list-group-item" id="total-issues">Total no. of issues: [loading...]</li>
+              <li class="list-group-item">
+                GitLab Issue Tracker: <a href="https://gitlab.com/mkatiatran/cs-373-website/-/issues " target="_blank">DietRiot Issue List</a>
+              </li>
+              <li class="list-group-item">
+                GitLab Repo: <a href="https://gitlab.com/mkatiatran/cs-373-website">DietRiot Repo</a>
+              </li>
+              <li class="list-group-item">
+                GitLab Wiki: <a href="https://gitlab.com/mkatiatran/cs-373-website/-/wikis/home">DietRiot Wiki</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tools Used -->
+      <div class="container py-5">
+        <div class="row" style="justify-content: center">
+          <p
+            style="
+              text-align: center;
+              font-weight: 300px;
+              font-family: gill sans;
+              font-size: 20px;
+              color: black;
+              width: 300px;
+              height: 80px;
+              background: rgba(255, 255, 255, 0.8);
+              float: left;
+              padding: 25px;
+              outline: 1px dashed #07450c;
+              outline-offset: -10px;
+            "
+          >
+            Data
+          </p>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <div class="card" style="width: 300px; height: 150px;">
+          <div class="card-body">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                Data: <a href="https://developer.edamam.com/edamam-docs-recipe-api" target="_blank">Edamam Recipe API</a>
+              </li>
+              <li class="list-group-item">
+                Postman Collection: <a href="https://documenter.getpostman.com/view/28142517/2s93z6e4RX"  target="_blank">DietRiot API</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      
+      <!-- Tools Used -->
+      <div class="container py-5">
+        <div class="row" style="justify-content: center">
+          <p
+            style="
+              text-align: center;
+              font-weight: 300px;
+              font-family: gill sans;
+              font-size: 20px;
+              color: black;
+              width: 300px;
+              height: 80px;
+              background: rgba(255, 255, 255, 0.8);
+              float: left;
+              padding: 25px;
+              outline: 1px dashed #07450c;
+              outline-offset: -10px;
+            "
+          >
+            Tools Used
+          </p>
+        </div>
+      </div>
+
+      
+      <div class="social-icons">
+        <a class="social-icon"><i class="fab fa-html5"></i></a>
+        <a class="social-icon"><i class="fab fa-css3"></i></a>
+        <a class="social-icon"><i class="fas fa-flask"></i></a>
+        <a class="social-icon"><i class="fab fa-gitlab"></i></a>
+        <a class="social-icon"><img src="assets/postman.svg" alt="Postman Icon" width="120" height="120" /></a>
+      </div>
+
+    </div>
+
+    <script>
+      // Fetch data from the GitLab API
+      fetch('https://gitlab.com/api/v4/projects/46955283/repository/contributors?order_by=name')
+        .then(response => response.json())
+        .then(data => {
+          // Calculate the total number of commits
+          let totalCommits = data.reduce((total, contributor) => total + contributor.commits, 0);
+  
+          // Update the text on the card
+          let totalCommitsElement = document.querySelector('#total-commits');
+          totalCommitsElement.textContent = `Total no. of commits: ${totalCommits}`;
+        });
+    </script>
+
+    <script>
+      // Fetch data from the GitLab API
+      fetch('https://gitlab.com/api/v4/projects/46955283/issues?author_username=')
+        .then(response => response.json())
+        .then(data => {
+          // Calculate the total number of issues
+          let totalIssues = data.length;
+
+          // Update the text on the card
+          let totalIssuesElement = document.querySelector('#total-issues');
+          totalIssuesElement.textContent = `Total no. of issues: ${totalIssues}`;
+        });
+    </script>
+
+    
+    <!-- Script to update the total number of commits using email addresses -->
+    <script>
+      // Define an object to map email addresses to element IDs
+      let emailToElementIdMap = {
+        'mkatiatran@gmail.com': 'monique-commits',
+        'thejaryak@gmail.com': 'thomas-commits',
+        'sadansanchez3@gmail.com': 'rey-commits',
+        'alexjparks1@gmail.com': 'alex-commits',
+        'regina.zhou@utexas.edu': 'regina-commits'
+      };
+
+      // Fetch data from the GitLab API
+      fetch('https://gitlab.com/api/v4/projects/46955283/repository/contributors?order_by=name')
+        .then(response => response.json())
+        .then(data => {
+          // Update the total number of commits for each contributor
+          data.forEach(contributor => {
+            let elementId = emailToElementIdMap[contributor.email];
+            if (elementId) {
+              let element = document.querySelector(`#${elementId}`);
+              element.textContent = contributor.commits;
+            }
+          });
+        });
+    </script>
+
+    <!-- Script to update the total number of issues using GitLab usernames -->
+    <script>
+      // Define an object to map GitLab usernames to element IDs
+      let usernameToElementIdMap = {
+        'mkatiatran': 'monique-issues',
+        'thejaryak': 'thomas-issues',
+        'sadansanchez3': 'rey-issues',
+        'alexparks': 'alex-issues',
+        'regina.zhou': 'regina-issues'
+      };
+    
+      // Initialize the textContent property of each element to '0'
+      Object.values(usernameToElementIdMap).forEach(elementId => {
+        let element = document.querySelector(`#${elementId}`);
+        element.textContent = '0';
+      });
+    
+      // Fetch data from the GitLab API
+      fetch('https://gitlab.com/api/v4/projects/46955283/issues?author_username=')
+        .then(response => response.json())
+        .then(data => {
+          // Update the total number of issues for each contributor
+          data.forEach(issue => {
+            let elementId = usernameToElementIdMap[issue.author.username];
+            if (elementId) {
+              let element = document.querySelector(`#${elementId}`);
+              element.textContent = parseInt(element.textContent || '0') + 1;
+            }
+          });
+        });
+    </script>
+
+
+    <!-- <p class="test">This is about us.</p1> -->
   </body>
 </html>
