@@ -8,6 +8,10 @@
 from flask import Flask, render_template
 app = Flask(__name__)
 
+rec_bag = {"avocado turkey burger", "carrot and avocado salad", "kale pizza"}
+ing_bag = {"avocado", "olive oil", "turkey"}
+diet_bag = {"halal", "gluten-free", "vegetarian"}
+
 recipes = [
   {
     "title": "Avocado Turkey Burger",
@@ -25,6 +29,20 @@ recipes = [
           "Sprouts, such as radish sprouts, for garnish",
           "4 burger buns, toasted"
         ],
+    "ing": [
+          "turkey",
+          "Kosher salt and black pepper",
+          "cilantro",
+          "garlic",
+          "olive oil",
+          "avocado",
+          "ground cumin",
+          "dried red chili flakes",
+          "lemon juice",
+          "Boston lettuce",
+          "sprouts",
+          "burger buns"
+        ],
     "dietgroup": ["Dairy-Free",
           "Egg-Free",
           "Peanut-Free",
@@ -41,7 +59,8 @@ recipes = [
           "Mollusk-Free",
           "Alcohol-Free",
           "Sulfite-Free",
-          "Kosher"],
+          "Kosher",
+	        "Halal"],
     "image":"https://www.seriouseats.com/thmb/HM36ntDqT93JZqJTh2zdCFqygQg=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__recipes__images__2014__05__20140530-one-pot-wonders-turkey-burgers-0daef55b338944afa44a4887a7529d0d.jpg",
 	"cuisinetype": "American",
 	"mealtype": "lunch/dinner",
@@ -70,6 +89,24 @@ recipes = [
           "4 tablespoons crème fraiche",
           "2 tablespoons toasted sunflower seeds",
           "2 teaspoons toasted sesame seeds"],
+	  "ing": [
+          "carrots",
+          "Kosher salt",
+          "orange",
+          "lemon",
+          "cumin seeds",
+          "garlic cloves",
+          "thyme",
+          "olive oil",
+          "red wine vinegar",
+          "red pepper flakes",
+          "black pepper",
+          "sugar",
+          "avocado",
+          "baby sprouts, herbs, and microgreens",
+          "crème fraiche",
+          "toasted sunflower seeds",
+          "toasted sesame seeds"],
     "dietgroup": ["Vegetarian",
           "Pescatarian",
           "Gluten-Free",
@@ -88,7 +125,8 @@ recipes = [
           "Lupine-Free",
           "Mollusk-Free",
           "Alcohol-Free",
-          "Kosher"],
+          "Kosher",
+	        "Halal"],
     "image":"https://images.food52.com/ojYYwmMw_QcDyajP06dGLk_94X4=/1930x1286/filters:format(webp)/4932babe-6786-4653-bfdb-872c171a72bd--food52_10-25-11-3782.jpg",
 	"cuisinetype": "American",
 	"mealtype": "lunch/dinner",
@@ -108,6 +146,16 @@ recipes = [
           "8 ounces fresh mozzarella cheese",
           "6 medium garlic cloves, thinly sliced",
           "Pinch red pepper flakes"
+        ],
+    "ing": [
+          "pizza dough",
+          "kale leaves",
+          "olive oil",
+          "Kosher salt and black pepper",
+          "Fontina, Jack, or Gruyère cheese",
+          "mozzarella cheese",
+          "garlic cloves",
+          "red pepper flakes"
         ],
     "dietgroup": ["Sugar-Conscious",
           "Vegetarian",
@@ -129,7 +177,8 @@ recipes = [
           "Mollusk-Free",
           "Alcohol-Free",
           "Sulfite-Free",
-          "Kosher"],
+          "Kosher",
+	        "Halal"],
     "image":"https://www.seriouseats.com/thmb/3wUBeoEFIhxDlbMJdWi5ppZz4Pk=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__recipes__images__2014__10__20141022-kale-pizza-7-3330b9fddcc04989ac7492cd28f16da7.jpg",
 	"cuisinetype": "American",
 	"mealtype": "lunch/dinner",
@@ -142,15 +191,27 @@ recipes = [
 ingredients=[
 	  {"title":"Avocado",
 	  "image":"https://cdn.britannica.com/72/170772-050-D52BF8C2/Avocado-fruits.jpg",
-	  "recipes":["Avocado Turkey Burger", "Carrot and Avocado Salad"]
+	  "recipes":["Avocado Turkey Burger", "Carrot and Avocado Salad"],
+	  "estimatedcost":"69.0 cents",
+	  "aisle":"Produce",
+	  "calories":"240",
+	  "weightperserving":"50 g"
 	  },
 	  {"title":"Turkey",
 	  "image":"https://pngimg.com/d/turkey_food_PNG18.png",
-	  "recipes":["Avocado Turkey Burger"]
+	  "recipes":["Avocado Turkey Burger"],
+	  "estimatedcost":"3400.0 cents",
+	  "aisle":"Meat",
+	  "calories":"117",
+	  "weightperserving":"1.5 lb"
 	  },
 	  {"title":"Olive Oil",
 	  "image":"https://images.heb.com/is/image/HEBGrocery/000972208-1",
-	  "recipes":["Carrot and Avocado Salad", "Kale Pizza"]
+	  "recipes":["Carrot and Avocado Salad", "Kale Pizza"],
+	  "estimatedcost":"699.0 cents",
+	  "aisle":"Condiments",
+	  "calories":"10",
+	  "weightperserving":"5 g"
 	  },
   ]
 
@@ -214,7 +275,7 @@ def show_recipes():
 def show_recipe_instance(name):
 	for r in recipes:
 		if r["title"].lower() == name.lower():
-			return render_template('recipe-instance.html', recipe = r)
+			return render_template('recipe-instance.html', recipe = r, ing_bag = ing_bag, diet_bag = diet_bag)
 	return name + " recipe not found"
 
 @app.route('/ingredients/')

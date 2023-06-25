@@ -7,7 +7,7 @@
     />
     <style>
       .all {
-        background-color: rgba(214, 165, 91, 0.2);
+        background-color: rgba(196, 145, 69, 0.4);
       }
       hr {
         background-color: black;
@@ -39,8 +39,8 @@
               text-align: center;
               font-family: gill sans;
               color: black;
-              background: rgba(214, 165, 91, 0.5);
-              outline: 3px dashed #cfaa70;
+              background: rgba(176, 96, 39, 0.3);
+              outline: 3px dashed #b06027;
               outline-offset: -10px;
               margin-top: 60px;
               padding: 20px 20px 20px 20px;
@@ -54,42 +54,54 @@
                 font-weight: bold;
               "
             >
-              Ingredient attribute
+              Estimated cost: 
             </div>
             <div class="fs-5 mb-5">
               <span style="text-transform: uppercase; font-size: 17px"
-                >ATTRIBUTE</span
+                >{{ingredient["estimatedcost"]}}</span
               >
             </div>
             <h1 class="display-5 fw-bolder"></h1>
 
-            <p class="lead" style="font-weight: bold">Ingredient attribute</p>
-            <br />
+            <p class="lead" style="font-weight: bold">In what aisle can I find this ingredient at the store?</p>
+            <p style="margin-top:-10px;font-size:19px;">The {{ingredient["aisle"]}} aisle</p><br />
             <p style="font-size: 23px; font-weight: bold; margin-top: 18 px">
-              Ingredient attribute
-            </p>
+              Related Recipes
+            </p><p>Some recipes that include {{ingredient["title"]}} are the
+        {% if ingredient["recipes"] == [] %}
+            <p>! No recipes exist !</p>	
+        {% else %}
+            {% for i in ingredient["recipes"] %}
+                {% if loop.last and not loop.first%}
+                    and the <a href="../../recipes/{{i}}">{{i}}</a>.
+                {% elif loop.last and loop.first%}
+                <a href="../../recipes/{{i}}">{{i}}</a>.
+                    {% else %}
+                    <a href="../../recipes/{{i}}">{{i}}</a>, 
+                {% endif %}
+            {% endfor %}
+        {% endif %}</p>
           </div>
           <div
             style="
               text-align: center;
               font-family: gill sans;
               color: black;
-              background: rgba(227, 198, 154, 0.5);
-              outline: 3px dashed #cfaa70;
+              background: rgba(207, 167, 107, 0.4);
+              outline: 3px dashed #b06027;
               outline-offset: -10px;
               margin-top: 50px;
               padding: 20px 20px 20px 20px;
             "
           >
             <h1 style="font-size: 23px; font-weight: bold; margin-top: 18 px">
-              Ingredient attribute
-            </h1>
+              Total calories:
+            </h1> {{ingredient["calories"]}} cal<br><br>
 
-            <a
-              href=""
+            <p
               style="font-size: 23px; font-weight: bold; margin-top: 18 px"
-              >LINK TO RECIPE</a
-            >
+              >Weight per serving:</p
+            > <p>{{ingredient["weightperserving"]}}</p>
           </div>
         </div>
         <div class="col-sm-4 col-md-6 col-lg-6">
