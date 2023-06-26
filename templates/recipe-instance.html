@@ -7,16 +7,172 @@
       integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
       crossorigin="anonymous"
     />
+    <style>
+      .card {
+        box-shadow: 0px 0px 15px -5px;
+        transition: 0.5s;
+        animation: ease-in-out;
+        margin: 15px 15px 15px 15px;
+        display: flex;
+        border: none;
+      }
+      .card:hover {
+        transform: scale(1.05);
+        box-shadow: 0px 0px 15px 0px;
+      }
+      .bg-cover {
+        background-size: cover !important;
+        height: 300px;
+      }
+      .jumbotron bg-cover text-white:before {
+        filter: 40%;
+      }
+      .row {
+        margin-left: 15px;
+        margin-right: 15px;
+      }
+      .display-4 font-weight-bold {
+        font-weight: strong;
+      }
+      .font-italic text-muted {
+        color: white;
+      }
+      .container py-5 {
+        color: white;
+      }
+      .btn {
+        width: 150px;
+        justify-content: center;
+        padding: 0/5rem;
+        background-color: rgba(7, 69, 12, 0.2);
+        transition: 0.2s;
+        border-radius: 3px;
+      }
+      .btn-container {
+        display: flex;
+        justify-content: center;
+      }
+
+      .btn:hover {
+        background: rgba(27, 156, 252, 0.1);
+        transform: scale();
+      }
+
+      a {
+        text-transform: uppercase;
+        color: #189cfc;
+        text-decoration: none;
+        font-weight: bold;
+      }
+      .card-img-top {
+        width: 305px;
+        height: 200px;
+      }
+      .rounded-square {
+        border-radius: 10px;
+      }
+      .highlight {
+        font-weight: bold;
+      }
+      .social-icons {
+        display: flex;
+        justify-content: center;
+      }
+      .social-icon i {
+        font-size: 120px !important;
+        margin: 0 10px;
+      }
+      .card-text a {
+        text-transform: none;
+      }
+      div.all {
+        padding-bottom: 50px;
+      }
+      .nav-link:hover{
+        font-weight:bold;
+        transform: scale(1.05);
+        transition: 0.5s;
+        animation: ease-in-out;
+        color:black;
+
+      }
+      .all{
+        background-color:rgba(214, 165, 91, 0.2);
+      }
+      hr{
+          background-color: black;
+          height:2px;
+          border:none;
+      }
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+      crossorigin="anonymous"
+    />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script defer src="js/bootstrap.bundle.min.js"></script> 
   </head>
   <body>
-    <section class="py-5">
-      <div class="container px-4 px-lg-5 my-5">
-        <div class="row gx-4 gx-lg-5 align-items-center">
-          <div class="col-md-6 col-lg-6">
-            <img class="card-img-top mb-5 mb-md-0" src="{{recipe["image"]}}"
-            alt="..." style = "width: 450px; margin-top:30px"/>
-          </div>
-          <div class="col-md-6">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">DietRiot</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{url_for('show_about_us')}}">About Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{url_for('show_recipes')}}">Recipes</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{url_for('show_ingredients')}}">Ingredients</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href={{url_for('show_diet_groups')}}>Diet Groups</a>
+            </li>
+          </ul>
+          <!-- <form class="d-flex" role="search">
+            <input
+              class="form-control me-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+            />
+            <button class="btn btn-outline-success" type="submit">
+              Search
+            </button>
+          </form> -->
+        </div>
+      </div>
+    </nav>
+    <div class="all">
+    <div  style="font-size:40px; padding: 30px 0px 0px 60px; font-family: gill sans; font-weight:bold">{{recipe["title"]}}</div><hr>
+ <div class="row">
+          <div class="col-sm-8 col-md-6 col-lg-6" style="padding-left:60px; padding-right:60px">
+            <div style=" text-align: center;
+              font-family: gill sans;
+              color: black;
+              background: rgba(214, 165, 91, 0.5);
+              outline: 3px dashed #cfaa70;
+              outline-offset: -10px;
+              margin-top:60px;
+              padding: 20px 20px 20px 20px">
             <div
               class="mb-1"
               style="
@@ -25,49 +181,71 @@
                 font-weight: bold;
               "
             >
-              Diet-group: {{recipe["dietgroup"]}}
+              Yield: {{recipe["yield"]}} servings
             </div>
             <div class="fs-5 mb-5">
               <span style="text-transform: uppercase; font-size: 17px"
                 >cuisine type: {{recipe["cuisinetype"]}}</span
               >
             </div>
-            <h1 class="display-5 fw-bolder">{{recipe["title"]}}</h1>
+            <h1 class="display-5 fw-bolder"></h1>
 
-            <p class="lead">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Praesentium at dolorem quidem modi. Nam sequi consequatur
-              obcaecati excepturi alias magni, accusamus eius blanditiis
-              delectus ipsam minima ea iste laborum vero?
+            <p class="lead" style="font-weight: bold">
+              This dish belongs to the following diet groups:
             </p>
-          </div>
+            <p>
+            {% for i in recipe["dietgroup"] %} 
+                {% if i.lower() in diet_bag %}
+                    <a href="../../diet-groups/{{i}}">{{i}}</a>
+                {% else %}
+                    {{i}}
+                {% endif %}
+                {% if not loop.last %}
+                    •
+                {% endif %}
+            {% endfor %}
+            </p>
+            <br>
+            <p style="font-size: 23px; font-weight: bold; margin-top: 18 px">
+            TOTAL CALORIES: {{ recipe["calories"]|float|round }}
+            </p>
+            </div>
+            <div style=" text-align: center;
+              font-family: gill sans;
+              color: black;
+              background: rgba(227, 198, 154, 0.5);
+              outline: 3px dashed #cfaa70;
+              outline-offset: -10px;
+              margin-top:50px;
+              padding: 20px 20px 20px 20px">
+            <h1 style="font-size: 23px; font-weight: bold; margin-top: 18 px">
+              INGREDIENTS
+            </h1>
+
+            <p>
+            {% if recipe["ing"] == [] %}
+                <p>! No ingredients exist !</p>
+            {% else %}
+                {% for i in recipe["ing"] %}    
+                    {% if i.lower() in ing_bag %}
+                        • <a href="../../ingredients/{{i}}">{{i}}</a><br>
+                    {% else %}
+                        • {{i}}<br>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        </p></p>
+           <a href="{{recipe["url"]}}" style="font-size: 23px; font-weight: bold; margin-top: 18 px">LINK TO RECIPE</a>
+        </div>  
         </div>
-      </div>
-    </section>
-    <p>I love recipes like {{recipe["title"]}}</p>
-    <p>The ingredients of the {{recipe["title"]}} are 
-        {% if recipe["ingredients"] == [] %}
-        <p>! No ingredients exist !</p>	
-    {% else %}
-        {% for i in recipe["ingredients"] %}
-            {% if loop.last %}
-                and <a href="../../ingredients/{{i}}">{{i}}</a>.
-            {% else %}
-                <a href="../../ingredients/{{i}}">{{i}}</a>, 
-            {% endif %}
-        {% endfor %}
-    {% endif %}</p>
-    <p>It is part of the 
-        {% if recipe["dietgroup"] == [] %}
-        <p>! No diet groups exist !</p>	
-    {% else %}
-        {% for i in recipe["dietgroup"] %}
-            {% if loop.last %}
-                and <a href="../../diet-groups/{{i}}">{{i}}</a>
-            {% else %}
-                <a href="../../diet-groups/{{i}}">{{i}}</a>, 
-            {% endif %}
-        {% endfor %}
-    {% endif %} diet group(s).</p>
+         <div class="col-sm-4 col-md-6 col-lg-6">
+    <div class="text-center">
+            <img src="{{recipe["image"]}}"
+            class="rounded" alt="..." style = "width: 450px; margin-top:60px"/>
+
+        </div>  
+    </div>
+        </div>
+        </div>
   </body>
 </html>
