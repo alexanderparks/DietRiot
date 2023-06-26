@@ -91,13 +91,14 @@
       div.all {
         padding-bottom: 50px;
       }
-      .nav-link:hover{
+      .nav-link{
         font-weight:bold;
-        transform: scale(1.05);
-        transition: 0.5s;
+        transition: 0.7s;
         animation: ease-in-out;
+      }
+      .nav-link:hover{
+        transform: scale(1.05);
         color:black;
-
       }
     </style>
     <link
@@ -162,7 +163,7 @@
       <div
         style="
           background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-            url({{ url_for('static', filename='gdc.jpg') }});
+            url({{url_for('static', filename='gdc.jpg') }});
         "
         class="jumbotron bg-cover text-white"
       >
