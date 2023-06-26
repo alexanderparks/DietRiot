@@ -89,14 +89,6 @@
       div.all {
         padding-bottom: 50px;
       }
-      .nav-link:hover{
-        font-weight:bold;
-        transform: scale(1.05);
-        transition: 0.5s;
-        animation: ease-in-out;
-        color:black;
-
-      }
       .all {
         background-color: rgba(7, 69, 12, 0.4);
       }
@@ -108,14 +100,14 @@
       a{
         color:white
       }
+
       .nav-link{
-        font-weight:bold;
-        transition: 0.7s;
+        transition: 0.5s;
         animation: ease-in-out;
       }
       .nav-link:hover{
-        transform: scale(1.05);
         color:black;
+         font-weight:bold;
       }
     </style>
     <link
@@ -128,7 +120,7 @@
     <script defer src="js/bootstrap.bundle.min.js"></script> 
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <nav class="navbar navbar-expand-lg fixed-top bg-body-tertiary">
       <div class="container-fluid">
         <a class="navbar-brand" href="/">DietRiot</a>
         <button
@@ -145,7 +137,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/">Home</a>
+              <a class="nav-link" href="/">Home</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{{url_for('show_about_us')}}">About Us</a>
@@ -157,7 +149,7 @@
               <a class="nav-link" href="{{url_for('show_ingredients')}}">Ingredients</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href={{url_for('show_diet_groups')}}>Diet Groups</a>
+              <a class="nav-link active" aria-current="page" href={{url_for('show_diet_groups')}}>Diet Groups</a>
             </li>
           </ul>
           <!-- <form class="d-flex" role="search">
