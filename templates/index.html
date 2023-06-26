@@ -61,111 +61,202 @@
       </div>
     </nav>
     
-
-        <!--
-      <img src = "bg.jpeg" class = "img-fluid" alt = "title-image" style = "width: 100%; height: auto;">
-      
-
-        <p class="carousel-caption" 
-            style = "
-            top: 150px; 
-            "></p>
-
-        <p class="carousel-caption" 
-            style = "
-            
-            top: 300px; 
-            ">Revolutionize Your Plate</p>
-        -->
-      <section class = "row">
-        <div class = "col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12"
-        style="
-          background: url('bg.jpeg') no-repeat top right local;
-          background-size: cover;
-          height: 80%        "
-        
-      >
-      <div class="container text-center">
-          <h1
-            style="
-            font-size: 100px; 
-            font-family: verdana; 
-            padding-top: 150px;
-            ">DietRiot</h1>
-
-          <p style = "
-          font-size: 30px; 
-          padding-bottom: 300px;
+    <section class = "row" style="
+    background: url('main_bg.jpeg') no-repeat top right fixed;
+    background-size:cover;
+    height: 100%; padding-bottom: 30px;
+    overflow:hidden;">
+    <div class = "col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+    <div class="container text-center">
+        <h1
+          style="
+          color: white;
+          font-size: 100px; 
           font-family: verdana; 
-          text-align: center;">
-          Revolutionize Your Plate
-          </p>
-        </div>
-      </section>
-        
+          padding-top: 150px;
+          ">DietRiot</h1>
+
+        <p style = "
+        color: lightgray;
+        font-size: 30px; 
+        padding-bottom: 300px;
+        font-family: verdana; 
+        text-align: center;">
+        Revolutionize Your Plate
+        </p>
+      </div>
+    </section>
     
-        <!--
-        <div class = " col-xs-3 col-sm-3 col-md-1 col-lg-1"> </div>
-        <div class = "col-sm-6 col-md-6 col-lg-2"  style = "height:100rem;">
-        <div class="card">
-          <img src="bg.png" class="card-img-top" alt="Ingredients">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
-
-          <img src="bg.png" class="card-img-top" alt="Ingredients">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
-        
-          <img src="bg.png" class="card-img-top" alt="Ingredients">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-
-        </div>
-      -->
-      
-      <div class="row d-flex flex-row mb-3 justify-content-center">
-        <div class="col-4 height=300rem;">
-          <div class="card m-3">
-            <img src="bg.png" class="card-img-top" alt="Ingredients">
-            <div class="card-body">
-              <p class="card-text"
-              >You don't have to cook fancy or complicated masterpieces—just good food from fresh ingredients.</p>
-                <p>--Julia Child</p>
-              <a href="ingredients.html">Pick Ingredients</a>
+  <section class="cards" style="
+  background: url('card_image.jpeg') no-repeat top right fixed;
+  background-size:cover;
+  height: 100%; padding-bottom: 30px;
+  overflow:hidden;">
+    <div class="row d-flex flex-row mb-3 justify-content-center">
+      <div class="col-md-4">
+        <div class="card m-3 h-100">
+          <div class="card-img-top">
+          <div id="carouselControl-Ing" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="https://cdn.britannica.com/72/170772-050-D52BF8C2/Avocado-fruits.jpg" class="d-block w-100 h-100" alt="image1">
+              </div>
+              <div class="carousel-item">
+                <img src="https://pngimg.com/d/turkey_food_PNG18.png" class="d-block w-100 h-100" alt="image2">
+              </div>
+              <div class="carousel-item">
+                <img src="https://images.heb.com/is/image/HEBGrocery/000972208-1" class="d-block w-100 h-100" alt="image3">
+              </div>
             </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselControl-Ing" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselControl-Ing" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
           </div>
         </div>
-        <div class="col-4">
-          <div class="card m-3">
-            <img src="bg.png" class="card-img-top" alt="Ingredients">
-            <div class="card-body">
-              <p class="card-text"
-              >A recipe is a story that ends with a good meal.</p>
-              <p>--Pat Conroy</p>
-              <a href="#" class="btn btn-primary">Choose Recipe</a>
-            </div>
+          <div class="card-body">
+            <p class="card-text"
+            >
+            <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="#a29998" class="bi bi-quote" viewBox="0 -2 15 15">
+              <path d="M12 12a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1h-1.388c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 9 7.558V11a1 1 0 0 0 1 1h2Zm-6 0a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1H4.612c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 3 7.558V11a1 1 0 0 0 1 1h2Z"/>
+            </svg>
+            You don't have to cook fancy or complicated masterpieces—just good food from fresh ingredients.</p>
+              <p class="card-name">--Julia Child</p>
+            <!--data-bs-toggle for Bootstrap 5-->
           </div>
-        </div>
-        <div class="col-4">
-          <div class="card m-3">
-            <img src="bg.png" class="card-img-top" alt="Ingredients">
-            <div class="card-body">
-              <p class="card-text">Let food be thy medicine and medicine be thy food. </p>
-              <p>--Hippocrates</p>
-              <a href="#" class="btn btn-primary">Select Diets</a>
-            </div>
+            <div class = "text-center margin-bottom: 30px;">
+            <a href="ingredients.html" class="btn btn-primary" role="button" data-toggle="button" style="margin-bottom:100px; font-family:verdana;">Pick Ingredients</a>
           </div>
         </div>
       </div>
-      
-      </body>
+      <div class="col-md-4">
+        <div class="card m-3 h-100">
+          <div class="card-img-top">
+            <div id="carouselControl-Rec" class="carousel slide" data-bs-ride="carousel">
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img src="https://edamam-product-images.s3.amazonaws.com/web-img/7f4/7f4e5ebf466bb8508e2aacdfa7030524.jpg?X-Amz-Security-Token=IQoJb3JpZ2luX2VjELb%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJGMEQCICNFR6JmW0tXSk%2B8C2fi7P41mUZ3AgOzkMaYQEKEYeKtAiAijpTJ6FTnc7hT7kH2Jo76ptZA13qCrKuAj8Kwc%2FncoCq5BQgfEAAaDDE4NzAxNzE1MDk4NiIMqjP%2FcivvyjNm30WJKpYFxyJPWGZpl9aV5Tpd6ftlBQSDKGNc603tpqIzVs3Piu9TZvSf8YpuuDTeRluR%2FRFcYHm0OO7IAU781B9dC0Rg1mKJxNqi4MVf3SX4H6%2FtuN0t2Q0b7zOKQF%2Fn2YbUei7anwAVNbIDrxBgDkLDi4VHyesUMje4dYGxivWcDiRdF7in1JX29fVpayo4MZR9%2FuhcPDsdAz1eCz%2BtHUIDOmJHmGI%2FCLAf12AXrwUW7rFTJH4Sl4sKDHsvCxYxszZuSavlfeaedEJ9tZcc8%2BsoijFJdmsS%2BzvlZVNGC%2FTBTk7%2F54ngzo6DnrKqsEuEClq2JJOGKcDjnFVPm5G2T9dv8hpIr0bnGD9%2FPI8Bv%2Fa9sA6MdusCmK1I8GH6S5%2B82XeSbxJSGDGXWRtgFhCo8BPAaLNjtAm3518fbNPQ0fYhccH7A6kJzofoReEaD76Eq4QtO6NoEHm%2BgYwVjma1PoCeJ3lK5tuvm9pa9aEpDtq%2FkcxsXj0Tp42zDeMXPsMD3%2BH%2FE8AQU9xfx5fIKhVIpWTgXbfcm6MTf66w90g3EY5XwbhohkVIBQuwIks12piqkO%2Bi3keAyP7ayB%2BessBz2EILTz%2FlNVSoKX5MwxJoUfmCErjBkfe2%2FBysiJdHQmtyuhb%2ByH%2FJm0w%2FRyaW%2B1jNJ8Hc%2B%2B1a63mr%2F0U9ztk%2FwsXx6hTp6pkueU5uOpn9hqjEdsHhFj1nxjwCfIqCt26wgpbLYHS80RrygP0wJA7NHEP5JteOkO%2BMBkDxXRHWzDhmP9HQpvGvmCZlHFXrWIVwMrG%2F1R3Ah0LaJOqGzsc8OMK84ykl5ra1Vq%2F8DH7i93NXXQPuJXKZFbx9F4wk07oicCjxFZihl5S3Uk62q%2Bre7jH%2Bo3lJBhcQkhT2xgkw%2BM%2FdpAY6sgHNSics8TayQMipsnlO2kfLXGAryPjNp74wkST1Dy7P1cg7Qs%2Fr1kM6vw%2BRe0si0ZdgOgu%2F%2FAVcdAT8pqQlapswfa17qwC7WhiTk8i4BCQe0XjrsexfKoeGPCArfh5D%2BZlTxO9zVhvMncn3J7FPUmeZU%2BX%2BR2mrXEoYbOHVfry%2FdXRo6VC%2F%2FwI4PVQsnF5rNm72%2FT4gpqk%2FVR9HBYU8PgwANqrD5e69YVpTMFXD6oaFfEwx&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20230624T230939Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3599&X-Amz-Credential=ASIASXCYXIIFKQ2N4S5P%2F20230624%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=249e68da34acb76b69b9ceb983002fb8d7ddf4f2373774ab75ba97e004659d11" class="d-block w-100 h-100" alt="image1">
+                </div>
+                <div class="carousel-item">
+                  <img src="https://edamam-product-images.s3.amazonaws.com/web-img/0ed/0edf0f670be3e5ea4373261312597253.jpg?X-Amz-Security-Token=IQoJb3JpZ2luX2VjELb%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJGMEQCICNFR6JmW0tXSk%2B8C2fi7P41mUZ3AgOzkMaYQEKEYeKtAiAijpTJ6FTnc7hT7kH2Jo76ptZA13qCrKuAj8Kwc%2FncoCq5BQgfEAAaDDE4NzAxNzE1MDk4NiIMqjP%2FcivvyjNm30WJKpYFxyJPWGZpl9aV5Tpd6ftlBQSDKGNc603tpqIzVs3Piu9TZvSf8YpuuDTeRluR%2FRFcYHm0OO7IAU781B9dC0Rg1mKJxNqi4MVf3SX4H6%2FtuN0t2Q0b7zOKQF%2Fn2YbUei7anwAVNbIDrxBgDkLDi4VHyesUMje4dYGxivWcDiRdF7in1JX29fVpayo4MZR9%2FuhcPDsdAz1eCz%2BtHUIDOmJHmGI%2FCLAf12AXrwUW7rFTJH4Sl4sKDHsvCxYxszZuSavlfeaedEJ9tZcc8%2BsoijFJdmsS%2BzvlZVNGC%2FTBTk7%2F54ngzo6DnrKqsEuEClq2JJOGKcDjnFVPm5G2T9dv8hpIr0bnGD9%2FPI8Bv%2Fa9sA6MdusCmK1I8GH6S5%2B82XeSbxJSGDGXWRtgFhCo8BPAaLNjtAm3518fbNPQ0fYhccH7A6kJzofoReEaD76Eq4QtO6NoEHm%2BgYwVjma1PoCeJ3lK5tuvm9pa9aEpDtq%2FkcxsXj0Tp42zDeMXPsMD3%2BH%2FE8AQU9xfx5fIKhVIpWTgXbfcm6MTf66w90g3EY5XwbhohkVIBQuwIks12piqkO%2Bi3keAyP7ayB%2BessBz2EILTz%2FlNVSoKX5MwxJoUfmCErjBkfe2%2FBysiJdHQmtyuhb%2ByH%2FJm0w%2FRyaW%2B1jNJ8Hc%2B%2B1a63mr%2F0U9ztk%2FwsXx6hTp6pkueU5uOpn9hqjEdsHhFj1nxjwCfIqCt26wgpbLYHS80RrygP0wJA7NHEP5JteOkO%2BMBkDxXRHWzDhmP9HQpvGvmCZlHFXrWIVwMrG%2F1R3Ah0LaJOqGzsc8OMK84ykl5ra1Vq%2F8DH7i93NXXQPuJXKZFbx9F4wk07oicCjxFZihl5S3Uk62q%2Bre7jH%2Bo3lJBhcQkhT2xgkw%2BM%2FdpAY6sgHNSics8TayQMipsnlO2kfLXGAryPjNp74wkST1Dy7P1cg7Qs%2Fr1kM6vw%2BRe0si0ZdgOgu%2F%2FAVcdAT8pqQlapswfa17qwC7WhiTk8i4BCQe0XjrsexfKoeGPCArfh5D%2BZlTxO9zVhvMncn3J7FPUmeZU%2BX%2BR2mrXEoYbOHVfry%2FdXRo6VC%2F%2FwI4PVQsnF5rNm72%2FT4gpqk%2FVR9HBYU8PgwANqrD5e69YVpTMFXD6oaFfEwx&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20230624T231006Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=ASIASXCYXIIFKQ2N4S5P%2F20230624%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=2587bcc9bd738eda337bf965285d5c36d0c842e43b897a291b580aa2922ae18e" class="d-block w-100 h-100" alt="image2">
+                </div>
+                <div class="carousel-item">
+                  <img src="https://edamam-product-images.s3.amazonaws.com/web-img/7c6/7c658e6e3349a4541ee8b88d616fd953.jpg?X-Amz-Security-Token=IQoJb3JpZ2luX2VjELb%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJGMEQCICNFR6JmW0tXSk%2B8C2fi7P41mUZ3AgOzkMaYQEKEYeKtAiAijpTJ6FTnc7hT7kH2Jo76ptZA13qCrKuAj8Kwc%2FncoCq5BQgfEAAaDDE4NzAxNzE1MDk4NiIMqjP%2FcivvyjNm30WJKpYFxyJPWGZpl9aV5Tpd6ftlBQSDKGNc603tpqIzVs3Piu9TZvSf8YpuuDTeRluR%2FRFcYHm0OO7IAU781B9dC0Rg1mKJxNqi4MVf3SX4H6%2FtuN0t2Q0b7zOKQF%2Fn2YbUei7anwAVNbIDrxBgDkLDi4VHyesUMje4dYGxivWcDiRdF7in1JX29fVpayo4MZR9%2FuhcPDsdAz1eCz%2BtHUIDOmJHmGI%2FCLAf12AXrwUW7rFTJH4Sl4sKDHsvCxYxszZuSavlfeaedEJ9tZcc8%2BsoijFJdmsS%2BzvlZVNGC%2FTBTk7%2F54ngzo6DnrKqsEuEClq2JJOGKcDjnFVPm5G2T9dv8hpIr0bnGD9%2FPI8Bv%2Fa9sA6MdusCmK1I8GH6S5%2B82XeSbxJSGDGXWRtgFhCo8BPAaLNjtAm3518fbNPQ0fYhccH7A6kJzofoReEaD76Eq4QtO6NoEHm%2BgYwVjma1PoCeJ3lK5tuvm9pa9aEpDtq%2FkcxsXj0Tp42zDeMXPsMD3%2BH%2FE8AQU9xfx5fIKhVIpWTgXbfcm6MTf66w90g3EY5XwbhohkVIBQuwIks12piqkO%2Bi3keAyP7ayB%2BessBz2EILTz%2FlNVSoKX5MwxJoUfmCErjBkfe2%2FBysiJdHQmtyuhb%2ByH%2FJm0w%2FRyaW%2B1jNJ8Hc%2B%2B1a63mr%2F0U9ztk%2FwsXx6hTp6pkueU5uOpn9hqjEdsHhFj1nxjwCfIqCt26wgpbLYHS80RrygP0wJA7NHEP5JteOkO%2BMBkDxXRHWzDhmP9HQpvGvmCZlHFXrWIVwMrG%2F1R3Ah0LaJOqGzsc8OMK84ykl5ra1Vq%2F8DH7i93NXXQPuJXKZFbx9F4wk07oicCjxFZihl5S3Uk62q%2Bre7jH%2Bo3lJBhcQkhT2xgkw%2BM%2FdpAY6sgHNSics8TayQMipsnlO2kfLXGAryPjNp74wkST1Dy7P1cg7Qs%2Fr1kM6vw%2BRe0si0ZdgOgu%2F%2FAVcdAT8pqQlapswfa17qwC7WhiTk8i4BCQe0XjrsexfKoeGPCArfh5D%2BZlTxO9zVhvMncn3J7FPUmeZU%2BX%2BR2mrXEoYbOHVfry%2FdXRo6VC%2F%2FwI4PVQsnF5rNm72%2FT4gpqk%2FVR9HBYU8PgwANqrD5e69YVpTMFXD6oaFfEwx&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20230624T231029Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=ASIASXCYXIIFKQ2N4S5P%2F20230624%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=7c604bcba88360c95c15cb69972adcba4b5784b5ca767f8ba238e2be5a38c899" class="d-block w-100 h-100" alt="image3">
+                </div>
+              </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#carouselControl-Rec" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#carouselControl-Rec" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
+          </div>
+          <div class="card-body">
+            <p class="card-text"
+            ><svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="#a29998" class="bi bi-quote" viewBox="0 -2 15 15">
+              <path d="M12 12a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1h-1.388c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 9 7.558V11a1 1 0 0 0 1 1h2Zm-6 0a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1H4.612c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 3 7.558V11a1 1 0 0 0 1 1h2Z"/>
+            </svg>
+            A recipe is a story that ends with a good meal.</p>
+            <p class="card-name">--Pat Conroy</p>
+          </div>
+            <!--data-bs-toggle for Bootstrap 5-->
+            <div class = "text-center">
+              <a href="ingredients.html" class="btn btn-primary" role="button" data-toggle="button" style="margin-bottom:100px; font-family:verdana;">Choose Recipe</a>
+            </div>
+          
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card m-3 h-100">
+          <div class="card-img-top">
+            <div id="carouselControl-Diet" class="carousel slide" data-bs-ride="carousel">
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img src="https://static.trip101.com/paragraph_media/pictures/001/595/541/large/pexels-photo-958545.jpeg?1553522832" class="d-block w-100 h-100" alt="image1">
+                </div>
+                <div class="carousel-item">
+                  <img src="https://images.everydayhealth.com/images/what-is-a-vegan-diet-benefits-food-list-beginners-guide-alt-1440x810.jpg" class="d-block w-100 h-100" alt="image2">
+                </div>
+                <div class="carousel-item">
+                  <img src="https://www.restaurantware.com/media/magefan_blog/gluten_free_article_-_Thumbnail.png" class="d-block w-100 h-100" alt="image3">
+                </div>
+              </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#carouselControl-Diet" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#carouselControl-Diet" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
+          </div>
+          <div class="card-body">
+            <p class="card-text">
+              <svg xmlns="http://www.w3.org/2000/svg" width="80" height="60" fill="#a29998" class="bi bi-quote" viewBox="0 -2 15 15">
+                <path d="M12 12a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1h-1.388c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 9 7.558V11a1 1 0 0 0 1 1h2Zm-6 0a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1H4.612c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 3 7.558V11a1 1 0 0 0 1 1h2Z"/>
+              </svg>Let food be thy medicine and medicine be thy food. </p>
+            <p class="card-name">--Hippocrates</p>
+            <p class="invisible" > invisible</p>
+            <!--data-bs-toggle for Bootstrap 5-->
+          </div>
+            <div class = "text-center">
+              <a href="ingredients.html" class="btn btn-primary" role="button" data-toggle="button" style="margin-bottom:100px; font-family:verdana;">Select Diets</a>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+  </section>
+ <!--
+  <hr style = "border-top: 1px dashed;">
+  -->
+  <section class = "motivation"  
+  style = "
+  background: url('motivation_bg.jpeg') no-repeat top right local;
+  background-size: cover;
+  height:100%;
+  margin: 0px 0px 0px 0px;
+  overflow:hidden;"
+ >
+ <div class = "row" style="
+ padding: 10px 30px 100px 30px;
+ overflow-x:hidden;">
+   
+   <h1 style="
+   text-align:center; 
+   font-family:optima;
+   padding-bottom: 0px;
+   margin-bottom: 0px;
+   border-bottom: 0px;
+   "> Our Motivation</h1>
+   <h3 style="
+   text-align:center;
+   font-family: optima; 
+   font-size:20px;
+   padding-top: 0px;
+   margin-top: 0px;
+   border-top: 0px;
+   ">Why did we create DietRiot?</h3>
+   <p style="
+   text-indent:50px;
+   font-family: Verdana, Geneva, Tahoma, sans-serif;
+   font-size: 20px;
+   ">Finding and managing recipes and ingredients can often be the hardest part of sticking to a diet. 
+     Our team set out to alleviate this issue when we created DietRiot. With DietRiot, users can 
+     browse and compare recipes and ingredients that fit the restrictions of their diet. Users can also 
+     utilize DietRiot to view attributes and statistics about specific recipes, ingredients, or diet groups. 
+     Whether a user is beginning a diet, continuing a diet, or just looking for some new recipes, 
+     DietRiot provides an expansive and easily navigable medium to aid in these processes!</p>
+ </div>
+  </section>
+  
+    </body>
 </html>
