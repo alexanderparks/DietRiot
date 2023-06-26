@@ -32,7 +32,7 @@
         margin-right: 15px;
       }
       .all {
-        background-image: radial-gradient(#07450c, #6d9c71);
+        background-image: radial-gradient(#d4c581, #f5a095, #9cdb9e);
       }
       .display-4 font-weight-bold {
         font-weight: strong;
@@ -80,10 +80,12 @@
       .social-icons {
         display: flex;
         justify-content: center;
+          font-size: 60px !important;
       }
       .social-icon i {
-        font-size: 120px !important;
+        font-size: 60px !important;
         margin: 0 10px;
+
       }
       .card-text a {
         text-transform: none;
@@ -91,7 +93,7 @@
       div.all {
         padding-bottom: 50px;
       }
-      .nav-link{
+    .nav-link{
         font-weight:bold;
         transition: 0.7s;
         animation: ease-in-out;
@@ -163,7 +165,7 @@
       <div
         style="
           background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-            url({{url_for('static', filename='gdc.jpg') }});
+            url({{ url_for('static', filename='gdc.jpg') }});
         "
         class="jumbotron bg-cover text-white"
       >
@@ -196,7 +198,7 @@
               background: rgba(255, 255, 255, 0.8);
               float: left;
               padding: 25px;
-              outline: 1px dashed #07450c;
+              outline: 2.5px dashed #de6449;
               outline-offset: -10px;
             "
           >
@@ -206,8 +208,7 @@
       </div>
 
       <!-- Profile Cards -->
-      <div class="d-flex flex-column justify-content-center">
-        <div class="d-flex justify-content-center">
+      <div class="d-flex justify-content-center flex-wrap">
           <!-- Monique -->
           <div class="card" style="width: 19rem; margin-right: 20px">
             <img
@@ -261,9 +262,8 @@
               <div><span class="highlight">Number of issues:</span> <span id="rey-issues">[loading...]</span></div>
             </div>
           </div>
-        </div>
+       
 
-        <div class="d-flex justify-content-center">
           <!-- Alex -->
           <div class="card" style="width: 19rem; margin-right: 20px">
             <img
@@ -300,7 +300,7 @@
             </div>
           </div>
         </div>
-      </div>
+      
 
       <!-- Stats -->
       <div class="container py-5">
@@ -317,7 +317,7 @@
               background: rgba(255, 255, 255, 0.8);
               float: left;
               padding: 25px;
-              outline: 1px dashed #07450c;
+              outline: 2.5px dashed #de6449;
               outline-offset: -10px;
             "
           >
@@ -361,7 +361,7 @@
               background: rgba(255, 255, 255, 0.8);
               float: left;
               padding: 25px;
-              outline: 1px dashed #07450c;
+              outline: 2.5px dashed #de6449;
               outline-offset: -10px;
             "
           >
@@ -386,7 +386,7 @@
       </div>
 
       
-      <!-- Tools Used -->
+      <!-- Stats -->
       <div class="container py-5">
         <div class="row" style="justify-content: center">
           <p
@@ -401,7 +401,7 @@
               background: rgba(255, 255, 255, 0.8);
               float: left;
               padding: 25px;
-              outline: 1px dashed #07450c;
+              outline: 2.5px dashed #de6449;
               outline-offset: -10px;
             "
           >
@@ -410,17 +410,20 @@
         </div>
       </div>
 
-      
       <div class="social-icons">
+        
         <a class="social-icon"><i class="fab fa-html5"></i></a>
+        
         <a class="social-icon"><i class="fab fa-css3"></i></a>
+
         <a class="social-icon"><i class="fas fa-flask"></i></a>
         <a class="social-icon"><i class="fab fa-gitlab"></i></a>
-        <a class="social-icon"><img src="{{ url_for('static', filename='postman.svg') }}" alt="Postman Icon" width="120" height="120" /></a>
+       <iconify-icon icon="simple-icons:postman" style="color: #1c9cfc; padding-top:15px; padding-left:10px"></iconify-icon>
       </div>
 
-    </div>
 
+</div>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
     <script>
       // Fetch data from the GitLab API
       fetch('https://gitlab.com/api/v4/projects/46955283/repository/contributors?order_by=name')
