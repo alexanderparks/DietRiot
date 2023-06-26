@@ -176,9 +176,9 @@
         </div>
       </div>
 
-      {%for dietgroups_row in dietgroups | batch(3, '&nbsp;')%}
-      <div class="d-flex flex-row justify-content-center">
-        {% for dietgroup in dietgroups_row %}
+       {% for dietgroup in dietgroups %}
+      <div class="d-flex flex-row justify-content-center flex-wrap">
+       
         <div class="d-flex">
           <div class="card" style="width: 19rem; margin-right: 20px">
             <img
@@ -199,7 +199,7 @@
         </div>
         {%endfor%}
       </div>
-      {%endfor%}
+    
     </div>
   </body>
 </html>

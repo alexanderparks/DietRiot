@@ -172,9 +172,8 @@
         </div>
       </div>
 
-      {%for recipe_row in recipes | batch(3, '&nbsp;')%}
-      <div class="d-flex flex-row justify-content-center">
-        {% for recipe in recipe_row %}
+      <div class="d-flex flex-row justify-content-center flex-wrap">
+        {% for recipe in recipes %}
         <div class="d-flex">
           <div class="card" style="width: 19rem; margin-right: 20px">
             <img
@@ -214,7 +213,6 @@
         </div>
         {%endfor%}
       </div>
-      {%endfor%}
     </div>
   </body>
 </html>

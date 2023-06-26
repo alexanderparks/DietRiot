@@ -176,9 +176,9 @@
         </div>
       </div>
 
-      {%for ingredient_row in ingredients | batch(3, '&nbsp;')%}
-      <div class="d-flex flex-row justify-content-center">
-        {% for ingredient in ingredient_row %}
+     
+      <div class="d-flex flex-row justify-content-center flex-wrap">
+        {% for ingredient in ingredients %}
         <div class="d-flex">
           <div class="card" style="width: 19rem; margin-right: 20px">
             <img
@@ -199,7 +199,6 @@
         </div>
         {%endfor%}
       </div>
-      {%endfor%}
     </div>
   </body>
 </html>
