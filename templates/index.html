@@ -31,7 +31,6 @@
       .container py-5 {
         color: white;
       }
-
       .btn {
         width: 150px;
         justify-content: center;
@@ -40,7 +39,6 @@
         transition: 0.2s;
         border-radius: 3px;
       }
-
       .btn-container {
         display: flex;
         justify-content: center;
@@ -154,15 +152,6 @@
     .carousel-inner{
       height: 300px;
     }
-    .nav-link{
-        font-weight:bold;
-        transition: 0.7s;
-        animation: ease-in-out;
-      }
-      .nav-link:hover{
-        transform: scale(1.05);
-        color:black;
-      }
   </style>
   </head>
   <body>
@@ -214,7 +203,8 @@
     </nav>
     
     <section class = "row" style="
-    background: url('/static/main_bg.jpeg') no-repeat top right fixed;
+     background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+            url({{ url_for('static', filename='main_bg.jpeg') }}) no-repeat top right fixed;
     background-size:cover;
     height: 100%; padding-bottom: 30px;
     overflow:hidden;">
@@ -245,7 +235,7 @@
   height: 100%; padding-bottom: 30px;
   overflow:hidden;">
     <div class="row d-flex flex-row mb-3 justify-content-center">
-      <div class="col-md-4">
+      <div class="col-md-4" style="margin-top:20px;margin-bottom:20px">
         <div class="card m-3 h-100">
           <div class="card-img-top">
           <div id="carouselControl-Ing" class="carousel carousel-dark slide" data-bs-ride="carousel">
@@ -285,7 +275,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-4" style="margin-top:20px;margin-bottom:20px">
         <div class="card m-3 h-100">
           <div class="card-img-top">
             <div id="carouselControl-Rec" class="carousel carousel-dark slide" data-bs-ride="carousel">
@@ -325,7 +315,7 @@
           
         </div>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-4" style="margin-top:20px;margin-bottom:20px">
         <div class="card m-3 h-100">
           <div class="card-img-top">
             <div id="carouselControl-Diet" class="carousel carousel-dark slide" data-bs-ride="carousel">
@@ -372,6 +362,7 @@
   -->
   <section class = "motivation"  
   style = "
+  
   background: url('/static/motivation_bg.jpeg') no-repeat top right local;
   background-size: cover;
   height:100%;
