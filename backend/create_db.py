@@ -1,7 +1,8 @@
 from models import app, db, Recipe, Ingredient, DietGroup
 import json
 
-ingredient_bag, diet_bag = set(), set()
+ingredient_bag = set()
+diet_bag = {}
 
 def load_json(filename):
     with open(filename) as file:
@@ -9,29 +10,35 @@ def load_json(filename):
         file.close()
     return jsn
 
-def create_recipes():
+jsons = ['./data/recipes/.json']
+def create_recipes_ingredients():
     global ingredient_bag
     global diet_bag
-    recipe = load_json('./data/recipes/recipedata6.json')
-    for r in recipe['results']:
-        title = r['title']
-        id = r['id']
-        newRecipe = Recipe(title = title, id = id)
-        for i in r['nutrition']['ingredients']:
-            if not i['name'] in ingredient_bag:
-                newIngredient=Ingredient(title=i['name'], id=i['id'])
-                ingredient_bag.add(i['name'])
-                newIngredient.ing_link.append(newRecipe)
-                db.session.add(newIngredient)
-        for d in r['diets']:
-            if d not in diet_bag:
-                newDiet=DietGroup(title=d)
-                diet_bag.add(d)
-                newDiet.dg_link.append(newRecipe)
-                db.session.add(newDiet)
-        
-        db.session.add(newRecipe)
-        db.session.commit()
+    for num in range(1, 11):
+        recipe = load_json(f'./data/recipes/foodstats{num}.json')
+        for r in recipe['results']:
+            title = r['title']
+            src = r['image']
+            newRecipe = Recipe(title = title, src = src)
+            for i in r['extendedIngredients']:
+                if not i['name'] in ingredient_bag:
+                    src_name = "https://spoonacular.com/cdn/ingredients_500x500/" + str(i['image'])
+                    newIngredient=Ingredient(title=i['name'], src=src_name)
+                    ingredient_bag.add(i['name'])
+                    newIngredient.ing_link.append(newRecipe)
+                    db.session.add(newIngredient)
+            for d in r['diets']:
+                if d not in diet_bag.keys():
+                    newDiet=DietGroup(title=d)
+                    diet_bag[d] = newDiet
+                    db.session.add(newDiet)
+                    newDiet.dg_link.append(newRecipe)
+                else:
+                    oldDiet = diet_bag[d]
+                    oldDiet.dg_link.append(newRecipe)
+            
+            db.session.add(newRecipe)
+    db.session.commit()
 
 
-create_recipes()
+create_recipes_ingredients()

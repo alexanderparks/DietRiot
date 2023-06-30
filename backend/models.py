@@ -52,8 +52,9 @@ class Recipe(db.Model):
     dg
     """
     __tablename__ = 'recipe'
-    title = db.Column(db.String(80), nullable = False)
+    title = db.Column(db.String(200), nullable = False)
     id = db.Column(db.Integer, primary_key = True)
+    src = db.Column(db.String(200), nullable = False)
     # table link
     ingredients = db.relationship('Ingredient', secondary = 'ingredient_link', backref = 'ing_link')
     dietgroups = db.relationship('DietGroup', secondary = 'dietgroup_link', backref = 'dg_link')
@@ -68,8 +69,9 @@ class Ingredient(db.Model):
     dg
     """
     __tablename__ = "ingredient"
-    title = db.Column(db.String(80), nullable = False)
+    title = db.Column(db.String(200), nullable = False)
     id = db.Column(db.Integer, primary_key = True)
+    src = db.Column(db.String(200), nullable = False)
 
 class DietGroup(db.Model):
     """"
@@ -81,8 +83,9 @@ class DietGroup(db.Model):
     dg
     """
     __tablename__ = "dietgroup"
-    title = db.Column(db.String(80), nullable = False)
+    title = db.Column(db.String(200), nullable = False)
     id = db.Column(db.Integer, primary_key = True)
 
-# db.drop_all()
+
+db.drop_all()
 db.create_all()
