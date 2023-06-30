@@ -2,15 +2,18 @@
     "Recipes":[
         {
             "id": "1",
-            "title": "Eggplant Pizza"
+            "title": "Eggplant Pizza",
+            "ingredients":["pizza dough", "eggplant"]
         },
         {
             "id": "2",
-            "title": "Tomato Shake"
+            "title": "Tomato Shake",
+            "ingredients":["tomato", "shake"]
         },
         {
             "id": "3",
-            "title": "Celery Sandwich"
+            "title": "Celery Sandwich",
+            "ingredients":["celery", "bread"]
         }
     ]
 }

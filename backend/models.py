@@ -55,8 +55,8 @@ class Recipe(db.Model):
     title = db.Column(db.String(80), nullable = False)
     id = db.Column(db.Integer, primary_key = True)
     # table link
-    ingredients = db.relationship('Ingredient', secondary = 'ingredient_link', backref = 'ingredient')
-    dietgroups = db.relationship('DietGroup', secondary = 'dietgroup_link', backref = 'dietgroup')
+    ingredients = db.relationship('Ingredient', secondary = 'ingredient_link', backref = 'ing_link')
+    dietgroups = db.relationship('DietGroup', secondary = 'dietgroup_link', backref = 'dg_link')
     
 class Ingredient(db.Model):
     """"
