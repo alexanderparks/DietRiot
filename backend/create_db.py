@@ -33,7 +33,7 @@ def create_recipes_ingredients():
             for i in range(len(r['nutrition']['ingredients'])):
                 extended_i = r['extendedIngredients'][i]
                 name = extended_i['name']
-                if not name in ingredient_bag:
+                if not name in ingredient_bag.keys():
                     #extended ingredients info
                     src_name = "https://spoonacular.com/cdn/ingredients_500x500/" + str(extended_i['image'])
                     aisle = extended_i['aisle']
@@ -57,12 +57,12 @@ def create_recipes_ingredients():
                         serving = "1 " + nutrional_i['unit']
                     #compiling ingredient instance
                     newIngredient=Ingredient(title=name, src=src_name, aisle = aisle, protein = protein, carbs = carbs, sugars = sugars, serving = serving, calories = calories)
-                    ingredient_bag[i] = newIngredient
+                    ingredient_bag[name] = newIngredient
                     db.session.add(newIngredient)
                     newIngredient.ing_link.append(newRecipe)
                 else:
-                    oldIngredient = ingredient_bag[i]
-                    oldIngredient.dg_link.append(newRecipe)
+                    oldIngredient = ingredient_bag[name]
+                    oldIngredient.ing_link.append(newRecipe)
             for d in r['diets']:
                 if d not in diet_bag.keys():
                     newDiet = DietGroup(title = d)
