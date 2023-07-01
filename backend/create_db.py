@@ -1,7 +1,7 @@
 from models import app, db, Recipe, Ingredient, DietGroup
 import json
 
-ingredient_bag = set()
+ingredient_bag = {}
 diet_bag = {}
 
 def load_json(filename):
@@ -15,21 +15,58 @@ def create_recipes_ingredients():
     global ingredient_bag
     global diet_bag
     for num in range(1, 11):
-        recipe = load_json(f'./data/recipes/foodstats{num}.json')
+        recipe = load_json(f'./data/recipes/foodstatsfull{num}.json')
+        """
+        Recipe has 5 attributes
+        link to the recipe page / could instead put the recipe instructions
+        """
         for r in recipe['results']:
             title = r['title']
             src = r['image']
-            newRecipe = Recipe(title = title, src = src)
-            for i in r['extendedIngredients']:
-                if not i['name'] in ingredient_bag:
-                    src_name = "https://spoonacular.com/cdn/ingredients_500x500/" + str(i['image'])
-                    newIngredient=Ingredient(title=i['name'], src=src_name)
-                    ingredient_bag.add(i['name'])
-                    newIngredient.ing_link.append(newRecipe)
+            servings = r['servings']
+            dishTypes = r['dishTypes']
+            calories = r['nutrition']['nutrients'][0]['amount']
+            recipeLink = r['sourceUrl']
+            newRecipe = Recipe(title = title, src = src, servings=servings, 
+                               dishTypes=dishTypes, calories=calories,
+                               recipeLink=recipeLink)
+            # print(len(r['extendedIngredients']), len(r['nutrition']['ingredients']), title)
+            for i in range(len(r['nutrition']['ingredients'])):
+                extended_i = r['extendedIngredients'][i]
+                name = extended_i['name']
+                if not name in ingredient_bag:
+                    #extended ingredients info
+                    src_name = "https://spoonacular.com/cdn/ingredients_500x500/" + str(extended_i['image'])
+                    aisle = extended_i['aisle']
+                    
+                    #nutrition ingredients info
+                    nutrional_i = r['nutrition']['ingredients'][i]
+                    protein = carbs = calories = sugars = 0
+                    for n in nutrional_i['nutrients']:
+                        if n['name'] == "Protein":
+                            protein = (1 / nutrional_i['amount']) * n['amount']
+                        if n['name'] == "Carbohydrates":
+                            carbs = (1 / nutrional_i['amount']) * n['amount']
+                        if n['name'] == "Calories":
+                            calories = (1 / nutrional_i['amount']) * n['amount']
+                        if n['name'] == "Sugar":
+                            sugars = (1 / nutrional_i['amount']) * n['amount']
+                        
+                    if nutrional_i['unit'] == "":
+                        serving = "1 " + nutrional_i['name']
+                    else:
+                        serving = "1 " + nutrional_i['unit']
+                    #compiling ingredient instance
+                    newIngredient=Ingredient(title=name, src=src_name, aisle = aisle, protein = protein, carbs = carbs, sugars = sugars, serving = serving, calories = calories)
+                    ingredient_bag[i] = newIngredient
                     db.session.add(newIngredient)
+                    newIngredient.ing_link.append(newRecipe)
+                else:
+                    oldIngredient = ingredient_bag[i]
+                    oldIngredient.dg_link.append(newRecipe)
             for d in r['diets']:
                 if d not in diet_bag.keys():
-                    newDiet=DietGroup(title=d)
+                    newDiet = DietGroup(title = d)
                     diet_bag[d] = newDiet
                     db.session.add(newDiet)
                     newDiet.dg_link.append(newRecipe)
@@ -40,5 +77,5 @@ def create_recipes_ingredients():
             db.session.add(newRecipe)
     db.session.commit()
 
-
-create_recipes_ingredients()
+if __name__ == "__main__":
+    create_recipes_ingredients()

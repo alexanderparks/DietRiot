@@ -8,10 +8,11 @@ params = {
     "apiKey": "868050a2415a4810a15ee606853dc36f",
     "addRecipeInformation": "true",
     "fillIngredients": "true",
+    "addRecipeNutrition": "true",
     "number": "100",
-    "offset": 900,
+    "offset": 800,
 }
 
 response = requests.get(url=api_url, params=params)
-with open("foodstats10.json", "w") as outfile:
+with open("foodstatsfull9.json", "w") as outfile:
     outfile.write(response.text)
