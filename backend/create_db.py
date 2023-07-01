@@ -30,7 +30,6 @@ def create_recipes_ingredients():
             newRecipe = Recipe(title = title, src = src, servings=servings, 
                                dishTypes=dishTypes, calories=calories,
                                recipeLink=recipeLink)
-            # print(len(r['extendedIngredients']), len(r['nutrition']['ingredients']), title)
             for i in range(len(r['nutrition']['ingredients'])):
                 extended_i = r['extendedIngredients'][i]
                 name = extended_i['name']

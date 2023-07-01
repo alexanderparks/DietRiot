@@ -117,12 +117,39 @@ class RecipeSchema(ma.SQLAlchemySchema):
             "servings",
             "dishTypes",
             "calories",
-            "recipeLink",
-            "ingredients",
-            "dietgroups"
+            "recipeLink"
+            # "ingredients",
+            # "dietgroups"
         )
 schema_for_recipe = RecipeSchema()
 schema_for_recipe = RecipeSchema(many=True)
+
+class IngredientSchema(ma.SQLAlchemySchema):
+    class Meta:
+        # Fields to expose
+        fields=(
+            "title",
+            "id",
+            "src",
+            "aisle",
+            "sugars",
+            "carbs",
+            "protein",
+            "calories",
+            "serving"
+        )
+schema_for_ingredient = IngredientSchema()
+schema_for_ingredient = IngredientSchema(many=True)
+
+class DietGroupSchema(ma.SQLAlchemySchema):
+    class Meta:
+        # Fields to expose
+        fields=(
+            "title",
+            "id"
+        )
+schema_for_dietgroup = DietGroupSchema()
+schema_for_dietgroup = DietGroupSchema(many=True)
 
 
 if __name__ == "__main__":
