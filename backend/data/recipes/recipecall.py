@@ -10,9 +10,9 @@ params = {
     "fillIngredients": "true",
     "addRecipeNutrition": "true",
     "number": "100",
-    "offset": 800,
+    "offset": 900,
 }
 
 response = requests.get(url=api_url, params=params)
-with open("foodstatsfull9.json", "w") as outfile:
+with open("foodstatsfull10.json", "w") as outfile:
     outfile.write(response.text)

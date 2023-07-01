@@ -11,7 +11,7 @@ def load_json(filename):
     return jsn
 
 jsons = ['./data/recipes/.json']
-def create_recipes_ingredients():
+def create_recipes_ingredients_dietgroups():
     global ingredient_bag
     global diet_bag
     for num in range(1, 11):
@@ -77,4 +77,4 @@ def create_recipes_ingredients():
     db.session.commit()
 
 if __name__ == "__main__":
-    create_recipes_ingredients()
+    create_recipes_ingredients_dietgroups()

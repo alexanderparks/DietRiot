@@ -67,18 +67,6 @@ class Recipe(db.Model):
     # table link
     ingredients = db.relationship('Ingredient', secondary = 'ingredient_link', backref = 'ing_link')
     dietgroups = db.relationship('DietGroup', secondary = 'dietgroup_link', backref = 'dg_link')
-    
-    # def toDict(self):
-    #     return dict(title=self.title,
-    #             id=self.id,
-    #             src=self.src,
-    #             servings=self.servings,
-    #             dishTypes=self.dishTypes,
-    #             calories=self.calories,
-    #             recipeLink=self.recipeLink,
-    #             ingredients=ingredient_link.ingredient_id,
-    #             # dietgroups=self.dietgroups
-    #     )
 
 class Ingredient(db.Model):
     """"
@@ -167,8 +155,8 @@ class RecipeSchema(ma.SQLAlchemySchema):
             "ingredients",
             "dietgroups"
         )
-    dietgroups = ma.Nested(DietGroupSchema, many=True)
-    ingredients = ma.Nested(IngredientSchema, many=True)
+    dietgroups = ma.Nested(lambda: DietGroupSchema(exclude=(["recipes"])), many=True)
+    ingredients = ma.Nested(lambda: IngredientSchema(exclude=(["recipes"])), many=True)
 schema_for_recipe = RecipeSchema(many=True)
 
 
