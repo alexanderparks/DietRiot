@@ -1,8 +1,10 @@
 import React from "react";
+import AboutPageLanding from "../AboutPage/Components/AboutPageLanding";
 
 const About = () => {
   return (
-    <div>This is the about page.
+    <div>
+      <AboutPageLanding />
     </div>
   );
 };

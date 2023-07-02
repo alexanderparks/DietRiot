@@ -9,24 +9,27 @@ import DietGroupInstance from "./pages/DietGroupInstance";
 import RecipeInstance from "./pages/RecipeInstance";
 import IngredientInstance from "./pages/IngredientInstance";
 import { Router, Routes, Route, BrowserRouter } from "react-router-dom";
+import { NavigationBar } from "./HomePage/Components";
 
 function App() {
   return (
     <BrowserRouter>
       <div>
         <header>
-          <p>Navbar</p>
+          <NavigationBar />
         </header>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/recipes" element={<Recipes />} />
-          <Route path="/ingredients" element={<Ingredients />} />
-          <Route path="/dietgroups" element={<DietGroups />} />
-          <Route path="/recipes/view/:id" element={<RecipeInstance />} />
-          <Route path="/ingredients/view/:id" element={<IngredientInstance />} />
-          <Route path="/dietgroups/view/:id" element={<DietGroupInstance />} />
-        </Routes>
+        <div className="page-content">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/recipes" element={<Recipes />} />
+            <Route path="/ingredients" element={<Ingredients />} />
+            <Route path="/dietgroups" element={<DietGroups />} />
+            <Route path="/recipes/view/:id" element={<RecipeInstance />} />
+            <Route path="/ingredients/view/:id" element={<IngredientInstance />} />
+            <Route path="/dietgroups/view/:id" element={<DietGroupInstance />} />
+          </Routes>
+        </div>
         </div>
     </BrowserRouter>
   )

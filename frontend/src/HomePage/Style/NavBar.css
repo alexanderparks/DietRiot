@@ -1,0 +1,20 @@
+a {
+text-transform: uppercase;
+color: #189cfc;
+text-decoration: none;
+font-weight: bold;
+}
+.nav-link{
+transition: 0.5s;
+animation: ease-in-out;
+}
+.nav-link:hover{
+color:black;
+    font-weight:bold;
+}
+.no-padding-left {
+    padding-left: 0 !important;
+}
+.brand {
+    margin-left: 0 !important;
+  }
