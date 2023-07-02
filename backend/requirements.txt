@@ -1,3 +1,4 @@
 Flask
 Marshmallow
 SQLAlchemy
+gunicorn==19.9.0
