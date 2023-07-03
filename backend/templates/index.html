@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+    <style>
+      .bg-cover {
+        background-size: cover !important;
+        height: 300px;
+      }
+      .jumbotron bg-cover text-white:before {
+        filter: 40%;
+      }
+      .row {
+        margin-left: 15px;
+        margin-right: 15px;
+      }
+      .all {
+        background-image: radial-gradient(#07450c, #6d9c71);
+      }
+      .display-4 font-weight-bold {
+        font-weight: strong;
+      }
+      .font-italic text-muted {
+        color: white;
+      }
+      .container py-5 {
+        color: white;
+      }
+      .btn {
+        width: 150px;
+        justify-content: center;
+        padding: 0/5rem;
+        background-color: rgba(7, 69, 12, 0.2);
+        transition: 0.2s;
+        border-radius: 3px;
+      }
+      .btn-container {
+        display: flex;
+        justify-content: center;
+      }
+
+      .btn:hover {
+        background: rgba(27, 156, 252, 0.1);
+        transform: scale();
+      }
+
+      a {
+        text-transform: uppercase;
+        color: #189cfc;
+        text-decoration: none;
+        font-weight: bold;
+      }
+      .rounded-square {
+        border-radius: 10px;
+      }
+      .highlight {
+        font-weight: bold;
+      }
+      .social-icons {
+        display: flex;
+        justify-content: center;
+      }
+      .social-icon i {
+        font-size: 120px !important;
+        margin: 0 10px;
+      }
+      .card-text a {
+        text-transform: none;
+      }
+      div.all {
+        padding-bottom: 50px;
+      }
+
+     
+      .nav-item{
+        transition: 0.5s;
+        animation: ease-in-out;
+      }
+      .nav-item:hover{
+        color:black;
+         font-weight:bold;
+      }
+      .card-text{
+      font-size: 25px;
+      font-style: italic;
+      font-family: blippo;
+      color: black;
+    }
+    .card{
+      transition: all 0.3s;
+      background-color:rgba(252,241,235,0.75);
+    }
+    .card:hover{
+      transform: scale(1.03);
+    }
+    .card-name{
+      font-size:20px;
+      text-align:right;
+      font-family: optima;
+      margin-right: 30px;
+      color: black;
+    }
+    svg {
+      vertical-align: text-bottom;
+    }
+    .carousel-item{
+      width:100%;
+      height: 40vh;
+    }
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+      crossorigin="anonymous"
+    />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script defer src="js/bootstrap.bundle.min.js"></script> 
+  </head>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script defer src="js/bootstrap.bundle.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+  <style>
+    .card-text{
+      font-size: 25px;
+      font-style: italic;
+      font-family: blippo;
+      color: black;
+    }
+    .card{
+      transition: all 0.3s;
+      background-color:rgba(252,241,235,0.75);
+    }
+    .card:hover{
+      transform: scale(1.03);
+    }
+    .card-name{
+      font-size:20px;
+      text-align:right;
+      font-family: optima;
+      margin-right: 30px;
+      color: black;
+    }
+    svg {
+      vertical-align: text-bottom;
+    }
+    .carousel-inner{
+      height: 300px;
+    }
+  </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg fixed-top bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">DietRiot</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{url_for('show_about_us')}}">About Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{url_for('show_recipes')}}">Recipes</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{url_for('show_ingredients')}}">Ingredients</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href={{url_for('show_diet_groups')}}>Diet Groups</a>
+            </li>
+          </ul>
+          <!-- <form class="d-flex" role="search">
+            <input
+              class="form-control me-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+            />
+            <button class="btn btn-outline-success" type="submit">
+              Search
+            </button>
+          </form> -->
+        </div>
+      </div>
+    </nav>
+    
+    <section class = "row" style="
+     background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+            url({{url_for('static', filename='main_bg.jpeg') }}) no-repeat top right fixed;
+    background-size:cover;
+    height: 100%; padding-bottom: 30px;
+    overflow:hidden;">
+    <div class = "col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+    <div class="container text-center">
+        <h1
+          style="
+          color: white;
+          font-size: 100px; 
+          font-family: verdana; 
+          padding-top: 150px;
+          ">DietRiot</h1>
+
+        <p style = "
+        color: lightgray;
+        font-size: 30px; 
+        padding-bottom: 300px;
+        font-family: verdana; 
+        text-align: center;">
+        Revolutionize Your Plate
+        </p>
+      </div>
+    </section>
+    
+  <section class="cards" style="
+  background: url('/static/card_image.jpeg') no-repeat top right fixed;
+  background-size:cover;
+  height: 100%; padding-bottom: 30px;
+  overflow:hidden;">
+    <div class="row d-flex flex-row mb-3 justify-content-center">
+      <div class="col-md-4" style="margin-top:20px;margin-bottom:20px">
+        <div class="card m-3 h-100">
+          <div class="card-img-top">
+          <div id="carouselControl-Ing" class="carousel carousel-dark slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="https://cdn.britannica.com/72/170772-050-D52BF8C2/Avocado-fruits.jpg" class="d-block w-100 h-100" alt="image1">
+              </div>
+              <div class="carousel-item">
+                <img src="https://pngimg.com/d/turkey_food_PNG18.png" class="d-block w-100 h-100" alt="image2">
+              </div>
+              <div class="carousel-item">
+                <img src="https://images.heb.com/is/image/HEBGrocery/000972208-1" class="d-block w-100 h-100" alt="image3">
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselControl-Ing" data-bs-slide="prev" style="color:black;">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselControl-Ing" data-bs-slide="next" style="color:black;">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
+          <div class="card-body">
+            <p class="card-text"
+            >
+            <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="#a29998" class="bi bi-quote" viewBox="0 -2 15 15">
+              <path d="M12 12a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1h-1.388c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 9 7.558V11a1 1 0 0 0 1 1h2Zm-6 0a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1H4.612c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 3 7.558V11a1 1 0 0 0 1 1h2Z"/>
+            </svg>
+            You don't have to cook fancy or complicated masterpieces—just good food from fresh ingredients.</p>
+              <p class="card-name">--Julia Child</p>
+            <!--data-bs-toggle for Bootstrap 5-->
+          </div>
+            <div class = "text-center margin-bottom: 30px;">
+            <a href="../ingredients/" class="btn btn-secondary" role="button" data-toggle="button" style="margin-bottom:100px; font-family:verdana;">Pick Ingredients</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4" style="margin-top:20px;margin-bottom:20px">
+        <div class="card m-3 h-100">
+          <div class="card-img-top">
+            <div id="carouselControl-Rec" class="carousel carousel-dark slide" data-bs-ride="carousel">
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img src="https://www.seriouseats.com/thmb/HM36ntDqT93JZqJTh2zdCFqygQg=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__recipes__images__2014__05__20140530-one-pot-wonders-turkey-burgers-0daef55b338944afa44a4887a7529d0d.jpg" class="d-block w-100 h-100" alt="image1">
+                </div>
+                <div class="carousel-item">
+                  <img src="https://images.food52.com/ojYYwmMw_QcDyajP06dGLk_94X4=/1930x1286/filters:format(webp)/4932babe-6786-4653-bfdb-872c171a72bd--food52_10-25-11-3782.jpg" class="d-block w-100 h-100" alt="image2">
+                </div>
+                <div class="carousel-item">
+                  <img src="https://www.seriouseats.com/thmb/3wUBeoEFIhxDlbMJdWi5ppZz4Pk=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__recipes__images__2014__10__20141022-kale-pizza-7-3330b9fddcc04989ac7492cd28f16da7.jpg" class="d-block w-100 h-100" alt="image3">
+                </div>
+              </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#carouselControl-Rec" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#carouselControl-Rec" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
+          </div>
+          <div class="card-body">
+            <p class="card-text"
+            ><svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="#a29998" class="bi bi-quote" viewBox="0 -2 15 15">
+              <path d="M12 12a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1h-1.388c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 9 7.558V11a1 1 0 0 0 1 1h2Zm-6 0a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1H4.612c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 3 7.558V11a1 1 0 0 0 1 1h2Z"/>
+            </svg>
+            A recipe is a story that ends with a good meal.</p>
+            <p class="card-name">--Pat Conroy</p>
+          </div>
+            <!--data-bs-toggle for Bootstrap 5-->
+            <div class = "text-center" style="color:aqua;">
+              <a href="../recipes/" class="btn btn-secondary" role="button" data-toggle="button" style="margin-bottom:100px; font-family:verdana;">Choose Recipe</a>
+            </div>
+          
+        </div>
+      </div>
+      <div class="col-md-4" style="margin-top:20px;margin-bottom:20px">
+        <div class="card m-3 h-100">
+          <div class="card-img-top">
+            <div id="carouselControl-Diet" class="carousel carousel-dark slide" data-bs-ride="carousel">
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img src="https://static.trip101.com/paragraph_media/pictures/001/595/541/large/pexels-photo-958545.jpeg?1553522832" class="d-block w-100 h-100" alt="image1">
+                </div>
+                <div class="carousel-item">
+                  <img src="https://images.everydayhealth.com/images/what-is-a-vegan-diet-benefits-food-list-beginners-guide-alt-1440x810.jpg" class="d-block w-100 h-100" alt="image2">
+                </div>
+                <div class="carousel-item">
+                  <img src="https://www.restaurantware.com/media/magefan_blog/gluten_free_article_-_Thumbnail.png" class="d-block w-100 h-100" alt="image3">
+                </div>
+              </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#carouselControl-Diet" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#carouselControl-Diet" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
+          </div>
+          <div class="card-body">
+            <p class="card-text">
+              <svg xmlns="http://www.w3.org/2000/svg" width="80" height="60" fill="#a29998" class="bi bi-quote" viewBox="0 -2 15 15">
+                <path d="M12 12a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1h-1.388c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 9 7.558V11a1 1 0 0 0 1 1h2Zm-6 0a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1H4.612c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 3 7.558V11a1 1 0 0 0 1 1h2Z"/>
+              </svg>Let food be thy medicine and medicine be thy food. </p>
+            <p class="card-name">--Hippocrates</p>
+            <p class="invisible" > invisible</p>
+            <!--data-bs-toggle for Bootstrap 5-->
+          </div>
+            <div class = "text-center">
+              <a href="../diet-groups/" class="btn btn-secondary" role="button" data-toggle="button" style="margin-bottom:100px; font-family:verdana;">Select Diets</a>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+  </section>
+ <!--
+  <hr style = "border-top: 1px dashed;">
+  -->
+  <section class = "motivation"  
+  style = "
+  
+  background: url('/static/motivation_bg.jpeg') no-repeat top right local;
+  background-size: cover;
+  height:100%;
+  margin: 0px 0px 0px 0px;
+  overflow:hidden;"
+ >
+ <div class = "row" style="
+ padding: 10px 30px 100px 30px;
+ overflow-x:hidden;">
+   
+   <h1 style="
+   text-align:center; 
+   font-family:optima;
+   padding-bottom: 0px;
+   margin-bottom: 0px;
+   border-bottom: 0px;
+   "> Our Motivation</h1>
+   <h3 style="
+   text-align:center;
+   font-family: optima; 
+   font-size:20px;
+   padding-top: 0px;
+   margin-top: 0px;
+   border-top: 0px;
+   ">Why did we create DietRiot?</h3>
+   <p style="
+   text-indent:50px;
+   font-family: Verdana, Geneva, Tahoma, sans-serif;
+   font-size: 20px;
+   ">Finding and managing recipes and ingredients can often be the hardest part of sticking to a diet. 
+     Our team set out to alleviate this issue when we created DietRiot. With DietRiot, users can 
+     browse and compare recipes and ingredients that fit the restrictions of their diet. Users can also 
+     utilize DietRiot to view attributes and statistics about specific recipes, ingredients, or diet groups. 
+     Whether a user is beginning a diet, continuing a diet, or just looking for some new recipes, 
+     DietRiot provides an expansive and easily navigable medium to aid in these processes!</p>
+ </div>
+  </section>
+  
+    </body>
+</html>
