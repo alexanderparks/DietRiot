@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Ingredients from "./pages/Ingredients";
@@ -8,8 +9,11 @@ import DietGroups from "./pages/DietGroups";
 import DietGroupInstance from "./pages/DietGroupInstance";
 import RecipeInstance from "./pages/RecipeInstance";
 import IngredientInstance from "./pages/IngredientInstance";
-import { Router, Routes, Route, BrowserRouter } from "react-router-dom";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { NavigationBar } from "./HomePage/Components";
+
+
+
 
 function App() {
   return (
@@ -31,7 +35,9 @@ function App() {
           </Routes>
         </div>
         </div>
+   
     </BrowserRouter>
+    
   )
 }
 

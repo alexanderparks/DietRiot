@@ -8,11 +8,11 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 import os
 from flask_marshmallow import Marshmallow
-# from flask_cors import CORS
+from flask_cors import CORS
 
 # initializing Flask app 
 app = Flask(__name__) 
-# CORS(app)
+CORS(app)
 
 app.app_context().push()
 

@@ -1,6 +1,6 @@
 import NavigationBar from "./NavBar";
 import React from "react";
-import "../Style/HomePageStyle.css";
+
 function HomePageLanding(){
   return(
   <div className = "all">
