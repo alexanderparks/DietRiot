@@ -1,10 +1,12 @@
 import React from "react";
+import IngredientsLanding from "../IngredientsPage/Components/IngredientsLanding";
 
-const Home = () => {
+const Ingredients = () => {
   return (
-    <div>This is the ingredients page.
+    <div>
+      <IngredientsLanding />
     </div>
   );
 };
 
-export default Home;
+export default Ingredients;

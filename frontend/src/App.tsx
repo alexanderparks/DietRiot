@@ -12,9 +12,6 @@ import IngredientInstance from "./pages/IngredientInstance";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { NavigationBar } from "./HomePage/Components";
 
-
-
-
 function App() {
   return (
     <BrowserRouter>
@@ -28,6 +25,7 @@ function App() {
         <div className="page-content">
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/home" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/recipes" element={<Recipes />} />
             <Route path="/ingredients" element={<Ingredients />} />

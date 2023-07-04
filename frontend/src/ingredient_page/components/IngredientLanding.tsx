@@ -1,5 +1,5 @@
 import axios from "axios";
-import React from "react"
+import React from "react";
 import { useState, useEffect, SetStateAction } from "react";
 import IngredientInstance from "./IngredientInstance";
 import { Link } from "react-router-dom";
