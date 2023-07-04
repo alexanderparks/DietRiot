@@ -1,10 +1,11 @@
 import React from "react";
+import {HomePageLanding} from "../HomePage/Components/index";
 
-const Home = () => {
+const Splash = () => {
   return (
-    <div><p></p>
+    <div><HomePageLanding/>
     </div>
   );
 };
 
-export default Home;
+export default Splash;
