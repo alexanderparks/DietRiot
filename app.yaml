@@ -14,7 +14,7 @@ env_variables:
     # Replace user, password, database, and instance connection name with the values obtained
     # when configuring your Cloud SQL instance.
     DB_STRING: >-
-      postgresql+psycopg2://postgres:123@/postgres?host=/cloudsql/dietriot:us-central1:database
+      postgresql+psycopg2://postgres@/postgres?host=/cloudsql/dietriot:us-central1:database
 #[END env]
 
 #[START cloudsql_settings]
