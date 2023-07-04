@@ -18,7 +18,7 @@ function Test() {
 
 
     const [recipe, setRecipe] = React.useState<RecipeInstance>(initData);
-    const [recipeID, setRecipeID] = useState(0);
+    const [recipeID, setRecipeID] = useState(1);
     const api_url = "http://localhost:5000";
     useEffect(() => {
         make_flask_call();
@@ -58,12 +58,32 @@ function Test() {
     <div className="App">
         <div>{recipe.title}</div>
         <div>{recipe.image !== null && <img src={recipe.image} alt="recipe"></img>}</div>
+        <p>calories: {recipe.calories}</p>
         <p>{recipe.title}</p>
-        <p>hello {recipeID}{}</p>
-        <p>{recipeID}</p>
+        <p>{recipe.recipeLink}</p>
+        <p>{recipe.servings}</p>
+        
+        <h3>Dietgroups:  </h3>
+        {recipe.dietgroups.map(function(dg) {
+            return (
+            <div>
+            {dg.title}
+            </div>
+            )
+            })}
+        <br></br>
+        <h3>Ings:  </h3>
+        {recipe.ingredients.map(function(i) {
+            return (
+                <div>
+                {i.title}
+                </div>
+            )
+            })}
+
         <div>
-        <button onClick={() => getRecipe(1)}>Elite Recipe</button>
-        <button onClick={() => getRecipe(2)}>Mid Recipe</button>
+        <button onClick={() => getRecipe(1)}>Recipe 1</button>
+        <button onClick={() => getRecipe(2)}>Recipe 2</button>
         </div>
     </div>
     );
