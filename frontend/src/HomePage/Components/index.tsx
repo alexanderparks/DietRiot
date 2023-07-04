@@ -4,7 +4,12 @@ import React from "react";
 function HomePageLanding(){
   return(
   <div className = "all">
-    <section className = "row bg-image">
+    <section className = "row bg-image" style = {{ 
+      background: "url(/frontend/src/HomePage/Assets/main_bg.jpeg) no-repeat top right fixed",
+      backgroundSize:"cover",
+      height: "100%", 
+      paddingBottom: "30px",
+      overflow:"hidden"}}>
     <div className = "col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
     <div className="container text-center">
         <h1
