@@ -4,7 +4,20 @@ import { useState, useEffect, SetStateAction } from "react";
 import RecipeInstance from "./RecipeInstance";
 
 
-function Test() {
+
+function RecipeLanding() {
+    const [id, setId] = React.useState(0);
+
+    React.useEffect(() => {
+        const my_url = window.location.href;
+        var parts = my_url.split("/");
+        var result = parts[parts.length - 1];
+        const url_id = Number(result);
+        console.log(url_id);
+        setId(url_id);
+      }, []);
+    
+    
     let initData: RecipeInstance = {
         calories: 0,
         id: 0,
@@ -20,12 +33,10 @@ function Test() {
     const [recipe, setRecipe] = React.useState<RecipeInstance>(initData);
     const [recipeID, setRecipeID] = useState(1);
     const api_url = "http://localhost:5000";
-    useEffect(() => {
-        make_flask_call();
-    }, [recipeID]);
+    
 
     const make_flask_call = () => {
-        const recipe_url = api_url + "/recipes/" + recipeID;
+        const recipe_url = api_url + "/recipes/" + id;
         console.log(recipe_url);
         axios
             .get(recipe_url)
@@ -50,6 +61,8 @@ function Test() {
             });
     };
 
+    make_flask_call();
+
     function getRecipe(id: any) {
     setRecipeID(id);
     }
@@ -62,6 +75,7 @@ function Test() {
         <p>{recipe.title}</p>
         <p>{recipe.recipeLink}</p>
         <p>{recipe.servings}</p>
+        <p>{recipe.id}</p>
         
         <h3>Dietgroups:  </h3>
         {recipe.dietgroups.map(function(dg) {
@@ -81,13 +95,9 @@ function Test() {
             )
             })}
 
-        <div>
-        <button onClick={() => getRecipe(1)}>Recipe 1</button>
-        <button onClick={() => getRecipe(2)}>Recipe 2</button>
-        </div>
     </div>
     );
 }
 
-export default Test;
+export default RecipeLanding;
 
