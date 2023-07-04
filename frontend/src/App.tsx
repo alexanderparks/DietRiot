@@ -21,6 +21,9 @@ function App() {
       <div>
         <header>
           <NavigationBar />
+          <br></br>
+          <br></br>
+          <br></br>
         </header>
         <div className="page-content">
           <Routes>

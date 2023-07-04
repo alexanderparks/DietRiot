@@ -1,8 +1,10 @@
 import React from "react";
+import IngredientLanding from "../ingredient_page/components/IngredientLanding";
 
 const IngInstance = () => {
   return (
-    <div><p>This is an ingredient instance page.</p>
+    <div>
+    <IngredientLanding/>
     </div>
   );
 };

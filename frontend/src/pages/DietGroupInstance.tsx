@@ -1,8 +1,10 @@
 import React from "react";
+import DietGroupLanding from "../dietgroup_page/components/DietGroupLanding";
 
 const DGInstance = () => {
   return (
-    <div><p>This is a diet group instance page.</p>
+    <div>
+    <DietGroupLanding/>
     </div>
   );
 };

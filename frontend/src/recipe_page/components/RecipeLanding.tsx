@@ -2,6 +2,7 @@ import axios from "axios";
 import React from "react"
 import { useState, useEffect, SetStateAction } from "react";
 import RecipeInstance from "./RecipeInstance";
+import { Link } from "react-router-dom";
 
 
 
@@ -31,7 +32,6 @@ function RecipeLanding() {
 
 
     const [recipe, setRecipe] = React.useState<RecipeInstance>(initData);
-    const [recipeID, setRecipeID] = useState(1);
     const api_url = "http://localhost:5000";
     
 
@@ -61,11 +61,9 @@ function RecipeLanding() {
             });
     };
 
-    make_flask_call();
-
-    function getRecipe(id: any) {
-    setRecipeID(id);
-    }
+    useEffect(() => {
+        make_flask_call();
+      }, [id]);
 
     return (
     <div className="App">
@@ -81,7 +79,7 @@ function RecipeLanding() {
         {recipe.dietgroups.map(function(dg) {
             return (
             <div>
-            {dg.title}
+            <Link to={"http://localhost:3000/dietgroups/view/" + dg.id}>{dg.title}</Link>
             </div>
             )
             })}
@@ -90,7 +88,7 @@ function RecipeLanding() {
         {recipe.ingredients.map(function(i) {
             return (
                 <div>
-                {i.title}
+                 <Link to={"http://localhost:3000/ingredients/view/" + i.id}>{i.title}</Link>
                 </div>
             )
             })}

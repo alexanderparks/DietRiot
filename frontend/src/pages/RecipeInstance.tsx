@@ -3,7 +3,7 @@ import RecipeLanding from "../recipe_page/components/RecipeLanding";
 
 const RInstance = () => {
   return (
-    <div><p>This is a recipe instance page.</p>
+    <div>
     <RecipeLanding/>
     </div>
   );
