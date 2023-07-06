@@ -104,7 +104,7 @@ function IngredientLanding() {
             {ingredient.dietgroups.map(function(r) {
             return (
                 <div>
-                <Link to={"http://localhost:3000/recipes/view/" + r.id} className = "contents-ing">{r.title}</Link>
+                <Link to={"http://localhost:3000/dietgroups/view/" + r.id} className = "contents-ing">{r.title}</Link>
                 </div>
             )
             })}
