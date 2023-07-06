@@ -99,6 +99,7 @@ function IngredientsLanding() {
             <div style={{
                     background: 
                         'linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(https://wallpaperaccess.com/full/4901780.jpg)',
+                    marginTop:"-20px"
                 }}
                 className="jumbotron bg-cover text-white"
             >
