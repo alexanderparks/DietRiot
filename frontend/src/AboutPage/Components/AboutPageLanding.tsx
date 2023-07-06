@@ -101,6 +101,7 @@ function AboutPageLanding() {
         <div style={{
                 background:
                     `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(${gdc})`,
+                marginTop: "-20px"
             }}
             className="jumbotron bg-cover text-white">
             <div className="container py-5 text-center">
