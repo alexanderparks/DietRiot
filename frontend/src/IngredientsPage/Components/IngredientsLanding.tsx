@@ -10,11 +10,6 @@ import { Link, useLocation } from "react-router-dom";
 import IngredientInstance from "./IngredientInstance";
 
 function IngredientsLanding() {
-    interface Item {
-        img_src: string;
-        name: string;
-    }
-
     let initData: IngredientInstance = {
         title: "",
         id: 0,
@@ -61,6 +56,8 @@ function IngredientsLanding() {
 
     const [ingredients, setIngredients] = React.useState<IngredientInstance[]>([]);
 
+    const [isLoading, setIsLoading] = React.useState(true);
+
     const make_flask_call = () => {
         const ing_url = api_url + "/ingredients";
         console.log(ing_url);
@@ -82,6 +79,8 @@ function IngredientsLanding() {
                     serving: item.serving,
                     recipes: item.recipes,
                 })));
+
+                setIsLoading(false);
             })
             .catch(function (error) {
                 // handle error
@@ -143,38 +142,43 @@ function IngredientsLanding() {
                 </div>
             </div>
             <div className="CardsWrapper">
-                <Grid container spacing={2} sx={{ marginLeft: 4 }}>
-                    {ingredients.slice(startIndex, endIndex).map((ingredient, i) => (
-                        <Grid item xs={3} key={i}>
-                            <IngredientsCard id = {ingredient.id} img_src={ingredient.image} name={ingredient.title}
-                                                calories={ingredient.calories} sugars={ingredient.sugars} carbs={ingredient.carbs} protein={ingredient.protein}
-                                                    serving={ingredient.serving}/>
-                        </Grid>
-                    ))}
-                </Grid>
-                <br></br>
-                <br></br>
-                <div className="PaginationWrapper" style={{ display: "flex", justifyContent: "center" }}>
-                    <Pagination
-                        page={currPage}
-                        count={totalNumPages}
-                        onChange={changePage}
-                        renderItem={(item) => (
-                        <PaginationItem
-                            component={Link}
-                            to={`/ingredients${item.page === 1 ? "" : `?page=${item.page}`}`}
-                            {...item}
-                            sx={{
-                            "&.Mui-selected": {
-                                backgroundColor: "primary.main",
-                                color: "white",
-                            },
-                            }}
+                {isLoading ? (
+                <p style={{textAlign: "center", fontWeight: "bold", fontSize: "24px"}}>Loading...</p>
+                ) : (
+                    <>
+                    <Grid container spacing={2} sx={{ marginLeft: 4 }}>
+                        {ingredients.slice(startIndex, endIndex).map((ingredient, i) => (
+                            <Grid item xs={3} key={i}>
+                                <IngredientsCard id = {ingredient.id} img_src={ingredient.image} name={ingredient.title}
+                                                    calories={ingredient.calories} sugars={ingredient.sugars} carbs={ingredient.carbs} protein={ingredient.protein}
+                                                        serving={ingredient.serving}/>
+                            </Grid>
+                        ))}
+                    </Grid>
+                    <br></br>
+                    <br></br>
+                    <div className="PaginationWrapper" style={{ display: "flex", justifyContent: "center" }}>
+                        <Pagination
+                            page={currPage}
+                            count={totalNumPages}
+                            onChange={changePage}
+                            renderItem={(item) => (
+                            <PaginationItem
+                                component={Link}
+                                to={`/ingredients${item.page === 1 ? "" : `?page=${item.page}`}`}
+                                {...item}
+                                sx={{
+                                "&.Mui-selected": {
+                                    backgroundColor: "primary.main",
+                                    color: "white",
+                                },
+                                }}
+                            />
+                            )}
                         />
-                        )}
-                    />
-                </div>
-
+                    </div>
+                </>
+                )}
             </div>
 
 
