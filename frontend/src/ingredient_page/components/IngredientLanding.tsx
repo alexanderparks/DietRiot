@@ -30,6 +30,7 @@ function IngredientLanding() {
         serving: "",
         recipes: [],
         image: "",
+        dietgroups: [],
         };
 
 
@@ -58,6 +59,7 @@ function IngredientLanding() {
                     calories: res.calories,
                     serving: res.serving,
                     recipes: res.recipes,
+                    dietgroups: res.dietgroups
                 });
             })
             .catch(function (error) {
@@ -99,8 +101,13 @@ function IngredientLanding() {
 
         <section className = "diet-section-ing">
             <h3 style = {{fontFamily:"Verdana"}}>Diet Groups</h3>
-            
-            /**insert here for diet groups */
+            {ingredient.dietgroups.map(function(r) {
+            return (
+                <div>
+                <Link to={"http://localhost:3000/recipes/view/" + r.id} className = "contents-ing">{r.title}</Link>
+                </div>
+            )
+            })}
         </section>
 
         <section className = "recipe-section-ing">
@@ -113,6 +120,7 @@ function IngredientLanding() {
             )
             })}
         </section>
+        
 
     </div>
     );

@@ -28,6 +28,7 @@ function DietGroupLanding() {
         prohibits: "",
         percentage: 0.0,
         membership: [],
+        ingredients: [],
         };
 
 
@@ -53,6 +54,7 @@ function DietGroupLanding() {
                     prohibits: res.prohibits,
                     percentage: res.percentage,
                     membership: res.membership,
+                    ingredients: res.ingredients.slice(0, 20)
                 });
             })
             .catch(function (error) {
@@ -94,8 +96,14 @@ function DietGroupLanding() {
         </section>
         
         <section className = "ing-section-diet">
-            <h3 style = {{fontFamily:"Verdana"}}>Ingredients</h3>
-            /*insert links for ingredients */
+            <h3 style = {{fontFamily:"Verdana"}}>Here Are Some Ingredients In This Diet Group</h3>
+            {dietgroup.ingredients.map(function(i) {
+                return (
+                <div>
+                    <Link to={"http://localhost:3000/recipes/view/" + i.id} className = "contents-diet">{i.title}</Link>
+                </div>
+                )
+                })}
 
         </section>
 
