@@ -1,5 +1,5 @@
 import React from "react";
-import "../Style/RecipesLanding.css";
+import "../style/RecipesLanding.css";
 import RecipesCard from "./RecipesCard";
 import axios from "axios";
 import { useState, useEffect, SetStateAction } from "react";

@@ -1,5 +1,5 @@
 import React from "react";
-import "../Style/IngredientsLanding.css";
+import "../style/IngredientsLanding.css";
 import IngredientsCard from "./IngredientsCard";
 import axios from "axios";
 import { useState, useEffect, SetStateAction } from "react";

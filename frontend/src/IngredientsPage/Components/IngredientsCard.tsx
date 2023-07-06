@@ -8,7 +8,7 @@ import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 import Box from"@mui/material/Box";
 
-import "../Style/IngredientCard.css";
+import "../style/IngredientCard.css";
 
 interface Props {
     id?: number;

@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 
-import "../Style/RecipeCard.css";
+import "../style/RecipeCard.css";
 
 interface Props {
     id?: number;

@@ -1,6 +1,6 @@
 import NavigationBar from "./NavBar";
 import 'bootstrap/dist/css/bootstrap.min.css';  
-import "../Style/HomePageStyle.css";
+import "../style/HomePageStyle.css";
 import { Container, Row, Col } from "react-bootstrap";
 import Carousel from 'react-bootstrap/Carousel';
 import Card from 'react-bootstrap/Card';
