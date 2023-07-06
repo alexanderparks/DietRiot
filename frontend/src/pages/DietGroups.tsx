@@ -1,8 +1,10 @@
 import React from "react";
+import DietGroupsLanding from "../DietGroupsPage/Components/DietGroupsLanding";
+
 
 const Home = () => {
   return (
-    <div>This is the diet groups page.
+    <div><DietGroupsLanding />
     </div>
   );
 };
