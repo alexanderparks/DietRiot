@@ -1,26 +1,19 @@
-# This file specifies your Python application's runtime configuration.
-# See https://cloud.google.com/appengine/docs/managed-vms/config for details.
+runtime: python38
 
-runtime: python
-env: flex
-entrypoint: gunicorn -b :$PORT main:app
-
-runtime_config:
-  python_version: 3
-
-#[START env]
 env_variables:
-    # postgresql+psycopg2://USER:PASSWORD@/DATABASE?host=/cloudsql/INSTANCE_CONNECTION_NAME
-    # Replace user, password, database, and instance connection name with the values obtained
-    # when configuring your Cloud SQL instance.
-    DB_STRING: >-
-      postgresql+psycopg2://postgres:asd123@/postgres?host=/cloudsql/testingreactdeployment:us-central1:dietriotdb
-#[END env]
-
-#[START cloudsql_settings]
-# Replace project and instance with the values obtained  when configuring your
-# Cloud SQL instance.
+  DB_STRING: postgresql+psycopg2://postgres:asd123@/postgres?host=/cloudsql/dietriot:us-central1:dietriotdb
 beta_settings:
-    cloud_sql_instances: testingreactdeployment:us-central1:dietriotdb
+  cloud_sql_instances: dietriot:us-central1:dietriotdb
 
-#[END cloudsql_settings]
+
+handlers:
+- url: /(.*\..+)$
+  static_files: build/\1
+  upload: build/(.*\..+)$
+  # Catch all handler to index.html
+- url: /.*
+  static_files: build/index.html
+  upload: build/index.html
+- url: /.*
+  script: ./main.py
+
