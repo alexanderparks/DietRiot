@@ -141,10 +141,10 @@ function RecipesLanding() {
                 </div>
             </div>
             <div className="CardsWrapper">
-                <Grid container spacing={2} sx={{ marginLeft: 4 }}>
+                <Grid container sx={{ marginLeft: 0, marginRight: 10, paddingRight: 5, paddingLeft: 10}}>
                     {recipe.slice(startIndex, endIndex).map((rec, i) => (
-                        <Grid item xs={3} key={i}>
-                            <RecipesCard id = {rec.id} img_src={rec.image} name={rec.title} />
+                        <Grid item xs={12} md={3} key={i}>
+                            <RecipesCard id = {rec.id} img_src={rec.image} name={rec.title} carb = {rec.calories} serving = {rec.servings}/>
                         </Grid>
                     ))}
                 </Grid>
