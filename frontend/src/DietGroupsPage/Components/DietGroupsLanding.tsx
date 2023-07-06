@@ -146,7 +146,8 @@ function DietGroupsLanding() {
                     <Grid container spacing={2} sx={{ marginLeft: 4 }}>
                         {dietgroup.slice(startIndex, endIndex).map((dg, i) => (
                             <Grid item xs={3} key={i}>
-                                <DietGroupsCard id = {dg.id} img_src={dg.image} name={dg.title} restrictions={dg.prohibits} />
+                                <DietGroupsCard id = {dg.id} img_src={dg.image} name={dg.title} restrictions={dg.prohibits} percentage={dg.percentage}
+                                                desc = {dg.desc} membership={dg.membership}/>
                             </Grid>
                         ))}
                     </Grid>

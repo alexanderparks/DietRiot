@@ -81,10 +81,12 @@ function DietGroupLanding() {
                 <p><span style={{ fontWeight: 'bold' }}>Diet ID: </span>{dietgroup.id}</p>
                 <p style = {{marginLeft: "40px", marginRight: "40px"}}><span style={{ fontWeight: 'bold' }}>Description: </span>{dietgroup.desc}</p>
                 <p><span style={{ fontWeight: 'bold' }}>Restrictions: </span>{dietgroup.prohibits}</p>
+                <p><span style={{ fontWeight: 'bold' }}>Percentage in the Population: </span>{dietgroup.percentage}%</p>
+                <span style={{ fontWeight: 'bold' }}>Contains: </span>
                 {dietgroup.membership.map(function(m) {
                     return (
                 <div>
-                    <span style={{ fontWeight: 'bold' }}>Contains: </span>{m}
+                    {m}
                 </div>
                 )
                 })}

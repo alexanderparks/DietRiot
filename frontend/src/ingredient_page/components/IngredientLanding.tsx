@@ -93,6 +93,7 @@ function IngredientLanding() {
                 <p><span style={{ fontWeight: 'bold' }}>Carbohydrates: </span>{ingredient.carbs}</p>
                 <p><span style={{ fontWeight: 'bold' }}>Protein: </span>{ingredient.protein}</p>
                 <p><span style={{ fontWeight: 'bold' }}>Serving(s) </span>{ingredient.serving}</p>
+                <p><span style={{ fontWeight: 'bold' }}>Aisle: </span>{ingredient.aisle}</p>
             </div>
         </section>
 
