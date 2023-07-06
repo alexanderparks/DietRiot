@@ -3,6 +3,7 @@ import React from "react"
 import { useState, useEffect, SetStateAction } from "react";
 import DietGroupInstance from "./DietGroupInstance";
 import { Link } from "react-router-dom";
+import "../Style/DietStyle.css"
 
 
 function DietGroupLanding() {
@@ -66,32 +67,47 @@ function DietGroupLanding() {
 
     return (
     <div className="App">
-        <p>{dietgroup.title}</p>
-        <div>{dietgroup.image !== null && <img src={dietgroup.image} alt="dietgroup"></img>}</div>
-        <p>{dietgroup.id}</p>
-        <p>{dietgroup.desc}</p>
-        <p>Prohibits: {dietgroup.prohibits}</p>
+        <section className = "diet-section">
+            <h1 style = {{fontFamily: "Georgia", 
+                fontSize: "30px", 
+                paddingTop:"30px", 
+                paddingBottom: "30px"}}>{dietgroup.title}</h1>
+            <div>{dietgroup.image !== null && <img src={dietgroup.image} alt="dietgroup"
+            style = {{width: "50%", 
+                marginBottom: "30px",
+                fontSize:"40px"}}></img>}</div>
         
-        <h3>Contains:  </h3>
-        {dietgroup.membership.map(function(m) {
-            return (
-            <div>
-            {m}
+            <div className = "diet-info">
+                <p><span style={{ fontWeight: 'bold' }}>Diet ID: </span>{dietgroup.id}</p>
+                <p style = {{marginLeft: "40px", marginRight: "40px"}}><span style={{ fontWeight: 'bold' }}>Description: </span>{dietgroup.desc}</p>
+                <p><span style={{ fontWeight: 'bold' }}>Restrictions: </span>{dietgroup.prohibits}</p>
+                {dietgroup.membership.map(function(m) {
+                    return (
+                <div>
+                    <span style={{ fontWeight: 'bold' }}>Contains: </span>{m}
+                </div>
+                )
+                })}
             </div>
-            )
-            })}
-        <br></br>
+        </section>
         
-        <h3>Recipes:  </h3>
-        {dietgroup.recipes.map(function(r) {
-            return (
-            <div>
-            <Link to={"http://localhost:3000/recipes/view/" + r.id}>{r.title}</Link>
-            </div>
-            )
-            })}
-        <br></br>
+        <section className = "ing-section">
+            <h3 style = {{fontFamily:"Verdana"}}>Ingredients</h3>
+            /*insert links for ingredients */
 
+        </section>
+
+        <section className = "recipe-section">
+            <h3 style = {{fontFamily:"Verdana"}}>Recipes</h3>
+            {dietgroup.recipes.map(function(r) {
+                return (
+                <div>
+                    <Link to={"http://localhost:3000/recipes/view/" + r.id} className = "contents">{r.title}</Link>
+                </div>
+                )
+                })}
+        <br></br>
+        </section>
     </div>
     );
 }
