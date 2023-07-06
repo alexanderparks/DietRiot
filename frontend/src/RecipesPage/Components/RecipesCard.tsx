@@ -16,7 +16,7 @@ interface Props {
     img_src?: string;
     name?: string;
     carb?: number;
-    serving?: number;
+    servings?: number;
 }
 
 const RecipesCard = (props: Props) => {
@@ -40,7 +40,7 @@ const RecipesCard = (props: Props) => {
             <CardContent sx = {{height:"200px"}}>
                 <h5>{props.name}</h5><br></br>
                 <p>Carbs: {props.carb}</p>
-                <p>Serving(s): {props.serving}</p>
+                <p>Serving(s): {props.servings}</p>
             </CardContent>
             <Box
                 m={1}

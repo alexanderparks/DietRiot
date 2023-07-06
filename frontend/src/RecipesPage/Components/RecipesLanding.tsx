@@ -77,7 +77,7 @@ function RecipesLanding() {
                     carbs: item.carbs,
                     protein: item.protein,
                     calories: item.calories,
-                    serving: item.serving,
+                    servings: item.servings,
                     recipes: item.recipes,
                 })));
             })
@@ -144,7 +144,7 @@ function RecipesLanding() {
                 <Grid container sx={{ marginLeft: 0, marginRight: 10, paddingRight: 5, paddingLeft: 10}}>
                     {recipe.slice(startIndex, endIndex).map((rec, i) => (
                         <Grid item xs={12} md={3} key={i}>
-                            <RecipesCard id = {rec.id} img_src={rec.image} name={rec.title} carb = {rec.calories} serving = {rec.servings}/>
+                            <RecipesCard id = {rec.id} img_src={rec.image} name={rec.title}  servings = {rec.servings} carb = {rec.calories}/>
                         </Grid>
                     ))}
                 </Grid>
