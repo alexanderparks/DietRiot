@@ -10,11 +10,6 @@ import { Link, useLocation } from "react-router-dom";
 import RecipeInstance from "./RecipeInstance";
 
 function RecipesLanding() {
-    interface Item {
-        img_src: string;
-        name: string;
-    }
-
     let initData: RecipeInstance = {
         calories: 0,
         id: 0,
@@ -59,6 +54,8 @@ function RecipesLanding() {
 
     const [recipe, setRecipes] = React.useState<RecipeInstance[]>([]);
 
+    const [isLoading, setIsLoading] = React.useState(true);
+
     const make_flask_call = () => {
         const ing_url = api_url + "/recipes";
         console.log(ing_url);
@@ -80,6 +77,8 @@ function RecipesLanding() {
                     servings: item.servings,
                     recipes: item.recipes,
                 })));
+
+                setIsLoading(false);
             })
             .catch(function (error) {
                 // handle error
@@ -141,36 +140,41 @@ function RecipesLanding() {
                 </div>
             </div>
             <div className="CardsWrapper">
-                <Grid container sx={{ marginLeft: 0, marginRight: 10, paddingRight: 5, paddingLeft: 10}}>
-                    {recipe.slice(startIndex, endIndex).map((rec, i) => (
-                        <Grid item xs={12} md={3} key={i}>
-                            <RecipesCard id = {rec.id} img_src={rec.image} name={rec.title}  servings = {rec.servings} carb = {rec.calories}/>
-                        </Grid>
-                    ))}
-                </Grid>
-                <br></br>
-                <br></br>
-                <div className="PaginationWrapper" style={{ display: "flex", justifyContent: "center" }}>
-                    <Pagination
-                        page={currPage}
-                        count={totalNumPages}
-                        onChange={changePage}
-                        renderItem={(item) => (
-                        <PaginationItem
-                            component={Link}
-                            to={`/recipes${item.page === 1 ? "" : `?page=${item.page}`}`}
-                            {...item}
-                            sx={{
-                            "&.Mui-selected": {
-                                backgroundColor: "primary.main",
-                                color: "white",
-                            },
-                            }}
+                {isLoading ? (
+                <p style={{textAlign: "center", fontWeight: "bold", fontSize: "24px"}}>Loading...</p>
+                ) : (
+                    <>
+                    <Grid container sx={{ marginLeft: 0, marginRight: 10, paddingRight: 5, paddingLeft: 10}}>
+                        {recipe.slice(startIndex, endIndex).map((rec, i) => (
+                            <Grid item xs={12} md={3} key={i}>
+                                <RecipesCard id = {rec.id} img_src={rec.image} name={rec.title}  servings = {rec.servings} carb = {rec.calories}/>
+                            </Grid>
+                        ))}
+                    </Grid>
+                    <br></br>
+                    <br></br>
+                    <div className="PaginationWrapper" style={{ display: "flex", justifyContent: "center" }}>
+                        <Pagination
+                            page={currPage}
+                            count={totalNumPages}
+                            onChange={changePage}
+                            renderItem={(item) => (
+                            <PaginationItem
+                                component={Link}
+                                to={`/recipes${item.page === 1 ? "" : `?page=${item.page}`}`}
+                                {...item}
+                                sx={{
+                                "&.Mui-selected": {
+                                    backgroundColor: "primary.main",
+                                    color: "white",
+                                },
+                                }}
+                            />
+                            )}
                         />
-                        )}
-                    />
-                </div>
-
+                    </div>
+                </>
+                )}
             </div>
 
 

@@ -3,7 +3,7 @@ import React from "react"
 import { useState, useEffect, SetStateAction } from "react";
 import DietGroupInstance from "./DietGroupInstance";
 import { Link } from "react-router-dom";
-import "../Style/DietStyle.css"
+import "../style/DietStyle.css"
 
 
 function DietGroupLanding() {
