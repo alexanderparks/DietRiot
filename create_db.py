@@ -64,17 +64,23 @@ def create_recipes_ingredients_dietgroups():
                         serving = "1 " + nutrional_i['name']
                     else:
                         serving = "1 " + nutrional_i['unit']
+
+                    
                     #compiling ingredient instance
                     newIngredient=Ingredient(title=name, src=src_name, aisle = aisle, protein = protein, carbs = carbs, sugars = sugars, serving = serving, calories = calories)
                     ingredient_bag[name] = newIngredient
                     db.session.add(newIngredient)
                     newIngredient.ing_link.append(newRecipe)
                 else:
-                    oldIngredient = ingredient_bag[name]
-                    oldIngredient.ing_link.append(newRecipe)
+                    newIngredient = ingredient_bag[name]
+                    newIngredient.ing_link.append(newRecipe)
+                for d in r['diets']:
+                    if diet_bag[d] not in newIngredient.dietgroups:
+                        newIngredient.dietgroups.append(diet_bag[d])
+                    if newIngredient.title not in diet_bag[d].ingredients:
+                        diet_bag[d].ingredients.append(newIngredient)
             for d in r['diets']:
-                oldDiet = diet_bag[d]
-                oldDiet.dg_link.append(newRecipe)
+                diet_bag[d].dg_link.append(newRecipe)
             
             db.session.add(newRecipe)
     db.session.commit()
