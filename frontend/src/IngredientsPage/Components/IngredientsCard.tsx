@@ -5,10 +5,12 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Link } from "react-router-dom";
 import Grid from "@mui/material/Grid";
+import Button from "@mui/material/Button";
 
 import "../Style/IngredientCard.css";
 
 interface Props {
+    id?: number;
     img_src?: string;
     name?: string;
 }
@@ -33,6 +35,11 @@ const IngredientsCard = (props: Props) => {
             />
             <CardContent>
                 <Typography variant="h5">{props.name}</Typography>
+                <Button variant="contained">
+                    <Link to={`/ingredients/view/${props.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                        View Details
+                    </Link>
+                </Button>
             </CardContent>
             </Card>
         </Grid>

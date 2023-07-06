@@ -41,7 +41,7 @@ def create_recipes_ingredients_dietgroups():
                                recipeLink=recipeLink)
             for i in range(len(r['nutrition']['ingredients'])):
                 extended_i = r['extendedIngredients'][i]
-                name = extended_i['name']
+                name = extended_i['nameClean']
                 if not name in ingredient_bag.keys():
                     #extended ingredients info
                     src_name = "https://spoonacular.com/cdn/ingredients_500x500/" + str(extended_i['image'])
