@@ -139,7 +139,12 @@ class DietGroupSchema(ma.SQLAlchemySchema):
         fields=(
             "title",
             "id",
-            "recipes"
+            "recipes",
+            "src",
+            "desc",
+            "prohibits",
+            "percentage",
+            "membership"
         )
     recipes = ma.Nested(lambda: RecipeSchema(only=("id","title")), many = True)
 schema_for_dietgroup = DietGroupSchema(many=True)

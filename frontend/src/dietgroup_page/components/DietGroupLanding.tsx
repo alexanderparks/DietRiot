@@ -67,10 +67,20 @@ function DietGroupLanding() {
     return (
     <div className="App">
         <p>{dietgroup.title}</p>
+        <div>{dietgroup.image !== null && <img src={dietgroup.image} alt="dietgroup"></img>}</div>
         <p>{dietgroup.id}</p>
-        <p>{dietgroup.percentage}</p>
         <p>{dietgroup.desc}</p>
-        <p>{dietgroup.prohibits}</p>
+        <p>Prohibits: {dietgroup.prohibits}</p>
+        
+        <h3>Contains:  </h3>
+        {dietgroup.membership.map(function(m) {
+            return (
+            <div>
+            {m}
+            </div>
+            )
+            })}
+        <br></br>
         
         <h3>Recipes:  </h3>
         {dietgroup.recipes.map(function(r) {
