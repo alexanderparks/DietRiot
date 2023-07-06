@@ -3,6 +3,7 @@ import React from "react";
 import { useState, useEffect, SetStateAction } from "react";
 import IngredientInstance from "./IngredientInstance";
 import { Link } from "react-router-dom";
+import "../Style/IngredientStyle.css"
 
 
 function IngredientLanding() {
@@ -76,24 +77,41 @@ function IngredientLanding() {
 
     return (
     <div className="App">
-        <div>{ingredient.title}</div>
-        <div>{ingredient.image !== null && <img src={ingredient.image} alt="ingredient"></img>}</div>
-        <p>calories: {ingredient.calories}</p>
-        <p>sugars: {ingredient.sugars}</p>
-        <p>carbohydrates: {ingredient.carbs}</p>
-        <p>protein: {ingredient.protein}</p>
-        <p>calories: {ingredient.calories}</p>
-        <p>per {ingredient.serving}</p>
+        <section className = "ing-section">
+            <h1 style = {{fontFamily: "Georgia", 
+            fontSize: "30px", 
+            paddingTop:"30px", 
+            paddingBottom: "30px"}}>{ingredient.title}</h1>
+            <div>{ingredient.image !== null && <img src={ingredient.image} alt="ingredient"  
+            style = {{width: "50%", 
+            marginBottom: "30px",
+            fontSize:"40px"}}></img>}</div>
+            
+            <div className = "ing-info">
+                <p><span style={{ fontWeight: 'bold' }}>Calories: </span>{ingredient.calories}</p>
+                <p><span style={{ fontWeight: 'bold' }}>Sugars: </span>{ingredient.sugars}</p>
+                <p><span style={{ fontWeight: 'bold' }}>Carbohydrates: </span>{ingredient.carbs}</p>
+                <p><span style={{ fontWeight: 'bold' }}>Protein: </span>{ingredient.protein}</p>
+                <p><span style={{ fontWeight: 'bold' }}>Serving(s) </span>{ingredient.serving}</p>
+            </div>
+        </section>
 
-        <h3>Recipes:  </h3>
+        <section className = "diet-section">
+            <h3 style = {{fontFamily:"Verdana"}}>Diet Groups</h3>
+            
+            /**insert here for diet groups */
+        </section>
+
+        <section className = "recipe-section">
+        <h3 style = {{fontFamily:"Verdana"}}>Recipes</h3>
         {ingredient.recipes.map(function(r) {
             return (
                 <div>
-                <Link to={"http://localhost:3000/recipes/view/" + r.id}>{r.title}</Link>
+                <Link to={"http://localhost:3000/recipes/view/" + r.id} className = "contents">{r.title}</Link>
                 </div>
             )
             })}
-
+        </section>
 
     </div>
     );

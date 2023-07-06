@@ -1,0 +1,27 @@
+.ing-section{
+    background:#ffc7a0;
+    margin-top: -20px;
+    padding-bottom: 15px;
+}
+
+.ing-info{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.diet-section{
+    padding-top: 15px;
+    background: #ffd8bb;
+    padding-bottom: 15px;
+}
+
+.recipe-section{
+    padding-top: 15px;
+    background: #ffc7a0;
+    padding-bottom: 15px;
+}
+
+.contents{
+    font-family: "Palatino";
+    font-style: "bold";
+    color:rgb(38, 129, 248);
+}
