@@ -1,26 +1,26 @@
-.recipe-section{
+.recipe-section-rec{
     margin-top: -20px;
     background: #efdba7;
     padding-bottom: 15px;
 }
 
-.recipe-info{
+.recipe-info-rec{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-.diet-section{
+.diet-section-rec{
     padding-top: 15px;
     background: #ffdf8f;
     padding-bottom: 15px;
 }
 
-.ings-section{
+.ings-section-rec{
     padding-top: 15px;
     background: #efdba7;
     padding-bottom: 15px;
 }
 
-.contents{
+.contents-rec{
     font-family: "Palatino";
     font-style: "bold";
     color:rgb(38, 129, 248);

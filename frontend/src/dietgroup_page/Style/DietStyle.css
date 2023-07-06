@@ -1,26 +1,26 @@
-.diet-section{
+.diet-section-diet{
     margin-top: -20px;
     background: #6d9c71;
     padding-bottom: 30px;
 }
 
-.diet-info{
+.diet-info-diet{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-.ing-section{
+.ing-section-diet{
     padding-top: 15px;
     background: #92cf97;
     padding-bottom: 15px;
 }
 
-.recipe-section{
+.recipe-section-diet{
     padding-top: 15px;
     background: #6d9c71;
     padding-bottom: 15px;
 }
 
-.contents{
+.contents-diet{
     font-family: "Palatino";
     font-style: "bold";
     color:rgb(255, 220, 220);

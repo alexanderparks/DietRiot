@@ -67,7 +67,7 @@ function DietGroupLanding() {
 
     return (
     <div className="App">
-        <section className = "diet-section">
+        <section className = "diet-section-diet">
             <h1 style = {{fontFamily: "Georgia", 
                 fontSize: "30px", 
                 paddingTop:"30px", 
@@ -77,7 +77,7 @@ function DietGroupLanding() {
                 marginBottom: "30px",
                 fontSize:"40px"}}></img>}</div>
         
-            <div className = "diet-info">
+            <div className = "diet-info-diet">
                 <p><span style={{ fontWeight: 'bold' }}>Diet ID: </span>{dietgroup.id}</p>
                 <p style = {{marginLeft: "40px", marginRight: "40px"}}><span style={{ fontWeight: 'bold' }}>Description: </span>{dietgroup.desc}</p>
                 <p><span style={{ fontWeight: 'bold' }}>Restrictions: </span>{dietgroup.prohibits}</p>
@@ -91,18 +91,18 @@ function DietGroupLanding() {
             </div>
         </section>
         
-        <section className = "ing-section">
+        <section className = "ing-section-diet">
             <h3 style = {{fontFamily:"Verdana"}}>Ingredients</h3>
             /*insert links for ingredients */
 
         </section>
 
-        <section className = "recipe-section">
+        <section className = "recipe-section-diet">
             <h3 style = {{fontFamily:"Verdana"}}>Recipes</h3>
             {dietgroup.recipes.map(function(r) {
                 return (
                 <div>
-                    <Link to={"http://localhost:3000/recipes/view/" + r.id} className = "contents">{r.title}</Link>
+                    <Link to={"http://localhost:3000/recipes/view/" + r.id} className = "contents-diet">{r.title}</Link>
                 </div>
                 )
                 })}

@@ -69,7 +69,7 @@ function RecipeLanding() {
 
     return (
     <div className="App">
-        <section className = "recipe-section">
+        <section className = "recipe-section-rec">
             <h1 style = {{fontFamily: "Georgia", 
             fontSize: "30px", 
             paddingTop:"30px", 
@@ -79,7 +79,7 @@ function RecipeLanding() {
             marginBottom: "30px",
             fontSize:"40px"}}></img>}</div>
         
-            <div className = "recipe-info">
+            <div className = "recipe-info-rec">
                 <p><span style={{ fontWeight: 'bold' }}>Calories:</span> {recipe.calories}</p>
                 <p><span style={{ fontWeight: 'bold' }}>Name: </span>{recipe.title}</p>
                 <p><span style={{ fontWeight: 'bold' }}>Link to recipe:</span> {recipe.recipeLink}</p>
@@ -88,24 +88,24 @@ function RecipeLanding() {
             </div>
         </section>
 
-        <section className = "diet-section">
+        <section className = "diet-section-rec">
             <h3 style = {{fontFamily:"Verdana"}}>Diet Groups</h3>
             {recipe.dietgroups.map(function(dg) {
                 return (
                 <div>
-                <Link to={"http://localhost:3000/dietgroups/view/" + dg.id} className = "contents">{dg.title}</Link>
+                <Link to={"http://localhost:3000/dietgroups/view/" + dg.id} className = "contents-rec">{dg.title}</Link>
                 </div>
                 )
                 })}
             <br></br>
         </section>
 
-        <section className = "ings-section">
+        <section className = "ings-section-rec">
             <h3 style = {{fontFamily:"Verdana"}}>Ingredients</h3>
                 {recipe.ingredients.map(function(i) {
                     return (
                     <div>
-                        <Link to={"http://localhost:3000/ingredients/view/" + i.id} className = "contents">{i.title}</Link>
+                        <Link to={"http://localhost:3000/ingredients/view/" + i.id} className = "contents-rec">{i.title}</Link>
                     </div>
                     )
                 })}

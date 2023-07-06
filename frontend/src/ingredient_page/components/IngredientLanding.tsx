@@ -77,7 +77,7 @@ function IngredientLanding() {
 
     return (
     <div className="App">
-        <section className = "ing-section">
+        <section className = "ing-section-ing">
             <h1 style = {{fontFamily: "Georgia", 
             fontSize: "30px", 
             paddingTop:"30px", 
@@ -87,7 +87,7 @@ function IngredientLanding() {
             marginBottom: "30px",
             fontSize:"40px"}}></img>}</div>
             
-            <div className = "ing-info">
+            <div className = "ing-info-ing">
                 <p><span style={{ fontWeight: 'bold' }}>Calories: </span>{ingredient.calories}</p>
                 <p><span style={{ fontWeight: 'bold' }}>Sugars: </span>{ingredient.sugars}</p>
                 <p><span style={{ fontWeight: 'bold' }}>Carbohydrates: </span>{ingredient.carbs}</p>
@@ -96,18 +96,18 @@ function IngredientLanding() {
             </div>
         </section>
 
-        <section className = "diet-section">
+        <section className = "diet-section-ing">
             <h3 style = {{fontFamily:"Verdana"}}>Diet Groups</h3>
             
             /**insert here for diet groups */
         </section>
 
-        <section className = "recipe-section">
+        <section className = "recipe-section-ing">
         <h3 style = {{fontFamily:"Verdana"}}>Recipes</h3>
         {ingredient.recipes.map(function(r) {
             return (
                 <div>
-                <Link to={"http://localhost:3000/recipes/view/" + r.id} className = "contents">{r.title}</Link>
+                <Link to={"http://localhost:3000/recipes/view/" + r.id} className = "contents-ing">{r.title}</Link>
                 </div>
             )
             })}
