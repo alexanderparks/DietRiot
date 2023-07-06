@@ -46,7 +46,7 @@ const DietGroupsCard = (props: Props) => {
                 alignItems="center"
                 sx={{marginBottom: "75px"}}
             >
-            <Button variant="contained">
+                <Button variant="contained">
                     <Link to={`/dietgroups/view/${props.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                         View Details
                     </Link>

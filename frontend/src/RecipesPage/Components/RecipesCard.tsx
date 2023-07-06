@@ -38,9 +38,9 @@ const RecipesCard = (props: Props) => {
                 src={props.img_src}
             />
             <CardContent sx = {{height:"200px"}}>
-                <h5>{props.name}</h5><br></br>
-                <p>Carbs: {props.carb}</p>
-                <p>Serving(s): {props.servings}</p>
+                <h5 style={{textTransform: "uppercase", textAlign: "center"}}>{props.name}</h5><br></br>
+                <p><strong>Carbs</strong>: {props.carb}</p>
+                <p><strong>Serving(s)</strong>: {props.servings}</p>
             </CardContent>
             <Box
                 m={1}
