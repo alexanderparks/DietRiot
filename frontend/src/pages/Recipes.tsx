@@ -1,8 +1,10 @@
 import React from "react";
+import RecipesLanding from "../RecipesPage/Components/RecipesLanding";
+
 const Home = () => {
   return (
     <div>
-    <div>This is the recipes page.</div>
+      <RecipesLanding />
     </div>
   );
 };
