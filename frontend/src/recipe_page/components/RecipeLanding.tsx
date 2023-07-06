@@ -3,7 +3,7 @@ import React from "react"
 import { useState, useEffect, SetStateAction } from "react";
 import RecipeInstance from "./RecipeInstance";
 import { Link } from "react-router-dom";
-import "../Style/RecipeLandingStyle.css"
+import "../style/RecipeLandingStyle.css"
 import { fontSize } from "@mui/system";
 
 

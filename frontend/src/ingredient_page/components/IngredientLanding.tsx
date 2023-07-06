@@ -3,7 +3,7 @@ import React from "react";
 import { useState, useEffect, SetStateAction } from "react";
 import IngredientInstance from "./IngredientInstance";
 import { Link } from "react-router-dom";
-import "../Style/IngredientStyle.css"
+import "../style/IngredientStyle.css"
 
 
 function IngredientLanding() {
