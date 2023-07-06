@@ -3,6 +3,8 @@ import React from "react"
 import { useState, useEffect, SetStateAction } from "react";
 import RecipeInstance from "./RecipeInstance";
 import { Link } from "react-router-dom";
+import "../Style/RecipeLandingStyle.css"
+import { fontSize } from "@mui/system";
 
 
 
@@ -67,32 +69,47 @@ function RecipeLanding() {
 
     return (
     <div className="App">
-        <div>{recipe.title}</div>
-        <div>{recipe.image !== null && <img src={recipe.image} alt="recipe"></img>}</div>
-        <p>calories: {recipe.calories}</p>
-        <p>{recipe.title}</p>
-        <p>{recipe.recipeLink}</p>
-        <p>{recipe.servings}</p>
-        <p>{recipe.id}</p>
+        <section className = "recipe-section">
+            <h1 style = {{fontFamily: "Georgia", 
+            fontSize: "30px", 
+            paddingTop:"30px", 
+            paddingBottom: "30px"}}>{recipe.title}</h1>
+            <div>{recipe.image !== null && <img src={recipe.image} alt="recipe" 
+            style = {{width: "50%", 
+            marginBottom: "30px",
+            fontSize:"40px"}}></img>}</div>
         
-        <h3>Dietgroups:  </h3>
-        {recipe.dietgroups.map(function(dg) {
-            return (
-            <div>
-            <Link to={"http://localhost:3000/dietgroups/view/" + dg.id}>{dg.title}</Link>
+            <div className = "recipe-info">
+                <p><span style={{ fontWeight: 'bold' }}>Calories:</span> {recipe.calories}</p>
+                <p><span style={{ fontWeight: 'bold' }}>Name: </span>{recipe.title}</p>
+                <p><span style={{ fontWeight: 'bold' }}>Link to recipe:</span> {recipe.recipeLink}</p>
+                <p><span style={{ fontWeight: 'bold' }}>Serving(s):</span> {recipe.servings}</p>
+                <p><span style={{ fontWeight: 'bold' }}>Recipe ID:</span> {recipe.id}</p>
             </div>
-            )
-            })}
-        <br></br>
-        <h3>Ings:  </h3>
-        {recipe.ingredients.map(function(i) {
-            return (
-                <div>
-                 <Link to={"http://localhost:3000/ingredients/view/" + i.id}>{i.title}</Link>
-                </div>
-            )
-            })}
+        </section>
 
+        <section className = "diet-section">
+            <h3 style = {{fontFamily:"Verdana"}}>Diet Groups</h3>
+            {recipe.dietgroups.map(function(dg) {
+                return (
+                <div>
+                <Link to={"http://localhost:3000/dietgroups/view/" + dg.id} className = "contents">{dg.title}</Link>
+                </div>
+                )
+                })}
+            <br></br>
+        </section>
+
+        <section className = "ings-section">
+            <h3 style = {{fontFamily:"Verdana"}}>Ingredients</h3>
+                {recipe.ingredients.map(function(i) {
+                    return (
+                    <div>
+                        <Link to={"http://localhost:3000/ingredients/view/" + i.id} className = "contents">{i.title}</Link>
+                    </div>
+                    )
+                })}
+        </section>
     </div>
     );
 }
