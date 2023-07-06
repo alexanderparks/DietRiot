@@ -10,7 +10,16 @@ def load_json(filename):
         file.close()
     return jsn
 
-jsons = ['./data/recipes/.json']
+def create_dietgroups():
+    dietgroups = load_json(f'./data/dietgroups/dietstats.json')
+    for dg in dietgroups.items():
+        newDiet = DietGroup(title = dg[0], src = dg[1]['image'], desc = dg[1]['desc'],
+                            prohibits = dg[1]['prohibits'], percentage = dg[1]['percentage'], 
+                            membership = dg[1]['membership'])
+        diet_bag[dg[0]] = newDiet
+        db.session.add(newDiet)
+
+
 def create_recipes_ingredients_dietgroups():
     global ingredient_bag
     global diet_bag
@@ -64,17 +73,12 @@ def create_recipes_ingredients_dietgroups():
                     oldIngredient = ingredient_bag[name]
                     oldIngredient.ing_link.append(newRecipe)
             for d in r['diets']:
-                if d not in diet_bag.keys():
-                    newDiet = DietGroup(title = d)
-                    diet_bag[d] = newDiet
-                    db.session.add(newDiet)
-                    newDiet.dg_link.append(newRecipe)
-                else:
-                    oldDiet = diet_bag[d]
-                    oldDiet.dg_link.append(newRecipe)
+                oldDiet = diet_bag[d]
+                oldDiet.dg_link.append(newRecipe)
             
             db.session.add(newRecipe)
     db.session.commit()
 
 if __name__ == "__main__":
+    create_dietgroups()
     create_recipes_ingredients_dietgroups()

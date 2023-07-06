@@ -22,6 +22,11 @@ function DietGroupLanding() {
         id: 0,
         recipes: [],
         title: "",
+        image: "",
+        desc: "",
+        prohibits: "",
+        percentage: 0.0,
+        membership: [],
         };
 
 
@@ -42,6 +47,11 @@ function DietGroupLanding() {
                     id: res.id,
                     recipes:  res.recipes,
                     title: res.title,
+                    image: res.src,
+                    desc: res.desc,
+                    prohibits: res.prohibits,
+                    percentage: res.percentage,
+                    membership: res.membership,
                 });
             })
             .catch(function (error) {
@@ -57,7 +67,20 @@ function DietGroupLanding() {
     return (
     <div className="App">
         <p>{dietgroup.title}</p>
+        <div>{dietgroup.image !== null && <img src={dietgroup.image} alt="dietgroup"></img>}</div>
         <p>{dietgroup.id}</p>
+        <p>{dietgroup.desc}</p>
+        <p>Prohibits: {dietgroup.prohibits}</p>
+        
+        <h3>Contains:  </h3>
+        {dietgroup.membership.map(function(m) {
+            return (
+            <div>
+            {m}
+            </div>
+            )
+            })}
+        <br></br>
         
         <h3>Recipes:  </h3>
         {dietgroup.recipes.map(function(r) {

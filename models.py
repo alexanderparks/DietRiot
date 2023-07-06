@@ -105,6 +105,12 @@ class DietGroup(db.Model):
     __tablename__ = "dietgroup"
     title = db.Column(db.String)
     id = db.Column(db.Integer, primary_key = True)
+    src = db.Column(db.String)
+    desc = db.Column(db.String)
+    prohibits = db.Column(db.String)
+    percentage = db.Column(db.Float)
+    membership = db.Column(db.ARRAY(db.String(10)))
+
     recipes = db.relationship('Recipe', secondary = 'dietgroup_link', backref = 'recipe2_link')
 
 
@@ -133,7 +139,12 @@ class DietGroupSchema(ma.SQLAlchemySchema):
         fields=(
             "title",
             "id",
-            "recipes"
+            "recipes",
+            "src",
+            "desc",
+            "prohibits",
+            "percentage",
+            "membership"
         )
     recipes = ma.Nested(lambda: RecipeSchema(only=("id","title")), many = True)
 schema_for_dietgroup = DietGroupSchema(many=True)

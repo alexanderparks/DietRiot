@@ -7,17 +7,36 @@ import Pagination from "@mui/material/Pagination";
 import PaginationItem from "@mui/material/PaginationItem";
 import Grid from "@mui/material/Grid";
 import { Link, useLocation } from "react-router-dom";
-
-// Pagination
-
+import IngredientInstance from "./IngredientInstance";
 
 function IngredientsLanding() {
+    interface Item {
+        img_src: string;
+        name: string;
+    }
+
+    let initData: IngredientInstance = {
+        title: "",
+        id: 0,
+        aisle: "",
+        sugars: 0.0,
+        carbs: 0.0,
+        protein: 0.0,
+        calories: 0.0,
+        serving: "",
+        recipes: [],
+        image: "",
+        };
+
     // Set the number of cards per page and the total number of pages
     const numPerPage = 8;
-    const totalNumPages = 10;
+    const totalNumPages = 15;
 
     // Set up state for the current page
     const [currPage, setCurrPage] = React.useState(1);
+    
+    const startIndex = (currPage - 1) * numPerPage;
+    const endIndex = startIndex + numPerPage;
 
     // Get the current location object
     const location = useLocation();
@@ -37,13 +56,43 @@ function IngredientsLanding() {
     const changePage = (event: React.ChangeEvent<unknown>, page: number) => {
         setCurrPage(page);
     };
+    
+    const api_url = "http://localhost:5000";
 
-    // Generate an array of cards for the current page
-    const cards = Array.from({ length: numPerPage }, (_, i) => (
-        <Grid item xs={6} key={i}>
-        <IngredientsCard />
-        </Grid>
-    ));
+    const [ingredients, setIngredients] = React.useState<IngredientInstance[]>([]);
+
+    const make_flask_call = () => {
+        const ing_url = api_url + "/ingredients";
+        console.log(ing_url);
+        axios
+            .get(ing_url)
+            .then(function (response) {
+                // handle success
+                let res = response.data;
+                console.log(res);
+                setIngredients(res.map((item: any) => ({
+                    title: item.title,
+                    image: item.src,
+                    id: item.id,
+                    aisle: item.aisle,
+                    sugars: item.sugars,
+                    carbs: item.carbs,
+                    protein: item.protein,
+                    calories: item.calories,
+                    serving: item.serving,
+                    recipes: item.recipes,
+                })));
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+            });
+    };
+
+    React.useEffect(() => {
+        make_flask_call();
+    }, []);
+
 
     return (
         <div className="all">
@@ -94,9 +143,9 @@ function IngredientsLanding() {
             </div>
             <div className="CardsWrapper">
                 <Grid container spacing={2} sx={{ marginLeft: 4 }}>
-                    {[...Array(8)].map((_, index) => (
-                        <Grid item xs={3} key={index}>
-                            <IngredientsCard />
+                    {ingredients.slice(startIndex, endIndex).map((ingredient, i) => (
+                        <Grid item xs={3} key={i}>
+                            <IngredientsCard img_src={ingredient.image} name={ingredient.title} />
                         </Grid>
                     ))}
                 </Grid>
