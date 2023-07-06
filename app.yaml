@@ -14,23 +14,13 @@ env_variables:
     # Replace user, password, database, and instance connection name with the values obtained
     # when configuring your Cloud SQL instance.
     DB_STRING: >-
-      postgresql+psycopg2://postgres@/postgres?host=/cloudsql/dietriot:us-central1:database
+      postgresql+psycopg2://postgres:asd123@/postgres?host=/cloudsql/testingreactdeployment:us-central1:dietriotdb
 #[END env]
 
 #[START cloudsql_settings]
 # Replace project and instance with the values obtained  when configuring your
 # Cloud SQL instance.
 beta_settings:
-    cloud_sql_instances: dietriot:us-central1:database
+    cloud_sql_instances: testingreactdeployment:us-central1:dietriotdb
 
-# This sample incurs costs to run on the App Engine flexible environment. 
-# The settings below are to reduce costs during testing and are not appropriate
-# for production use. For more information, see:
-# https://cloud.google.com/appengine/docs/flexible/python/configuring-your-app-with-app-yaml
-manual_scaling:
-  instances: 1
-resources:
-  cpu: 1
-  memory_gb: 0.5
-  disk_size_gb: 10
 #[END cloudsql_settings]
