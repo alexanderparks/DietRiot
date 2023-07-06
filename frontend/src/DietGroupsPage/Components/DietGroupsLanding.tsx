@@ -96,6 +96,7 @@ function DietGroupsLanding() {
             <div style={{
                     background: 
                         'linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(https://post.healthline.com/wp-content/uploads/2020/09/vegan-diet-guide-fb-1200x628.jpg)',
+                        marginTop:"-20px"
                 }}
                 className="jumbotron bg-cover text-white"
             >
