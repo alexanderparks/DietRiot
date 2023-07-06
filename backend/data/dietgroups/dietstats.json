@@ -1,0 +1,72 @@
+{
+    "gluten free": {
+        "image": "https://www.restaurantware.com/media/magefan_blog/gluten_free_article_-_Thumbnail.png",
+        "desc": "Gluten is a protein found in certain grains, such as wheat, barley, rye, and a cross between wheat and rye called triticale. A gluten-free diet helps manage symptoms of celiac disease and other medical conditions associated with gluten consumption. This type of diet also has gained popularity among people without gluten-related medical conditions. The claimed benefits of the diet are improved health, weight loss and increased energy.",
+        "prohibits": "grain products containing gluten such as bread, pasta, and tortillas",
+        "percentage": 7,
+        "membership":["meat","dairy"]
+    },
+    "dairy free": {
+        "image": "https://switch4good.org/dairy-free-foods-what-to-eat-on-a-dairy-free-diet/",
+        "desc": "A dairy-free diet excludes all dairy products. People who follow this eating pattern may still eat other animal foods like meat, fish, shellfish, and eggs. Dairy-free diets are commonly chosen for health reasons, such as a cow’s milk allergy or lactose intolerance — a condition in which your body can’t digest the milk sugar lactose, leading to diarrhea and gas after dairy is consumed (1Trusted Source, 2Trusted Source). Some people may also follow a dairy-free diet for ethical reasons.",
+        "prohibits": "milk, cheese, yogurt, butter, cream, and anything derived from these products",
+        "percentage": 6.2,
+        "membership":["meat", "gluten"]
+    },   
+    "lacto ovo vegetarian": {
+        "image": "https://images.everydayhealth.com/images/what-is-a-vegan-diet-benefits-food-list-beginners-guide-alt-1440x810.jpg",
+        "desc": "A lacto-ovo vegetarian eating pattern is based on grains, fruits and vegetables, legumes (dried beans, peas and lentils), seeds, nuts, dairy products and eggs. It excludes meat, fish and poultry or products containing these foods.",
+        "prohibits": "egg, meat, fish, poultry",
+        "percentage": 2.5,
+        "membership":["dairy","gluten"]
+    },
+    "vegan": {
+        "image": "https://media.cnn.com/api/v1/images/stellar/prod/191101102722-vegan-diet-stock.jpg?q=w_3000,h_2002,x_0,y_0,c_fill",
+        "desc": "Veganism is a philosophy and way of living which seeks to exclude—as far as is possible and practicable—all forms of exploitation of, and cruelty to, animals for food, clothing or any other purpose; and by extension, promotes the development and use of animal-free alternatives for the benefit of animals, humans and the environment. In dietary terms it denotes the practice of dispensing with all products derived wholly or partly from animals.",
+        "prohibits": "meat, meat by-products (bones or gelatin), eggs, dairy, honey",
+        "percentage": 3,
+        "membership":["gluten"]
+    },            
+    "paleolithic": {
+        "image": "https://hips.hearstapps.com/hmg-prod/images/what-is-paleo-1610638010.jpg",
+        "desc": "A Paleolithic diet is the modern interpretation of the diet that humans ate during the Paleolithic or \"Old Stone Age\" era. This period, about 2.5 million years ago, was notable for the anatomic and physiologic changes taking place in humans as they adapted to climate change, learned to cook meat using fire, and began to use stone tools for greater access to food and resources. Anthropologists hold that the diet of our ancestors heavily influenced their neural expansion, increasing brain size, and reduction in their gastrointestinal tract size.",
+        "prohibits": "legumes, grains, dairy, refined sugar, processed foods",
+        "percentage": 1,
+        "membership":["meat"]
+    },        
+    "primal": {
+        "image": "https://zenfoods.com/wp-content/uploads/2023/01/3-Potential-Benefits-of-the-Primal-Diet.jpg",
+        "desc": "The Primal Diet is an eating pattern that’s high in protein and fat, low in carbs, and designed to closely resemble the presumed diet of early humans. Like the paleo diet, the Primal Diet is based on the idea that Western dietary and lifestyle habits diverge too greatly from those of traditional hunter-gatherers. Proponents of this diet claim that it improves weight, inflammation, brain fog, sleep, and heart and skin health.",
+        "prohibits": "sugar and high fructose corn syrup, grains, some vegetable oils, trans fats and hydrogenated fats, processed foods, artificial sweeteners.",
+        "percentage": 0,
+        "membership":["meat", "dairy"]
+    },             
+    "whole 30": {
+        "image": "https://www.bannerhealth.com/healthcareblog/-/media/images/project/healthcareblog/hero-images/2022/08/whole30-diet.ashx",
+        "desc": "The Whole30 diet is a strict 30-day elimination diet that many people turn to for weight loss or help with digestive concerns. The program encourages you to cut out alcohol, sugar, grains, legumes, dairy, and additives from your diet for 30 days. It is advertised as a total lifestyle change, rather than a simple diet.",
+        "prohibits": "added sweeteners (natural and artificial, except small amounts of fruit juice), dairy, alcohol, grains, legumes (except green beans, sugar snap peas, and snow peas), food additives",
+        "percentage": 5,
+        "membership":["meat"]
+    },           
+    "pescatarian": {
+        "image": "https://cdn.cdnparenting.com/articles/2021/06/22172248/1601524096.webp",
+        "desc": "A pescatarian diet refers to a vegetarian diet with the addition of seafood. Plant-based foods such as fruits, vegetables, beans, whole grains, nuts, and seeds supply many vitamins, phytochemicals, and minerals, and seafood provides protein and omega-3 fatty acids.",
+        "prohibits": "everything that vegetarians avoid, with the exception of being able to consume fish",
+        "percentage": 5,
+        "membership":["dairy", "gluten"]
+    },       
+    "ketogenic": {
+        "image": "https://www.eatingwell.com/thmb/OjqIt-0hf2URXH1LS9CakKOaiUQ=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/complete-keto-diet-food-list-what-you-can-and-cannot-eat-if-youre-on-a-ketogenic-diet-3-cd4cd1fc60cb455bbe7eee6e3a7d4d2c.jpg",
+        "desc": "The ketogenic diet involves consuming a very low amount of carbohydrates and replacing them with fat to help your body burn fat for energy. Health benefits can include weight loss and lowering your risk for certain diseases.",
+        "prohibits": "high carbohydrate foods (grains, beans, fruits and starchy vegetables)",
+        "percentage": 8,
+        "membership":["meat", "dairy"]
+    },          
+    "fodmap friendly": {
+        "image": "https://media.self.com/photos/6197d2528ac96526ea2a6cff/4:3/w_2560%2Cc_limit/low%2520fodmap%2520diet.jpg",
+        "desc": "When people say “FODMAP diet,” they usually mean a diet low in FODMAP — certain sugars that may cause intestinal distress. This diet is designed to help people with irritable bowel syndrome (IBS) and/or small intestinal bacterial overgrowth (SIBO) figure out which foods are problematic and which foods reduce symptoms.",
+        "prohibits": "discourages dairy, wheat, beans, lentils, some vegetables, some fruits",
+        "percentage": 15,
+        "membership":["meat", "grain"]
+    }
+}
