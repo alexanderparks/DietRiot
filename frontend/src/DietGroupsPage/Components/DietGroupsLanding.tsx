@@ -10,11 +10,6 @@ import { Link, useLocation } from "react-router-dom";
 import DietGroupInstance from "./DietGroupInstance";
 
 function DietGroupsLanding() {
-    interface Item {
-        img_src: string;
-        name: string;
-    }
-
     let initData: DietGroupInstance = {
         id: 0,
         recipes: [],
@@ -59,6 +54,8 @@ function DietGroupsLanding() {
 
     const [dietgroup, setDietGroups] = useState<DietGroupInstance[]>([]);
 
+    const [isLoading, setIsLoading] = React.useState(true);
+
     const make_flask_call = () => {
         const dietgroup_url = api_url + "/dietgroups";
         console.log(dietgroup_url);
@@ -78,6 +75,8 @@ function DietGroupsLanding() {
                     percentage: item.percentage,
                     membership: item.membership,
                 })));
+
+                setIsLoading(false);
             })
             .catch(function (error) {
                 // handle error
@@ -140,36 +139,41 @@ function DietGroupsLanding() {
                 </div>
             </div>
             <div className="CardsWrapper">
-                <Grid container spacing={2} sx={{ marginLeft: 4 }}>
-                    {dietgroup.slice(startIndex, endIndex).map((dg, i) => (
-                        <Grid item xs={3} key={i}>
-                            <DietGroupsCard id = {dg.id} img_src={dg.image} name={dg.title} restrictions={dg.prohibits} />
-                        </Grid>
-                    ))}
-                </Grid>
-                <br></br>
-                <br></br>
-                <div className="PaginationWrapper" style={{ display: "flex", justifyContent: "center" }}>
-                    <Pagination
-                        page={currPage}
-                        count={totalNumPages}
-                        onChange={changePage}
-                        renderItem={(item) => (
-                        <PaginationItem
-                            component={Link}
-                            to={`/dietgroups${item.page === 1 ? "" : `?page=${item.page}`}`}
-                            {...item}
-                            sx={{
-                            "&.Mui-selected": {
-                                backgroundColor: "primary.main",
-                                color: "white",
-                            },
-                            }}
+                {isLoading ? (
+                    <p style={{textAlign: "center", fontWeight: "bold", fontSize: "24px"}}>Loading...</p>
+                    ) : (
+                    <>
+                    <Grid container spacing={2} sx={{ marginLeft: 4 }}>
+                        {dietgroup.slice(startIndex, endIndex).map((dg, i) => (
+                            <Grid item xs={3} key={i}>
+                                <DietGroupsCard id = {dg.id} img_src={dg.image} name={dg.title} restrictions={dg.prohibits} />
+                            </Grid>
+                        ))}
+                    </Grid>
+                    <br></br>
+                    <br></br>
+                    <div className="PaginationWrapper" style={{ display: "flex", justifyContent: "center" }}>
+                        <Pagination
+                            page={currPage}
+                            count={totalNumPages}
+                            onChange={changePage}
+                            renderItem={(item) => (
+                            <PaginationItem
+                                component={Link}
+                                to={`/dietgroups${item.page === 1 ? "" : `?page=${item.page}`}`}
+                                {...item}
+                                sx={{
+                                "&.Mui-selected": {
+                                    backgroundColor: "primary.main",
+                                    color: "white",
+                                },
+                                }}
+                            />
+                            )}
                         />
-                        )}
-                    />
-                </div>
-
+                    </div>
+                </>
+                )}
             </div>
 
 
