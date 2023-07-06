@@ -9,5 +9,6 @@ export default interface IngredientInstance {
     calories: number;
     serving: string;
     recipes: any[];
+    dietgroups: any[];
   }
   

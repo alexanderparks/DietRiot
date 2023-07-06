@@ -6,7 +6,7 @@ from flask_sqlalchemy import SQLAlchemy
 import os
 from models import app, db
 import models
-from models import Recipe, Ingredient, DietGroup, ingredient_link, dietgroup_link
+from models import Recipe, Ingredient, DietGroup, ingredient_link, dietgroup_link, DietGroupSchema
 
 
 @app.route('/recipes/', methods=["GET"])

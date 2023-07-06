@@ -353,17 +353,17 @@ function AboutPageLanding() {
                     <li className="list-group-item">
                     Data:{' '}
                     <a
-                        href="https://developer.edamam.com/edamam-docs-recipe-api"
+                        href="https://spoonacular.com/food-api"
                         target="_blank"
                         rel="noreferrer"
                     >
-                        Edamam Recipe API
+                        spoonacular API
                     </a>
                     </li>
                     <li className="list-group-item">
                     Postman Collection:{' '}
                     <a
-                        href="https://documenter.getpostman.com/view/28142517/2s93z6e4RX"
+                        href="https://documenter.getpostman.com/view/28161567/2s93zFWKAV#b4f82bbf-17a3-4e58-bc41-b3c5434e2e9a"
                         target="_blank"
                         rel="noreferrer"
                     >

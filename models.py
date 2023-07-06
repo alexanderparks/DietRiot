@@ -8,6 +8,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 import os
 from flask_marshmallow import Marshmallow
+from marshmallow import post_load
 from flask_cors import CORS
 
 # initializing Flask app 
@@ -29,9 +30,9 @@ DBNAME ="dietriot"
 # Configuration 
 
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://yari:tas2moon@localhost:5432/dietriot'
-# app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DB_STRING",f'postgresql+psycopg2://postgres:asd123@/postgres?host=/cloudsql/dietriot:us-central1:dietriotdb')
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DB_STRING",f'postgresql://{USER}:{PASSWORD}@{PUBLIC_IP_ADDRESS}/{DBNAME}')
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True  # To suppress a warning message
+app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql+psycopg2://postgres:asd123123@postgres-1.cwqbn2qubmju.us-east-2.rds.amazonaws.com:5432/postgres"
+# app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DB_STRING",f'postgresql://{USER}:{PASSWORD}@{PUBLIC_IP_ADDRESS}/{DBNAME}')
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # To suppress a warning message
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
 
@@ -43,6 +44,11 @@ dietgroup_link = db.Table('dietgroup_link',
 
                         db.Column('recipe_id', db.Integer, db.ForeignKey('recipe.id')),
                        db.Column('dietgroup_id', db.Integer, db.ForeignKey('dietgroup.id')))
+
+ingredient_dietgroup_link = db.Table('ingredient_dietgroup_link',
+                           db.Column('ingredient_id', db.Integer, db.ForeignKey('ingredient.id')),
+                           db.Column('dietgroup_id', db.Integer, db.ForeignKey('dietgroup.id')))
+
                            
 class Recipe(db.Model):
     """"
@@ -90,6 +96,8 @@ class Ingredient(db.Model):
     protein = db.Column(db.Float)
     calories = db.Column(db.Float)
     serving = db.Column(db.String)
+
+    dietgroups = db.relationship('DietGroup', secondary = 'ingredient_dietgroup_link', backref = 'dietgroup_link2')
     recipes = db.relationship('Recipe', secondary = 'ingredient_link', backref = 'recipe_link')
 
 
@@ -112,6 +120,7 @@ class DietGroup(db.Model):
     percentage = db.Column(db.Float)
     membership = db.Column(db.ARRAY(db.String(10)))
 
+    ingredients = db.relationship('Ingredient', secondary = 'ingredient_dietgroup_link', backref = 'dietgroup_link')
     recipes = db.relationship('Recipe', secondary = 'dietgroup_link', backref = 'recipe2_link')
 
 
@@ -129,9 +138,11 @@ class IngredientSchema(ma.SQLAlchemySchema):
             "protein",
             "calories",
             "serving",
-            "recipes"
+            "recipes",
+            "dietgroups"
         )
-    recipes = ma.Nested(lambda: RecipeSchema(only=("id","title")), many = 20)
+    recipes = ma.Nested(lambda: RecipeSchema(only=("id","title")), many = True)
+    dietgroups = ma.Nested(lambda: RecipeSchema(only=("id","title")), many = True)
 schema_for_ingredient = IngredientSchema(many=True)
 
 class DietGroupSchema(ma.SQLAlchemySchema):
@@ -145,9 +156,17 @@ class DietGroupSchema(ma.SQLAlchemySchema):
             "desc",
             "prohibits",
             "percentage",
-            "membership"
+            "membership",
+            "ingredients"
         )
     recipes = ma.Nested(lambda: RecipeSchema(only=("id","title")), many = True)
+    ingredients = ma.Nested(lambda: RecipeSchema(only=("id","title")), many = True)
+
+    @post_load
+    def limit_ingredients(self, data, **kwargs):
+        data['ingredients'] = data['ingredients'][:20]
+        return data
+    
 schema_for_dietgroup = DietGroupSchema(many=True)
 
 class RecipeSchema(ma.SQLAlchemySchema):
@@ -167,8 +186,8 @@ class RecipeSchema(ma.SQLAlchemySchema):
             "ingredients",
             "dietgroups"
         )
-    dietgroups = ma.Nested(lambda: DietGroupSchema(exclude=(["recipes"])), many=True)
-    ingredients = ma.Nested(lambda: IngredientSchema(exclude=(["recipes"])), many=True)
+    dietgroups = ma.Nested(lambda: DietGroupSchema(exclude=("recipes", "ingredients")), many=True)
+    ingredients = ma.Nested(lambda: IngredientSchema(exclude=("recipes", "dietgroups")), many=True)
 schema_for_recipe = RecipeSchema(many=True)
 
 

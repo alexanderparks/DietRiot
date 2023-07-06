@@ -6,6 +6,7 @@ export default interface DietGroupInstance {
     desc: string,
     prohibits: string,
     percentage: number,
-    membership: string[]
+    membership: string[],
+    ingredients: any[],
   }
   
