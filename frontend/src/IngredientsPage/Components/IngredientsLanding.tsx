@@ -145,7 +145,7 @@ function IngredientsLanding() {
                 <Grid container spacing={2} sx={{ marginLeft: 4 }}>
                     {ingredients.slice(startIndex, endIndex).map((ingredient, i) => (
                         <Grid item xs={3} key={i}>
-                            <IngredientsCard img_src={ingredient.image} name={ingredient.title} />
+                            <IngredientsCard id = {ingredient.id} img_src={ingredient.image} name={ingredient.title} />
                         </Grid>
                     ))}
                 </Grid>
