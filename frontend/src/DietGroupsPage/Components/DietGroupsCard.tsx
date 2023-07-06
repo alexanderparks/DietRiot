@@ -44,7 +44,7 @@ const DietGroupsCard = (props: Props) => {
                 display="flex"
                 justifyContent="center"
                 alignItems="center"
-                sx={{marginBottom: "75px"}}
+                sx={{marginBottom: "50px", paddingTop: "25px"}}
             >
                 <Button variant="contained">
                     <Link to={`/dietgroups/view/${props.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>

@@ -23,7 +23,7 @@ interface Props {
 
 const IngredientsCard = (props: Props) => {
     return (
-        <Grid item xs={8}>
+        <Grid item xs={8} md = {10} alignItems="stretch" paddingBottom={5}>
             <Card
             sx={{
                 transition: "transform 0.15s ease-in-out",
@@ -40,7 +40,7 @@ const IngredientsCard = (props: Props) => {
                 src={props.img_src}
                 sx={{objectFit: "contain"}}
             />
-            <CardContent>
+            <CardContent sx = {{height:"330px"}}>
                 <h5 style={{textTransform: "uppercase", textAlign: "center"}}>{props.name}</h5><br></br>
                 <p><strong>Calories:</strong> {props.calories ? props.calories.toFixed(2) : 0}</p>
                 <p><strong>Sugars:</strong> {props.sugars ? props.sugars.toFixed(2) : 0}</p>
