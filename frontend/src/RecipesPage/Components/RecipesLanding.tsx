@@ -92,7 +92,7 @@ function RecipesLanding() {
 
 
     return (
-        <div className="all">
+        <div className="all-recipe">
             <div style={{
                     background: 
                         'linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(https://img.freepik.com/free-photo/chicken-wings-barbecue-sweetly-sour-sauce-picnic-summer-menu-tasty-food-top-view-flat-lay_2829-6471.jpg?w=2000)',

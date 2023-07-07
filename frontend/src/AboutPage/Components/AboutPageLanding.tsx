@@ -97,7 +97,7 @@ function AboutPageLanding() {
     var totalIssuesData = issueData["alexparks"] + issueData["mkatiatran"] + issueData["regina.zhou"] + issueData["sadansanchez3"] + issueData["thejaryak"]
 
     return (
-    <div className="all">
+    <div className="all-about">
         <div style={{
                 background:
                     `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(${gdc})`,
