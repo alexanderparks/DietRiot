@@ -3,7 +3,7 @@
 # import json
 
 # class unitTests(unittest.TestCase):
-#     API_URL = "http://dietriot.me/"
+#     API_URL = "http://testingreactdeployment.uc.r.appspot.com/"
 
 #     def testAPIStatus(self):
 #         r = requests.get(self.API_URL)
