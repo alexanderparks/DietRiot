@@ -155,7 +155,7 @@ function AboutPageLanding() {
                 </div>
                 <div className="card-footer">
                 <div>
-                    <span className="highlight">Responsibilities:</span> Group Leader and creating the model cards using the RESTful API and Bootstrap.
+                    <span className="highlight">Responsibilities:</span> (Phase 1) Group Leader and creating the model cards using the RESTful API and Bootstrap. (Phase 2) Group leader, using Flask to create API calls that will later populate the database and models using SQLAlchemy and PostgreSQL, connecting the database to the Flask back-end, and populating instance pages with the collected data using React and Axios.
                 </div>
                 <div>
                     <span className="highlight">Number of commits:</span>{' '}
@@ -179,7 +179,7 @@ function AboutPageLanding() {
                 </div>
                 <div className="card-footer">
                 <div>
-                    <span className="highlight">Responsibilities:</span>Designing the RESTful API using Postman and obtaining a URL for the website.</div>
+                    <span className="highlight">Responsibilities:</span> (Phase 1) Designing the RESTful API using Postman and obtaining a URL for the website. (Phase 2) Using Flask to create API calls that will later populate the database and models using SQLAlchemy and PostgreSQL, connecting the database to the Flask back-end, and populating instance pages with the collected data using React and Axios.</div>
                 <div>
                     <span className="highlight">Number of commits:</span>{' '}
                     <span id="thomas-commits">{commitData["thejaryak"]}</span>
@@ -203,7 +203,7 @@ function AboutPageLanding() {
                 </div>
                 <div className="card-footer">
                 <div>
-                    <span className="highlight">Responsibilities:</span> Creating the "About Us" page and dynamically populating it with the Gitlab API using Bootstrap.
+                    <span className="highlight">Responsibilities:</span> (Phase 1) Creating the "About Us" page and dynamically populating it with the Gitlab API using Bootstrap. (Phase 2) Using React to develop front-end functionality and model cards, adding pagination to the site with Material UI, and styling the model and instance pages using React.
                 </div>
                 <div>
                     <span className="highlight">Number of commits:</span>{' '}
@@ -229,7 +229,7 @@ function AboutPageLanding() {
                 </div>
                 <div className="card-footer">
                 <div>
-                    <span className="highlight">Responsibilities:</span> Writing an initial technical report using GitLab Wiki and aiding in the creation of instance pages for each model.
+                    <span className="highlight">Responsibilities:</span> (Phase 1) Writing an initial technical report using GitLab Wiki and aiding in the creation of instance pages for each model. (Phase 2) Refining and implementing the RESTful API, writing a technical report, and creating unit tests for the API and models.
                 </div>
                 <div>
                     <span className="highlight">Number of commits:</span>{' '}
@@ -255,7 +255,7 @@ function AboutPageLanding() {
                 </div>
                 <div className="card-footer">
                 <div>
-                    <span className="highlight">Responsibilities:</span> Creating the Home/Splash page and the navbar for all pages using Bootstrap.
+                    <span className="highlight">Responsibilities:</span> (Phase 1) Creating the Home/Splash page and the navbar for all pages using Bootstrap. (Phase 2) Using yUML to create a UML class diagram, converting pages from .html to .tsx files using React, adding pagination to the site, and styling the model and instance pages using React.
                 </div>
                 <div>
                     <span className="highlight">Number of commits:</span>{' '}

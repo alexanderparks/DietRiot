@@ -36,11 +36,15 @@ function IngredientLanding() {
 
     const [ingredient, setIngredient] = React.useState<IngredientInstance>(initData);
     const [ingredientID, setIngredientID] = useState(1);
-    const api_url = "http://localhost:5000";
+    const local_api_url = "http://localhost:5000";
+    const cloud_api_url = "http://testingreactdeployment.uc.r.appspot.com";
+
+    const local_front_url = "http://localhost:3000";
+    const cloud_front_url = "dietriot.me";
     
 
     const make_flask_call = () => {
-        const ing_url = api_url + "/ingredients/" + id;
+        const ing_url = cloud_api_url + "/ingredients/" + id;
         console.log(ing_url);
         axios
             .get(ing_url)
@@ -104,7 +108,7 @@ function IngredientLanding() {
             {ingredient.dietgroups.map(function(r) {
             return (
                 <div>
-                <Link to={"http://localhost:3000/dietgroups/view/" + r.id} className = "contents-ing">{r.title}</Link>
+                <Link to={cloud_front_url + "/dietgroups/view/" + r.id} className = "contents-ing">{r.title}</Link>
                 </div>
             )
             })}
@@ -115,7 +119,7 @@ function IngredientLanding() {
         {ingredient.recipes.map(function(r) {
             return (
                 <div>
-                <Link to={"http://localhost:3000/recipes/view/" + r.id} className = "contents-ing">{r.title}</Link>
+                <Link to={cloud_front_url + "/recipes/view/" + r.id} className = "contents-ing">{r.title}</Link>
                 </div>
             )
             })}

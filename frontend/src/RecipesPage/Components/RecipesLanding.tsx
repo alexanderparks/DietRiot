@@ -50,14 +50,15 @@ function RecipesLanding() {
         setCurrPage(page);
     };
     
-    const api_url = "http://localhost:5000";
+    const local_api_url = "http://localhost:5000";
+    const cloud_api_url = "http://testingreactdeployment.uc.r.appspot.com";
 
     const [recipe, setRecipes] = React.useState<RecipeInstance[]>([]);
 
     const [isLoading, setIsLoading] = React.useState(true);
 
     const make_flask_call = () => {
-        const ing_url = api_url + "/recipes";
+        const ing_url = cloud_api_url + "/recipes";
         console.log(ing_url);
         axios
             .get(ing_url)

@@ -50,14 +50,15 @@ function DietGroupsLanding() {
         setCurrPage(page);
     };
     
-    const api_url = "http://localhost:5000";
+    const local_api_url = "http://localhost:5000";
+    const cloud_api_url = "http://testingreactdeployment.uc.r.appspot.com";
 
     const [dietgroup, setDietGroups] = useState<DietGroupInstance[]>([]);
 
     const [isLoading, setIsLoading] = React.useState(true);
 
     const make_flask_call = () => {
-        const dietgroup_url = api_url + "/dietgroups";
+        const dietgroup_url = cloud_api_url + "/dietgroups";
         console.log(dietgroup_url);
         axios
             .get(dietgroup_url)
