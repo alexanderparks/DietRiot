@@ -1,0 +1,16 @@
+runtime: python38
+
+env_variables:
+  DB_STRING: postgresql+psycopg2://postgres:asd123@/postgres?host=/cloudsql/dietriot:us-central1:dietriotdb
+beta_settings:
+  cloud_sql_instances: dietriot:us-central1:dietriotdb
+
+
+handlers:
+- url: /(.*\..+)$
+  static_files: build/\1
+  upload: build/(.*\..+)$
+  # Catch all handler to index.html
+- url: /.*
+  static_files: build/index.html
+  upload: build/index.html
