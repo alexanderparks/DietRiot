@@ -11,13 +11,13 @@ from models import Recipe, Ingredient, DietGroup, ingredient_link, dietgroup_lin
 
 @app.route('/recipes/', methods=["GET"])
 def getRecipe():
-	recipeList = db.session.query(Recipe).all()
+	recipeList = db.session.query(Recipe).limit(50).all()
 	response = models.schema_for_recipe.dump(recipeList)
 	return jsonify(response)
 
 @app.route('/ingredients/', methods=["GET"])
 def getIngredient():
-	ingredientList = db.session.query(Ingredient).all()
+	ingredientList = db.session.query(Ingredient).limit(50).all()
 	response = models.schema_for_ingredient.dump(ingredientList)
 	return jsonify(response)
 
