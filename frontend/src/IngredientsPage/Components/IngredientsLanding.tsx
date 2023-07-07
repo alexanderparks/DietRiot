@@ -52,14 +52,15 @@ function IngredientsLanding() {
         setCurrPage(page);
     };
     
-    const api_url = "http://localhost:5000";
+    const local_api_url = "http://localhost:5000";
+    const cloud_api_url = "http://testingreactdeployment.uc.r.appspot.com";
 
     const [ingredients, setIngredients] = React.useState<IngredientInstance[]>([]);
 
     const [isLoading, setIsLoading] = React.useState(true);
 
     const make_flask_call = () => {
-        const ing_url = api_url + "/ingredients";
+        const ing_url = cloud_api_url + "/ingredients";
         console.log(ing_url);
         axios
             .get(ing_url)

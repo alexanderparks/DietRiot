@@ -29,11 +29,12 @@ function Page() {
 
 
     const [group, setGroup] = useState<IngredientsModelInstance>(initData);
-    const api_url = "http://localhost:5000";
+    const local_api_url = "http://localhost:5000";
+    const cloud_api_url = "http://testingreactdeployment.uc.r.appspot.com";
     
 
     const make_flask_call = () => {
-        const url = api_url + "/ingredients/";
+        const url = cloud_api_url + "/ingredients/";
         console.log(url);
         axios
             .get(url)

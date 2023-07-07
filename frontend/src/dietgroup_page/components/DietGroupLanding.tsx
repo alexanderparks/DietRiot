@@ -33,11 +33,15 @@ function DietGroupLanding() {
 
 
     const [dietgroup, setDietGroup] = useState<DietGroupInstance>(initData);
-    const api_url = "http://localhost:5000";
+    const local_api_url = "http://localhost:5000";
+    const cloud_api_url = "http://testingreactdeployment.uc.r.appspot.com";
+
+    const local_front_url = "http://localhost:3000";
+    const cloud_front_url = "dietriot.me";
     
 
     const make_flask_call = () => {
-        const dietgroup_url = api_url + "/dietgroups/" + id;
+        const dietgroup_url = cloud_api_url + "/dietgroups/" + id;
         console.log(dietgroup_url);
         axios
             .get(dietgroup_url)
@@ -100,7 +104,7 @@ function DietGroupLanding() {
             {dietgroup.ingredients.map(function(i) {
                 return (
                 <div>
-                    <Link to={"http://localhost:3000/ingredients/view/" + i.id} className = "contents-diet">{i.title}</Link>
+                    <Link to={cloud_front_url + "/ingredients/view/" + i.id} className = "contents-diet">{i.title}</Link>
                 </div>
                 )
                 })}
@@ -112,7 +116,7 @@ function DietGroupLanding() {
             {dietgroup.recipes.map(function(r) {
                 return (
                 <div>
-                    <Link to={"http://localhost:3000/recipes/view/" + r.id} className = "contents-diet">{r.title}</Link>
+                    <Link to={cloud_front_url + "/recipes/view/" + r.id} className = "contents-diet">{r.title}</Link>
                 </div>
                 )
                 })}
