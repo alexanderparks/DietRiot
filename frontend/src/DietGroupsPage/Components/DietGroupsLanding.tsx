@@ -1,5 +1,5 @@
 import React from "react";
-import "../Style/DietGroupsLanding.css";
+import "../style/DietGroupsLanding.css";
 import DietGroupsCard from "./DietGroupsCard";
 import axios from "axios";
 import { useState, useEffect, SetStateAction } from "react";

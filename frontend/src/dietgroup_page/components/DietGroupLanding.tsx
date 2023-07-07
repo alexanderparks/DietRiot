@@ -100,7 +100,7 @@ function DietGroupLanding() {
         </section>
         
         <section className = "ing-section-diet">
-            <h3 style = {{fontFamily:"Verdana"}}>Here Are Some Ingredients In This Diet Group</h3>
+            <h3 style = {{fontFamily:"Verdana"}}>Ingredients that Cater the Diet Group</h3>
             {dietgroup.ingredients.map(function(i) {
                 return (
                 <div>
@@ -112,7 +112,7 @@ function DietGroupLanding() {
         </section>
 
         <section className = "recipe-section-diet">
-            <h3 style = {{fontFamily:"Verdana"}}>Recipes</h3>
+            <h3 style = {{fontFamily:"Verdana"}}>Recipes that Support the Diet Group</h3>
             {dietgroup.recipes.map(function(r) {
                 return (
                 <div>

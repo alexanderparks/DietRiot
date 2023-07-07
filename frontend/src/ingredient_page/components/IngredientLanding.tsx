@@ -104,7 +104,7 @@ function IngredientLanding() {
         </section>
 
         <section className = "diet-section-ing">
-            <h3 style = {{fontFamily:"Verdana"}}>Diet Groups</h3>
+            <h3 style = {{fontFamily:"Verdana"}}>Diet Groups that Can Use It</h3>
             {ingredient.dietgroups.map(function(r) {
             return (
                 <div>
@@ -115,7 +115,7 @@ function IngredientLanding() {
         </section>
 
         <section className = "recipe-section-ing">
-        <h3 style = {{fontFamily:"Verdana"}}>Recipes</h3>
+        <h3 style = {{fontFamily:"Verdana"}}>Recipes that Can Use It</h3>
         {ingredient.recipes.map(function(r) {
             return (
                 <div>
