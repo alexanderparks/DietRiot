@@ -7,24 +7,135 @@ import os
 from models import app, db
 import models
 from models import Recipe, Ingredient, DietGroup, ingredient_link, dietgroup_link, DietGroupSchema
-
+from sqlalchemy import or_, func, cast
+from sqlalchemy.sql.sqltypes import String
 
 @app.route('/recipes/', methods=["GET"])
 def getRecipe():
-	recipeList = db.session.query(Recipe).limit(50).all()
+	recipeList = db.session.query(Recipe)
+	dietgroup = request.args.get("dietgroup", None, type=str)
+	sort = request.args.get("sort", None, type=str)
+	search = request.args.get("search", None, type=str)
+	"""
+	calories: 0, sort
+	ingredients: [], sort number ingredients
+	dietgroups: [], filter
+	title: "", alphabetical sort
+	servings: 0, sort
+	"""
+	if search:
+		search = search.lower()
+		ingredient_subquery = db.session.query(Recipe.id).join(Recipe.ingredients).filter(Ingredient.title.ilike(f'%{search}%'))
+		recipeList = recipeList.join(Ingredient, Recipe.ingredients, ).filter(
+			or_(
+			Recipe.id.in_(ingredient_subquery),
+			func.lower(Recipe.title).contains(search),
+			cast(Recipe.servings, String) == search,
+			cast(Recipe.calories, String) == search,
+			(Recipe.recipeLink).contains(search),
+			)
+		)
+
+	if dietgroup:
+		subquery = db.session.query(DietGroup.id).filter(DietGroup.title == dietgroup).subquery()
+		recipeList = recipeList.join(Recipe.dietgroups).filter(DietGroup.id.in_(subquery)).limit(200)
+	if sort:
+		if sort == "numIngredients":
+			recipeList = recipeList.order_by(len(Recipe.ingredients)).limit(200)
+		if sort == "title":
+			recipeList = recipeList.order_by(Recipe.title).limit(200)
+		if sort == "servings":
+			recipeList = recipeList.order_by(Recipe.servings).limit(200)
+		if sort == "calories":
+			recipeList = recipeList.order_by(Recipe.calories).limit(200)
+		
 	response = models.schema_for_recipe.dump(recipeList)
 	return jsonify(response)
 
 @app.route('/ingredients/', methods=["GET"])
 def getIngredient():
-	ingredientList = db.session.query(Ingredient).limit(50).all()
+	ingredientList = db.session.query(Ingredient)
+	aisle = request.args.get("aisle", None, type=str)
+	search = request.args.get("search", None, type=str)
+	if search:
+		search = search.lower()
+		# recipe_subquery = db.session.query(Ingredient.id).join(Ingredient.recipes).filter(Recipe.title.ilike(f'%{search}%'))
+		ingredientList = ingredientList.join(Recipe, Ingredient.recipes).filter(
+			or_(
+			# Ingredient.id.in_(recipe_subquery),
+			func.lower(Ingredient.title).contains(search),
+			func.lower(Ingredient.aisle).contains(search),
+			cast(Ingredient.aisle, String) == search,
+			cast(Ingredient.calories, String) == search,
+			cast(Ingredient.carbs, String) == search,
+			cast(Ingredient.protein, String) == search,
+			cast(Ingredient.serving, String) == search,
+			cast(Ingredient.sugars, String) == search,
+			)
+		)
+
+	if aisle:
+		aislefilt = aisle
+		ingredientList = ingredientList.filter(Ingredient.aisle.contains(aislefilt))
+
+	sort = request.args.get("sort", None, type=str)
+	if sort:
+		if sort == "title":
+			ingredientList = ingredientList.order_by(Ingredient.title).limit(200)
+		if sort == "serving":
+			ingredientList = ingredientList.order_by(Ingredient.serving).limit(200)
+		if sort == "calories":
+			ingredientList = ingredientList.order_by(Ingredient.calories).limit(200)
+		if sort == "protein":
+			ingredientList = ingredientList.order_by(Ingredient.protein).limit(200)
+		if sort == "carbs":
+			ingredientList = ingredientList.order_by(Ingredient.carbs).limit(200)
+		if sort == "sugars":
+			ingredientList = ingredientList.order_by(Ingredient.sugars).limit(200)
+
 	response = models.schema_for_ingredient.dump(ingredientList)
 	return jsonify(response)
 
 @app.route('/dietgroups/', methods=["GET"])
 def getDietGroup():
-	dietGroupList = db.session.query(DietGroup).all()
-	response = models.schema_for_dietgroup.dump(dietGroupList)
+	dietgroupList = db.session.query(DietGroup)
+	membership = request.args.get("membership", None, type=str)
+	sort = request.args.get("sort", None, type=str)
+	search = request.args.get("search", None, type=str)
+	"""
+	membership: [], filter
+	percent: 0, sort
+	numIngredients: 0, sort
+	numRecipes: 0, sort
+	title: "", alphabetical sort
+	"""
+
+	if search:
+		search = search.lower()
+		dietgroupList.filter(
+			or_(
+			func.lower(DietGroup.title).contains(search),
+			func.lower(DietGroup.desc).contains(search),
+			func.lower(DietGroup.prohibits).contains(search),
+			DietGroup.membership.any(search),
+			cast(DietGroup.percentage, String) == search,
+			)
+		)
+		
+	if membership:
+		dietgroupList = dietgroupList.filter(DietGroup.membership.any(membership))
+	if sort:
+		if sort == "numIngredients":
+			dietgroupList = dietgroupList.order_by(len(DietGroup.ingredients)).limit(200)
+		if sort == "numRecipes":
+			dietgroupList = dietgroupList.order_by(len(DietGroup.recipes)).limit(200)
+		if sort == "title":
+			dietgroupList = dietgroupList.order_by(DietGroup.title).limit(200)
+		if sort == "percentage":
+			dietgroupList = dietgroupList.order_by(DietGroup.percentage).limit(200)
+	
+	
+	response = models.schema_for_dietgroup.dump(dietgroupList)
 	return jsonify(response)
 
 @app.route('/recipes/<int:id>', methods=["GET"])

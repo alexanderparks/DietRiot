@@ -186,8 +186,8 @@ class RecipeSchema(ma.SQLAlchemySchema):
             "ingredients",
             "dietgroups"
         )
-    dietgroups = ma.Nested(lambda: DietGroupSchema(exclude=("recipes", "ingredients")), many=True)
-    ingredients = ma.Nested(lambda: IngredientSchema(exclude=("recipes", "dietgroups")), many=True)
+    dietgroups = ma.Nested(lambda: DietGroupSchema(only=("id","title")), many=True)
+    ingredients = ma.Nested(lambda: IngredientSchema(only=("id","title")), many=True)
 schema_for_recipe = RecipeSchema(many=True)
 
 
