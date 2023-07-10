@@ -30,8 +30,8 @@ DBNAME ="dietriot"
 # Configuration 
 
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://yari:tas2moon@localhost:5432/dietriot'
-app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql+psycopg2://postgres:asd123123@postgres-1.cwqbn2qubmju.us-east-2.rds.amazonaws.com:5432/postgres"
-# app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DB_STRING",f'postgresql://{USER}:{PASSWORD}@{PUBLIC_IP_ADDRESS}/{DBNAME}')
+# app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql+psycopg2://postgres:asd123123@postgres-1.cwqbn2qubmju.us-east-2.rds.amazonaws.com:5432/postgres"
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DB_STRING",f'postgresql://{USER}:{PASSWORD}@{PUBLIC_IP_ADDRESS}/{DBNAME}')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # To suppress a warning message
 db = SQLAlchemy(app)
 ma = Marshmallow(app)

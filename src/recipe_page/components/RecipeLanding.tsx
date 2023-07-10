@@ -34,15 +34,17 @@ function RecipeLanding() {
 
 
     const [recipe, setRecipe] = React.useState<RecipeInstance>(initData);
-    const local_api_url = "http://localhost:5000";
-    const cloud_api_url = "http://testingreactdeployment.uc.r.appspot.com";
+    const api_url = "http://localhost:5000";
+    // const api_url = "http://testingreactdeployment.uc.r.appspot.com";
 
-    const local_front_url = "http://localhost:3000";
-    const cloud_front_url = "dietriot.me";
+    const front_url = "http://localhost:3000";
+    // FOR LOCAL USE
+    // UNCOMMENT THE LINE BELOW TO RUN LOCALLY
+    // const front_url = "dietriot.me";
     
 
     const make_flask_call = () => {
-        const recipe_url = cloud_api_url + "/recipes/" + id;
+        const recipe_url = api_url + "/recipes/" + id;
         console.log(recipe_url);
         axios
             .get(recipe_url)
@@ -97,7 +99,7 @@ function RecipeLanding() {
             {recipe.dietgroups.map(function(dg) {
                 return (
                 <div>
-                <Link to={cloud_front_url + "/dietgroups/view/" + dg.id} className = "contents-rec">{dg.title}</Link>
+                <Link to={front_url + "/dietgroups/view/" + dg.id} className = "contents-rec">{dg.title}</Link>
                 </div>
                 )
                 })}
@@ -109,7 +111,7 @@ function RecipeLanding() {
                 {recipe.ingredients.map(function(i) {
                     return (
                     <div>
-                        <Link to={cloud_front_url + "3000/ingredients/view/" + i.id} className = "contents-rec">{i.title}</Link>
+                        <Link to={front_url + "3000/ingredients/view/" + i.id} className = "contents-rec">{i.title}</Link>
                     </div>
                     )
                 })}
