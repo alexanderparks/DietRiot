@@ -46,12 +46,11 @@ def getSearch(search):
             (Recipe.recipeLink).contains(search),
         )
     )
-    ingredientList = ingredientList.join(Recipe, Ingredient.recipes).filter(
+    ingredientList = ingredientList.filter(
         or_(
-            # Ingredient.id.in_(recipe_subquery),
             func.lower(Ingredient.title).contains(search),
             func.lower(Ingredient.aisle).contains(search),
-            cast(Ingredient.aisle, String) == search,
+            func.lower(Ingredient.aisle).contains(search),
             cast(Ingredient.calories, String) == search,
             cast(Ingredient.carbs, String) == search,
             cast(Ingredient.protein, String) == search,
@@ -68,13 +67,23 @@ def getSearch(search):
             cast(DietGroup.percentage, String) == search,
         )
     )
-
-    result = {
-        "recipes": models.schema_for_recipe.dump(recipeList),
-        "ingredients": models.schema_for_ingredient.dump(ingredientList),
-        "dietgroups": models.schema_for_dietgroup.dump(dietgroupList),
+    
+    page = request.args.get("page", 1, type=int)
+    numPerPage = request.args.get("numPerPage", 5, type=int)
+    
+    if numPerPage == 0:
+        numPerPage = 5
+    
+    recipeList = recipeList.paginate(page=page, max_per_page=numPerPage)
+    dietgroupList = dietgroupList.paginate(page=page, max_per_page=numPerPage)
+    ingredientList = ingredientList.paginate(page=page, max_per_page=numPerPage)
+    result = { 
+        "pages": 5,
+        "recipes": models.schema_for_simple_recipe.dump(recipeList),
+        "ingredients": models.schema_for_simple_ingredient.dump(ingredientList),
+        "dietgroups": models.schema_for_simple_dietgroup.dump(dietgroupList),
     }
-
+    
     return jsonify(result)
 
 
@@ -120,17 +129,16 @@ def getRecipe():
         recipeList = (
             recipeList.join(Recipe.dietgroups)
             .filter(DietGroup.id.in_(subquery))
-            .limit(200)
         )
     if sort:
         if sort == "numIngredients":
-            recipeList = recipeList.order_by(len(Recipe.ingredients)).limit(200)
+            recipeList = recipeList.order_by(len(Recipe.ingredients))
         if sort == "title":
-            recipeList = recipeList.order_by(Recipe.title).limit(200)
+            recipeList = recipeList.order_by(Recipe.title)
         if sort == "servings":
-            recipeList = recipeList.order_by(Recipe.servings).limit(200)
+            recipeList = recipeList.order_by(Recipe.servings)
         if sort == "calories":
-            recipeList = recipeList.order_by(Recipe.calories).limit(200)
+            recipeList = recipeList.order_by(Recipe.calories)
 			
 			
     
@@ -145,7 +153,7 @@ def getRecipe():
     totalNumPages = recipeFinal.pages
     response = { 
         "pages": totalNumPages,
-        "data": models.schema_for_recipe.dump(recipeFinal),
+        "data": models.schema_for_simple_recipe.dump(recipeFinal),
         }
     return jsonify(response)
 
@@ -158,12 +166,11 @@ def getIngredient():
     if search:
         search = search.lower()
         # recipe_subquery = db.session.query(Ingredient.id).join(Ingredient.recipes).filter(Recipe.title.ilike(f'%{search}%'))
-        ingredientList = ingredientList.join(Recipe, Ingredient.recipes).filter(
+        ingredientList = ingredientList.filter(
             or_(
                 # Ingredient.id.in_(recipe_subquery),
                 func.lower(Ingredient.title).contains(search),
                 func.lower(Ingredient.aisle).contains(search),
-                cast(Ingredient.aisle, String) == search,
                 cast(Ingredient.calories, String) == search,
                 cast(Ingredient.carbs, String) == search,
                 cast(Ingredient.protein, String) == search,
@@ -179,17 +186,17 @@ def getIngredient():
     sort = request.args.get("sort", None, type=str)
     if sort:
         if sort == "title":
-            ingredientList = ingredientList.order_by(Ingredient.title).limit(200)
+            ingredientList = ingredientList.order_by(Ingredient.title)
         if sort == "serving":
-            ingredientList = ingredientList.order_by(Ingredient.serving).limit(200)
+            ingredientList = ingredientList.order_by(Ingredient.serving)
         if sort == "calories":
-            ingredientList = ingredientList.order_by(Ingredient.calories).limit(200)
+            ingredientList = ingredientList.order_by(Ingredient.calories)
         if sort == "protein":
-            ingredientList = ingredientList.order_by(Ingredient.protein).limit(200)
+            ingredientList = ingredientList.order_by(Ingredient.protein)
         if sort == "carbs":
-            ingredientList = ingredientList.order_by(Ingredient.carbs).limit(200)
+            ingredientList = ingredientList.order_by(Ingredient.carbs)
         if sort == "sugars":
-            ingredientList = ingredientList.order_by(Ingredient.sugars).limit(200)
+            ingredientList = ingredientList.order_by(Ingredient.sugars)
             
     page = request.args.get("page", 1, type=int)
     numPerPage = request.args.get("numPerPage", 5, type=int)
@@ -202,7 +209,7 @@ def getIngredient():
     totalNumPages = ingFinal.pages
     response = { 
         "pages": totalNumPages,
-        "data": models.schema_for_recipe.dump(ingFinal),
+        "data": models.schema_for_simple_ingredient.dump(ingFinal),
         }
 
     return jsonify(response)
@@ -238,19 +245,17 @@ def getDietGroup():
         dietgroupList = dietgroupList.filter(DietGroup.membership.any(membership))
     if sort:
         if sort == "numIngredients":
-            dietgroupList = dietgroupList.order_by(len(DietGroup.ingredients)).limit(
-                200
-            )
+            dietgroupList = dietgroupList.order_by(len(DietGroup.ingredients))
         if sort == "numRecipes":
-            dietgroupList = dietgroupList.order_by(len(DietGroup.recipes)).limit(200)
+            dietgroupList = dietgroupList.order_by(len(DietGroup.recipes))
         if sort == "title":
-            dietgroupList = dietgroupList.order_by(DietGroup.title).limit(200)
+            dietgroupList = dietgroupList.order_by(DietGroup.title)
         if sort == "percentage":
-            dietgroupList = dietgroupList.order_by(DietGroup.percentage).limit(200)
+            dietgroupList = dietgroupList.order_by(DietGroup.percentage)
 
 	
 
-    response = models.schema_for_dietgroup.dump(dietgroupList)
+    response = models.schema_for_simple_dietgroup.dump(dietgroupList)
     return jsonify(response)
 
 

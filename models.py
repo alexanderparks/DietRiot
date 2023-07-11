@@ -145,6 +145,22 @@ class IngredientSchema(ma.SQLAlchemySchema):
     dietgroups = ma.Nested(lambda: RecipeSchema(only=("id","title")), many = True)
 schema_for_ingredient = IngredientSchema(many=True)
 
+class IngredientSimpleSchema(ma.SQLAlchemySchema):
+    class Meta:
+        # Fields to expose
+        fields=(
+            "title",
+            "id",
+            "src",
+            "aisle",
+            "sugars",
+            "carbs",
+            "protein",
+            "calories",
+            "serving",
+        )
+schema_for_simple_ingredient = IngredientSimpleSchema(many=True)
+
 class DietGroupSchema(ma.SQLAlchemySchema):
     class Meta:
         # Fields to expose
@@ -169,6 +185,19 @@ class DietGroupSchema(ma.SQLAlchemySchema):
     
 schema_for_dietgroup = DietGroupSchema(many=True)
 
+class DietGroupSimpleSchema(ma.SQLAlchemySchema):
+    class Meta:
+        # Fields to expose
+        fields=(
+            "title",
+            "id",
+            "src",
+            "desc",
+            "prohibits",
+            "percentage",
+        )
+schema_for_simple_dietgroup = DietGroupSimpleSchema(many=True)
+
 class RecipeSchema(ma.SQLAlchemySchema):
    
     class Meta:
@@ -189,6 +218,23 @@ class RecipeSchema(ma.SQLAlchemySchema):
     dietgroups = ma.Nested(lambda: DietGroupSchema(only=("id","title")), many=True)
     ingredients = ma.Nested(lambda: IngredientSchema(only=("id","title")), many=True)
 schema_for_recipe = RecipeSchema(many=True)
+
+
+class RecipeSimpleSchema(ma.SQLAlchemySchema):
+    class Meta:
+        # Fields to expose
+        model = Recipe
+        fields=(
+            "title",
+            "id",
+            "src",
+            "servings",
+            "dishTypes",
+            "calories",
+            "recipeLink",
+        )
+schema_for_simple_recipe = RecipeSimpleSchema(many=True)
+
 
 
 if __name__ == "__main__":
