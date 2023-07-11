@@ -59,7 +59,7 @@ def getSearch(search):
             cast(Ingredient.sugars, String) == search,
         )
     )
-    dietgroupList.filter(
+    dietgroupList = dietgroupList.filter(
         or_(
             func.lower(DietGroup.title).contains(search),
             func.lower(DietGroup.desc).contains(search),
@@ -197,7 +197,7 @@ def getDietGroup():
 
     if search:
         search = search.lower()
-        dietgroupList.filter(
+        dietgroupList = dietgroupList.filter(
             or_(
                 func.lower(DietGroup.title).contains(search),
                 func.lower(DietGroup.desc).contains(search),
