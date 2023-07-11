@@ -9,6 +9,7 @@ import DietGroups from "./pages/DietGroups";
 import DietGroupInstance from "./pages/DietGroupInstance";
 import RecipeInstance from "./pages/RecipeInstance";
 import IngredientInstance from "./pages/IngredientInstance";
+import UniversalSearch from "./pages/UniversalSearch";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { NavigationBar } from "./HomePage/Components";
 
@@ -33,6 +34,8 @@ function App() {
             <Route path="/recipes/view/:id" element={<RecipeInstance />} />
             <Route path="/ingredients/view/:id" element={<IngredientInstance />} />
             <Route path="/dietgroups/view/:id" element={<DietGroupInstance />} />
+            <Route path="/search/:id" element={<UniversalSearch />} />
+
           </Routes>
         </div>
         </div>

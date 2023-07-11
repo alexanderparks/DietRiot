@@ -1,8 +1,15 @@
 import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap";
-import React, { Component } from "react";
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import Form from "react-bootstrap/Form";
 import "../style/NavBar.css";
 
+
 const NavigationBar = () => {
+    const navigate = useNavigate();
+    function search(val: string) {
+    navigate("/search/" + val);
+    }
     return (
         <Navbar className="navbar navbar-expand-lg fixed-top bg-body-tertiary">
             <Container className="justify-content-start">
@@ -14,6 +21,18 @@ const NavigationBar = () => {
                 <Nav.Link href="/ingredients">Ingredients</Nav.Link>
                 <Nav.Link href="/dietgroups">Diet Groups</Nav.Link>
             </Nav>
+            <div className="searchBar">
+            <Form.Control
+                type="search"
+                placeholder="Search"
+                aria-describedby="searchHelpBlock"
+                onKeyDown={(event) => {
+                if (event.key === "Enter") {
+                    search((event.target as HTMLTextAreaElement).value);
+                }
+            }}
+            />
+            </div>
             </Container>
         </Navbar>
     );
