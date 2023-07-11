@@ -131,8 +131,22 @@ def getRecipe():
             recipeList = recipeList.order_by(Recipe.servings).limit(200)
         if sort == "calories":
             recipeList = recipeList.order_by(Recipe.calories).limit(200)
-
-    response = models.schema_for_recipe.dump(recipeList)
+			
+			
+    
+    numPerPage = request.args.get("numPerPage", 5, type=int)
+    page = request.args.get("page", 1, type=int)
+    	
+    if numPerPage == 0:
+        numPerPage = 5
+    
+    recipeFinal = recipeList.paginate(page=page, max_per_page=numPerPage)
+        
+    totalNumPages = recipeFinal.pages
+    response = { 
+        "pages": totalNumPages,
+        "data": models.schema_for_recipe.dump(recipeFinal),
+        }
     return jsonify(response)
 
 
@@ -176,8 +190,21 @@ def getIngredient():
             ingredientList = ingredientList.order_by(Ingredient.carbs).limit(200)
         if sort == "sugars":
             ingredientList = ingredientList.order_by(Ingredient.sugars).limit(200)
+            
+    page = request.args.get("page", 1, type=int)
+    numPerPage = request.args.get("numPerPage", 5, type=int)
+    
+    if numPerPage == 0:
+        numPerPage = 5
+    
+    ingFinal = ingredientList.paginate(page=page, max_per_page=numPerPage)
+        
+    totalNumPages = ingFinal.pages
+    response = { 
+        "pages": totalNumPages,
+        "data": models.schema_for_recipe.dump(ingFinal),
+        }
 
-    response = models.schema_for_ingredient.dump(ingredientList)
     return jsonify(response)
 
 
@@ -220,6 +247,8 @@ def getDietGroup():
             dietgroupList = dietgroupList.order_by(DietGroup.title).limit(200)
         if sort == "percentage":
             dietgroupList = dietgroupList.order_by(DietGroup.percentage).limit(200)
+
+	
 
     response = models.schema_for_dietgroup.dump(dietgroupList)
     return jsonify(response)
