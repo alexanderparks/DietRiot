@@ -126,8 +126,8 @@ function DietGroupLanding() {
           </p>
         </div>
       </section>
-      <div className="wrapper2">
-        <div className="wrapper">
+      <div className="wrapper2-diet">
+        <div className="wrapper-diet">
           <section className="ing-section-diet">
             <h2 style={{ fontSize: "30px", paddingBottom: "15px" }}>
               INGREDIENTS WITHIN THIS DIET GROUP:
@@ -148,7 +148,7 @@ function DietGroupLanding() {
         </div>
       </div>
 
-      <section className="recipe-section-diet">
+      <section className="recipe-section-diet-2">
         <h2
           style={{
             fontSize: "30px",

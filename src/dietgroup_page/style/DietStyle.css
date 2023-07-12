@@ -37,14 +37,14 @@ h3 {
   margin: 0px 20px -20px 20px;
   border-bottom: dotted 7px #fff;
 }
-.wrapper {
+.wrapper-diet {
   padding: 30px 30px 30px 30px;
   background: #92cf97;
 }
-.wrapper2 {
+.wrapper2-diet {
   background: #92cf97;
 }
-.recipe-section-diet {
+.recipe-section-diet-2 {
   padding-top: 15px;
   background: #6d9c71;
   padding-bottom: 15px;
@@ -61,11 +61,12 @@ img:hover {
 }
 
 a:hover {
-  color: rgb(5, 64, 7);
   font-size: 18px;
+  color: rgb(5, 64, 7);
 }
 a {
   transition: font-size 0.2s ease-in-out;
+  color: rgb(66, 66, 50);
 }
 
 .contents2-diet {

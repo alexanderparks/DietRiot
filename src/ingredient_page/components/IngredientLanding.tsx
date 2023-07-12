@@ -91,7 +91,7 @@ function IngredientLanding() {
             fontWeight: "heavy",
           }}
         >
-          The {ingredient.title} DIET
+          {ingredient.title}
         </h2>
         <div>
           {ingredient.image !== null && (
@@ -146,7 +146,7 @@ function IngredientLanding() {
       </section>
       <div className="wrapper2">
         <div className="wrapper">
-          <section className="diet-section-ing">
+          <section className="diet-section-ing-2">
             <h2 style={{ fontSize: "30px", paddingBottom: "15px" }}>
               DIET GROUPS THAT CONTAIN THIS INGREDIENT:
             </h2>
