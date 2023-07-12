@@ -58,7 +58,7 @@ ingredient_dietgroup_link = db.Table(
 
 
 class Recipe(db.Model):
-    """ "
+    """
     Recipe has 5 attributes
     id, for database
     yield
@@ -89,7 +89,7 @@ class Recipe(db.Model):
 
 
 class Ingredient(db.Model):
-    """ "
+    """
     Ingredient has 5 attributes
     title
     recipes it's part of
@@ -120,7 +120,7 @@ class Ingredient(db.Model):
 
 
 class DietGroup(db.Model):
-    """ "
+    """
     Recipe has 5 attributes
     title
     ingredients
@@ -163,8 +163,8 @@ class IngredientSchema(ma.SQLAlchemySchema):
             "dietgroups",
         )
 
-    recipes = ma.Nested(lambda: RecipeSchema(only=("id", "title")), many=True)
-    dietgroups = ma.Nested(lambda: RecipeSchema(only=("id", "title")), many=True)
+    recipes = ma.Nested(lambda: RecipeSimpleSchema(only=("id", "title")), many=True)
+    dietgroups = ma.Nested(lambda: DietGroupSimpleSchema(only=("id", "title")), many=True)
 
 
 schema_for_ingredient = IngredientSchema(many=True)
@@ -204,8 +204,8 @@ class DietGroupSchema(ma.SQLAlchemySchema):
             "ingredients",
         )
 
-    recipes = ma.Nested(lambda: RecipeSchema(only=("id", "title")), many=True)
-    ingredients = ma.Nested(lambda: RecipeSchema(only=("id", "title")), many=True)
+    recipes = ma.Nested(lambda: RecipeSimpleSchema(only=("id", "title")), many=True)
+    ingredients = ma.Nested(lambda: IngredientSimpleSchema(only=("id", "title")), many=True)
 
     @post_load
     def limit_ingredients(self, data, **kwargs):
@@ -248,8 +248,8 @@ class RecipeSchema(ma.SQLAlchemySchema):
             "dietgroups",
         )
 
-    dietgroups = ma.Nested(lambda: DietGroupSchema(only=("id", "title")), many=True)
-    ingredients = ma.Nested(lambda: IngredientSchema(only=("id", "title")), many=True)
+    dietgroups = ma.Nested(lambda: DietGroupSimpleSchema(only=("id", "title")), many=True)
+    ingredients = ma.Nested(lambda: IngredientSimpleSchema(only=("id", "title")), many=True)
 
 
 schema_for_recipe = RecipeSchema(many=True)
