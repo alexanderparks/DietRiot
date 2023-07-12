@@ -31,6 +31,8 @@ function RecipesLanding() {
     // Get the current location object
     const location = useLocation();
 
+    const [sort, setSort] = React.useState("title");
+
     // Create a new URLSearchParams object from the location's search string
     const query = new URLSearchParams(location.search);
 
@@ -45,7 +47,11 @@ function RecipesLanding() {
     // Handle page changes
     const changePage = (event: React.ChangeEvent<unknown>, page: number) => {
         setCurrPage(page);
-        make_flask_call(page);
+        make_flask_call(page, sort);
+    };
+
+    const changeSort = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        setSort(event.target.value);
     };
     
     const api_url = "http://localhost:5000";
@@ -55,15 +61,14 @@ function RecipesLanding() {
 
     const [isLoading, setIsLoading] = React.useState(true);
 
-    const make_flask_call = (page: number) => {
-        const ing_url = `${api_url}/recipes/?page=${page}`;
-        console.log(`making API call to ${ing_url}`);
+    const make_flask_call = (page: number, sort: string) => {
+        const ing_url = `${api_url}/recipes/?page=${page}&sort=${sort}`;
+        console.log(ing_url);
         axios
             .get(ing_url)
             .then(function (response) {
                 // handle success
                 let res = response.data.data;
-                console.log(`API response:`);
                 console.log(res);
                 setRecipes(res.map((item: any) => ({
                     title: item.title,
@@ -81,11 +86,12 @@ function RecipesLanding() {
                 console.log(error);
                 setIsLoading(false);
             });
-    };    
+    };
+        
     
     React.useEffect(() => {
-        make_flask_call(page);
-    }, [page]);
+        make_flask_call(page, sort);
+    }, [page, sort]);
 
     return (
         <div className="all-recipe">
@@ -133,6 +139,35 @@ function RecipesLanding() {
                     >
                     Search for recipes!
                     </p>
+                    
+                    
+                </div>
+            </div>
+            <div style={{ display: "flex", justifyContent: "center" }}>
+                <div style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    fontWeight: 300,
+                    fontFamily: 'gill sans',
+                    fontSize: 16,
+                    color: 'black',
+                    width: 240,
+                    height: 60,
+                    background: 'rgba(255, 255, 255, 0.8)',
+                    float: 'left',
+                    padding: "0 25px",
+                    outline: '1px dashed #b06027',
+                    outlineOffset: -10,
+                    marginBottom: "30px",
+                }}
+                >
+                    <label htmlFor="sort-select" style={{ marginRight: "0.5rem" }}>Sort by:</label>
+                    <select id="sort-select" value={sort} onChange={changeSort} style={{ fontSize: "1.0rem", height: "50%", background: 'rgba(255, 255, 255, 0.8)' }}>
+                        <option value="title">Title</option>
+                        <option value="calories">Calories</option>
+                        <option value="servings">Servings</option>
+                    </select>
                 </div>
             </div>
             <div className="CardsWrapper">
