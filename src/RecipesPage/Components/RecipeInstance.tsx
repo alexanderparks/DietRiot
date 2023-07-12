@@ -8,4 +8,8 @@ export default interface RecipeInstance {
     image: string;
     servings: number;
   }
+
+  export default interface RecipeArray {
+    [key: number]: RecipeInstance;
+  }
   

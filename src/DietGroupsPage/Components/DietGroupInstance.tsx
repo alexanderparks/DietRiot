@@ -8,4 +8,6 @@ export default interface DietGroupInstance {
   percentage: number,
   membership: string[]
 }
-  
+export default interface DietArray {
+  [key: number]: DietGroupInstance;
+}

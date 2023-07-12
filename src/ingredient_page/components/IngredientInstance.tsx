@@ -12,3 +12,7 @@ export default interface IngredientInstance {
     dietgroups: any[];
   }
   
+export default interface IngArray {
+    [key: number]: IngredientInstance;
+  }
+  

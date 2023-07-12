@@ -10,3 +10,8 @@ export default interface IngredientInstance {
     serving: string;
     recipes: any[];
   }
+
+  export default interface IngArray {
+    [key: number]: IngredientInstance;
+  }
+  
