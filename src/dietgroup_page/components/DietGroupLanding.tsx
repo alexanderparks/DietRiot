@@ -72,7 +72,7 @@ function DietGroupLanding() {
   return (
     <div className="App">
       <section className="diet-section-diet">
-        <h1
+        <h2
           style={{
             fontSize: "30px",
             paddingTop: "60px",
@@ -82,7 +82,7 @@ function DietGroupLanding() {
           }}
         >
           The {dietgroup.title} DIET
-        </h1>
+        </h2>
         <div>
           {dietgroup.image !== null && (
             <img
@@ -129,9 +129,9 @@ function DietGroupLanding() {
       <div className="wrapper2">
         <div className="wrapper">
           <section className="ing-section-diet">
-            <h1 style={{ fontSize: "30px", paddingBottom: "15px" }}>
+            <h2 style={{ fontSize: "30px", paddingBottom: "15px" }}>
               INGREDIENTS WITHIN THIS DIET GROUP:
-            </h1>
+            </h2>
             {dietgroup.ingredients.map(function (i) {
               return (
                 <div>
@@ -149,7 +149,7 @@ function DietGroupLanding() {
       </div>
 
       <section className="recipe-section-diet">
-        <h1
+        <h2
           style={{
             fontSize: "30px",
             paddingBottom: "15px",
@@ -157,7 +157,7 @@ function DietGroupLanding() {
           }}
         >
           RECIPES WITHIN THIS DIET GROUP:
-        </h1>
+        </h2>
         {dietgroup.recipes.map(function (r) {
           return (
             <div>
