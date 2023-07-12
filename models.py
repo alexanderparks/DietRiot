@@ -11,8 +11,8 @@ from flask_marshmallow import Marshmallow
 from marshmallow import post_load
 from flask_cors import CORS
 
-# initializing Flask app
-app = Flask(__name__)
+# initializing Flask app 
+app = Flask(__name__) 
 CORS(app)
 
 app.app_context().push()
@@ -20,43 +20,36 @@ app.app_context().push()
 # Make these command line arguments that provide when you deploy the app
 # or use other options like connecting directly from App Engine
 
-# Change this accordingly
-USER = "yari"
-PASSWORD = "tas2moon"
-PUBLIC_IP_ADDRESS = "localhost:5432"
-DBNAME = "dietriot"
+# Change this accordingly 
+USER ="yari"
+PASSWORD ="tas2moon"
+PUBLIC_IP_ADDRESS ="localhost:5432"
+DBNAME ="dietriot"
 
 
-# Configuration
+# Configuration 
 
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://yari:tas2moon@localhost:5432/dietriot'
-app.config[
-    "SQLALCHEMY_DATABASE_URI"
-] = "postgresql+psycopg2://postgres:asd123123@postgres-1.cwqbn2qubmju.us-east-2.rds.amazonaws.com:5432/postgres"
+app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql+psycopg2://postgres:asd123123@postgres-1.cwqbn2qubmju.us-east-2.rds.amazonaws.com:5432/postgres"
 # app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DB_STRING",f'postgresql://{USER}:{PASSWORD}@{PUBLIC_IP_ADDRESS}/{DBNAME}')
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False  # To suppress a warning message
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # To suppress a warning message
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
 
-ingredient_link = db.Table(
-    "ingredient_link",
-    db.Column("recipe_id", db.Integer, db.ForeignKey("recipe.id")),
-    db.Column("ingredient_id", db.Integer, db.ForeignKey("ingredient.id")),
-)
+ingredient_link = db.Table('ingredient_link',
+                       db.Column('recipe_id', db.Integer, db.ForeignKey('recipe.id')),
+                       db.Column('ingredient_id', db.Integer, db.ForeignKey('ingredient.id')))
 
-dietgroup_link = db.Table(
-    "dietgroup_link",
-    db.Column("recipe_id", db.Integer, db.ForeignKey("recipe.id")),
-    db.Column("dietgroup_id", db.Integer, db.ForeignKey("dietgroup.id")),
-)
+dietgroup_link = db.Table('dietgroup_link',
 
-ingredient_dietgroup_link = db.Table(
-    "ingredient_dietgroup_link",
-    db.Column("ingredient_id", db.Integer, db.ForeignKey("ingredient.id")),
-    db.Column("dietgroup_id", db.Integer, db.ForeignKey("dietgroup.id")),
-)
+                        db.Column('recipe_id', db.Integer, db.ForeignKey('recipe.id')),
+                       db.Column('dietgroup_id', db.Integer, db.ForeignKey('dietgroup.id')))
 
+ingredient_dietgroup_link = db.Table('ingredient_dietgroup_link',
+                           db.Column('ingredient_id', db.Integer, db.ForeignKey('ingredient.id')),
+                           db.Column('dietgroup_id', db.Integer, db.ForeignKey('dietgroup.id')))
 
+                           
 class Recipe(db.Model):
     """ "
     Recipe has 5 attributes
@@ -70,23 +63,17 @@ class Recipe(db.Model):
     ingredients
     link to the recipe page / could instead put the recipe instructions
     """
-
-    __tablename__ = "recipe"
+    __tablename__ = 'recipe'
     title = db.Column(db.String)
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key = True)
     src = db.Column(db.String)
-    servings = db.Column(db.Integer)
+    servings= db.Column(db.Integer)
     dishTypes = db.Column(db.String)
-    calories = db.Column(db.Integer)
+    calories= db.Column(db.Integer)
     recipeLink = db.Column(db.String)
     # table link
-    ingredients = db.relationship(
-        "Ingredient", secondary="ingredient_link", backref="ing_link"
-    )
-    dietgroups = db.relationship(
-        "DietGroup", secondary="dietgroup_link", backref="dg_link"
-    )
-
+    ingredients = db.relationship('Ingredient', secondary = 'ingredient_link', backref = 'ing_link')
+    dietgroups = db.relationship('DietGroup', secondary = 'dietgroup_link', backref = 'dg_link')
 
 class Ingredient(db.Model):
     """ "
@@ -99,10 +86,9 @@ class Ingredient(db.Model):
     calories
     estimated cost (cents)
     """
-
     __tablename__ = "ingredient"
     title = db.Column(db.String)
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key = True)
     src = db.Column(db.String)
     aisle = db.Column(db.String)
     sugars = db.Column(db.Float)
@@ -111,12 +97,9 @@ class Ingredient(db.Model):
     calories = db.Column(db.Float)
     serving = db.Column(db.String)
 
-    dietgroups = db.relationship(
-        "DietGroup", secondary="ingredient_dietgroup_link", backref="dietgroup_link2"
-    )
-    recipes = db.relationship(
-        "Recipe", secondary="ingredient_link", backref="recipe_link"
-    )
+    dietgroups = db.relationship('DietGroup', secondary = 'ingredient_dietgroup_link', backref = 'dietgroup_link2')
+    recipes = db.relationship('Recipe', secondary = 'ingredient_link', backref = 'recipe_link')
+
 
 
 class DietGroup(db.Model):
@@ -128,28 +111,24 @@ class DietGroup(db.Model):
     id
     dg
     """
-
     __tablename__ = "dietgroup"
     title = db.Column(db.String)
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key = True)
     src = db.Column(db.String)
     desc = db.Column(db.String)
     prohibits = db.Column(db.String)
     percentage = db.Column(db.Float)
     membership = db.Column(db.ARRAY(db.String(10)))
 
-    ingredients = db.relationship(
-        "Ingredient", secondary="ingredient_dietgroup_link", backref="dietgroup_link"
-    )
-    recipes = db.relationship(
-        "Recipe", secondary="dietgroup_link", backref="recipe2_link"
-    )
+    ingredients = db.relationship('Ingredient', secondary = 'ingredient_dietgroup_link', backref = 'dietgroup_link')
+    recipes = db.relationship('Recipe', secondary = 'dietgroup_link', backref = 'recipe2_link')
+
 
 
 class IngredientSchema(ma.SQLAlchemySchema):
     class Meta:
         # Fields to expose
-        fields = (
+        fields=(
             "title",
             "id",
             "src",
@@ -160,7 +139,7 @@ class IngredientSchema(ma.SQLAlchemySchema):
             "calories",
             "serving",
             "recipes",
-            "dietgroups",
+            "dietgroups"
         )
 
     recipes = ma.Nested(lambda: RecipeSchema(only=("id", "title")), many=True)
@@ -169,11 +148,10 @@ class IngredientSchema(ma.SQLAlchemySchema):
 
 schema_for_ingredient = IngredientSchema(many=True)
 
-
 class IngredientSimpleSchema(ma.SQLAlchemySchema):
     class Meta:
         # Fields to expose
-        fields = (
+        fields=(
             "title",
             "id",
             "src",
@@ -184,15 +162,12 @@ class IngredientSimpleSchema(ma.SQLAlchemySchema):
             "calories",
             "serving",
         )
-
-
 schema_for_simple_ingredient = IngredientSimpleSchema(many=True)
-
 
 class DietGroupSchema(ma.SQLAlchemySchema):
     class Meta:
         # Fields to expose
-        fields = (
+        fields=(
             "title",
             "id",
             "recipes",
@@ -201,7 +176,7 @@ class DietGroupSchema(ma.SQLAlchemySchema):
             "prohibits",
             "percentage",
             "membership",
-            "ingredients",
+            "ingredients"
         )
 
     recipes = ma.Nested(lambda: RecipeSchema(only=("id", "title")), many=True)
@@ -209,17 +184,15 @@ class DietGroupSchema(ma.SQLAlchemySchema):
 
     @post_load
     def limit_ingredients(self, data, **kwargs):
-        data["ingredients"] = data["ingredients"][:20]
+        data['ingredients'] = data['ingredients'][:20]
         return data
-
-
+    
 schema_for_dietgroup = DietGroupSchema(many=True)
-
 
 class DietGroupSimpleSchema(ma.SQLAlchemySchema):
     class Meta:
         # Fields to expose
-        fields = (
+        fields=(
             "title",
             "id",
             "src",
@@ -227,16 +200,15 @@ class DietGroupSimpleSchema(ma.SQLAlchemySchema):
             "prohibits",
             "percentage",
         )
-
-
 schema_for_simple_dietgroup = DietGroupSimpleSchema(many=True)
 
-
 class RecipeSchema(ma.SQLAlchemySchema):
+   
     class Meta:
         # Fields to expose
         model = Recipe
-        fields = (
+        fields=(
+      
             "title",
             "id",
             "src",
@@ -245,7 +217,7 @@ class RecipeSchema(ma.SQLAlchemySchema):
             "calories",
             "recipeLink",
             "ingredients",
-            "dietgroups",
+            "dietgroups"
         )
 
     dietgroups = ma.Nested(lambda: DietGroupSchema(only=("id", "title")), many=True)
@@ -259,7 +231,7 @@ class RecipeSimpleSchema(ma.SQLAlchemySchema):
     class Meta:
         # Fields to expose
         model = Recipe
-        fields = (
+        fields=(
             "title",
             "id",
             "src",
@@ -268,9 +240,8 @@ class RecipeSimpleSchema(ma.SQLAlchemySchema):
             "calories",
             "recipeLink",
         )
-
-
 schema_for_simple_recipe = RecipeSimpleSchema(many=True)
+
 
 
 if __name__ == "__main__":

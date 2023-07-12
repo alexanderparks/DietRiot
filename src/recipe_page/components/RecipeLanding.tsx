@@ -72,6 +72,7 @@ function RecipeLanding() {
     <div className="App">
       <section className="recipe-section-rec">
         <h2
+          className="instance-h2-styling"
           style={{
             fontSize: "30px",
             paddingTop: "60px",
@@ -100,30 +101,31 @@ function RecipeLanding() {
 
         <div className="recipe-info-rec">
           <p
+            className="p-instance-pages"
             style={{
               marginLeft: "40px",
               marginRight: "40px",
               marginTop: "-25px",
             }}
           >
-            <p>
+            <p className="p-instance-pages">
               <span style={{ fontWeight: "bold" }}>Calories:</span>{" "}
               {recipe.calories}
             </p>
-            <p>
+            <p className="p-instance-pages">
               <span style={{ fontWeight: "bold" }}>Name: </span>
               {recipe.title}
             </p>
-            <p>
+            <p className="p-instance-pages">
               <Link to={recipe.recipeLink} className="aForRec2">
                 Link to Recipe
               </Link>
             </p>
-            <p>
+            <p className="p-instance-pages">
               <span style={{ fontWeight: "bold" }}>Serving(s):</span>{" "}
               {recipe.servings}
             </p>
-            <p>
+            <p className="p-instance-pages">
               <span style={{ fontWeight: "bold" }}>Recipe ID:</span> {recipe.id}
             </p>
           </p>
@@ -132,7 +134,10 @@ function RecipeLanding() {
       <div className="wrapper2-rec">
         <div className="wrapper-rec">
           <section className="diet-section-rec-2">
-            <h2 style={{ fontSize: "30px", paddingBottom: "15px" }}>
+            <h2
+              style={{ fontSize: "30px", paddingBottom: "15px" }}
+              className="instance-h2-styling"
+            >
               DIET GROUPS THAT CONTAIN THIS RECIPE:
             </h2>
             {recipe.dietgroups.map(function (dg) {
@@ -153,6 +158,7 @@ function RecipeLanding() {
 
       <section className="ings-section-rec-2">
         <h2
+          className="instance-h2-styling"
           style={{
             fontSize: "30px",
             paddingBottom: "15px",

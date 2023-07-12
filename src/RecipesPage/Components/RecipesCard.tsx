@@ -37,7 +37,7 @@ const RecipesCard = (props: Props) => {
                 alt="food pic"
                 src={props.img_src}
             />
-            <CardContent sx = {{height:"200px"}}>
+            <CardContent sx = {{height:"220px"}}>
                 <h5 style={{textTransform: "uppercase", textAlign: "center"}}>{props.name}</h5><br></br>
                 <p><strong>Carbs</strong>: {props.carb}</p>
                 <p><strong>Serving(s)</strong>: {props.servings}</p>
@@ -47,7 +47,7 @@ const RecipesCard = (props: Props) => {
                 display="flex"
                 justifyContent="center"
                 alignItems="center"
-                sx={{marginBottom: "75px"}}
+                sx={{marginBottom: "50px"}}
             >
                 <Button variant="contained">
                     <Link to={`/recipes/view/${props.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>

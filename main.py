@@ -123,7 +123,7 @@ def getRecipe():
     if dietgroup:
         subquery = (
             db.session.query(DietGroup.id)
-            .filter(DietGroup.title == dietgroup)
+            .filter(DietGroup.title.contains(dietgroup))
             .subquery()
         )
         recipeList = (
