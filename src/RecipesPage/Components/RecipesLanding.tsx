@@ -23,7 +23,7 @@ function RecipesLanding() {
 
     // Set the number of cards per page and the total number of pages
     const numPerPage = 8;
-    const totalNumPages = 15;
+    const totalNumPages = 50;
 
     // Set up state for the current page
     const [currPage, setCurrPage] = React.useState(1);
@@ -48,49 +48,47 @@ function RecipesLanding() {
     // Handle page changes
     const changePage = (event: React.ChangeEvent<unknown>, page: number) => {
         setCurrPage(page);
+        make_flask_call(page);
     };
     
-    //const api_url = "http://localhost:5000";
-    const api_url = "http://testingreactdeployment.uc.r.appspot.com";
+    const api_url = "http://localhost:5000";
+    //const api_url = "http://testingreactdeployment.uc.r.appspot.com";
 
     const [recipe, setRecipes] = React.useState<RecipeInstance[]>([]);
 
     const [isLoading, setIsLoading] = React.useState(true);
 
-    const make_flask_call = () => {
-        const ing_url = api_url + "/recipes";
-        console.log(ing_url);
+    const make_flask_call = (page: number) => {
+        const ing_url = `${api_url}/recipes/?page=${page}`;
+        console.log(`making API call to ${ing_url}`);
         axios
             .get(ing_url)
             .then(function (response) {
                 // handle success
-                let res = response.data;
+                let res = response.data.data;
+                console.log(`API response:`);
                 console.log(res);
                 setRecipes(res.map((item: any) => ({
                     title: item.title,
                     image: item.src,
                     id: item.id,
-                    aisle: item.aisle,
-                    sugars: item.sugars,
-                    carbs: item.carbs,
-                    protein: item.protein,
                     calories: item.calories,
                     servings: item.servings,
-                    recipes: item.recipes,
+                    recipeLink: item.recipeLink
                 })));
-
+    
                 setIsLoading(false);
             })
             .catch(function (error) {
                 // handle error
                 console.log(error);
+                setIsLoading(false);
             });
-    };
-
+    };    
+    
     React.useEffect(() => {
-        make_flask_call();
-    }, []);
-
+        make_flask_call(page);
+    }, [page]);
 
     return (
         <div className="all-recipe">
@@ -146,12 +144,22 @@ function RecipesLanding() {
                 ) : (
                     <>
                     <Grid container sx={{ marginLeft: 0, marginRight: 10, paddingRight: 5, paddingLeft: 10}}>
-                        {recipe.slice(startIndex, endIndex).map((rec, i) => (
-                            <Grid item xs={12} md={3} key={i}>
-                                <RecipesCard id = {rec.id} img_src={rec.image} name={rec.title}  servings = {rec.servings} carb = {rec.calories}/>
-                            </Grid>
-                        ))}
+                        <Grid container item xs={12} justifyContent="center">
+                            {recipe.slice(0, 3).map((rec, i) => (
+                                <Grid item xs={12} md={3} key={i}>
+                                    <RecipesCard id = {rec.id} img_src={rec.image} name={rec.title} servings = {rec.servings} carb = {rec.calories}/>
+                                </Grid>
+                            ))}
+                        </Grid>
+                        <Grid container item xs={12} justifyContent="center">
+                            {recipe.slice(3, 5).map((rec, i) => (
+                                <Grid item xs={12} md={3} key={i}>
+                                    <RecipesCard id = {rec.id} img_src={rec.image} name={rec.title} servings = {rec.servings} carb = {rec.calories}/>
+                                </Grid>
+                            ))}
+                        </Grid>
                     </Grid>
+
                     <br></br>
                     <br></br>
                     <div className="PaginationWrapper" style={{ display: "flex", justifyContent: "center" }}>
