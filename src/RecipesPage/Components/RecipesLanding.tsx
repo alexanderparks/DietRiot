@@ -27,9 +27,6 @@ function RecipesLanding() {
 
     // Set up state for the current page
     const [currPage, setCurrPage] = React.useState(1);
-    
-    const startIndex = (currPage - 1) * numPerPage;
-    const endIndex = startIndex + numPerPage;
 
     // Get the current location object
     const location = useLocation();

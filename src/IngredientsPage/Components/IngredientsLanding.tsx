@@ -25,13 +25,10 @@ function IngredientsLanding() {
 
     // Set the number of cards per page and the total number of pages
     const numPerPage = 8;
-    const totalNumPages = 15;
+    const totalNumPages = 50;
 
     // Set up state for the current page
     const [currPage, setCurrPage] = React.useState(1);
-    
-    const startIndex = (currPage - 1) * numPerPage;
-    const endIndex = startIndex + numPerPage;
 
     // Get the current location object
     const location = useLocation();
@@ -50,6 +47,7 @@ function IngredientsLanding() {
     // Handle page changes
     const changePage = (event: React.ChangeEvent<unknown>, page: number) => {
         setCurrPage(page);
+        make_flask_call(page);
     };
     
     const api_url = "http://localhost:5000";
@@ -59,14 +57,14 @@ function IngredientsLanding() {
 
     const [isLoading, setIsLoading] = React.useState(true);
 
-    const make_flask_call = () => {
-        const ing_url = api_url + "/ingredients";
+    const make_flask_call = (page: number) => {
+        const ing_url = `${api_url}/ingredients/?page=${page}`;
         console.log(ing_url);
         axios
             .get(ing_url)
             .then(function (response) {
                 // handle success
-                let res = response.data;
+                let res = response.data.data;
                 console.log(res);
                 setIngredients(res.map((item: any) => ({
                     title: item.title,
@@ -86,12 +84,13 @@ function IngredientsLanding() {
             .catch(function (error) {
                 // handle error
                 console.log(error);
+                setIsLoading(false);
             });
     };
 
     React.useEffect(() => {
-        make_flask_call();
-    }, []);
+        make_flask_call(page);
+    }, [page]);
 
 
     return (
@@ -148,14 +147,26 @@ function IngredientsLanding() {
                 ) : (
                     <>
                     <Grid container sx={{ marginLeft: 0, marginRight: 10, paddingRight: 5, paddingLeft: 10}}>
-                        {ingredients.slice(startIndex, endIndex).map((ingredient, i) => (
-                            <Grid item xs={3} key={i}>
-                                <IngredientsCard id = {ingredient.id} img_src={ingredient.image} name={ingredient.title}
-                                                    calories={ingredient.calories} sugars={ingredient.sugars} carbs={ingredient.carbs} protein={ingredient.protein}
-                                                        serving={ingredient.serving}/>
-                            </Grid>
-                        ))}
+                        <Grid container item xs={12} justifyContent="center">
+                            {ingredients.slice(0, 3).map((ingredient, i) => (
+                                <Grid item xs={3} key={i}>
+                                    <IngredientsCard id = {ingredient.id} img_src={ingredient.image} name={ingredient.title}
+                                                        calories={ingredient.calories} sugars={ingredient.sugars} carbs={ingredient.carbs} protein={ingredient.protein}
+                                                            serving={ingredient.serving}/>
+                                </Grid>
+                            ))}
+                        </Grid>
+                        <Grid container item xs={12} justifyContent="center">
+                            {ingredients.slice(3, 5).map((ingredient, i) => (
+                                <Grid item xs={3} key={i}>
+                                    <IngredientsCard id = {ingredient.id} img_src={ingredient.image} name={ingredient.title}
+                                                        calories={ingredient.calories} sugars={ingredient.sugars} carbs={ingredient.carbs} protein={ingredient.protein}
+                                                            serving={ingredient.serving}/>
+                                </Grid>
+                            ))}
+                        </Grid>
                     </Grid>
+                    
                     <br></br>
                     <br></br>
                     <div className="PaginationWrapper" style={{ display: "flex", justifyContent: "center" }}>
