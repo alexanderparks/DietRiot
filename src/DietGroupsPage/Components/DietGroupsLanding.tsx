@@ -10,16 +10,7 @@ import { Link, useLocation } from "react-router-dom";
 import DietGroupInstance from "./DietGroupInstance";
 
 function DietGroupsLanding() {
-    let initData: DietGroupInstance = {
-        id: 0,
-        recipes: [],
-        title: "",
-        image: "",
-        desc: "",
-        prohibits: "",
-        percentage: 0.0,
-        membership: [],
-        };
+    
 
     // Set the number of cards per page and the total number of pages
     const numPerPage = 4;
@@ -74,7 +65,6 @@ function DietGroupsLanding() {
                     desc: item.desc,
                     prohibits: item.prohibits,
                     percentage: item.percentage,
-                    membership: item.membership,
                 })));
 
                 setIsLoading(false);
@@ -148,7 +138,7 @@ function DietGroupsLanding() {
                         {dietgroup.slice(startIndex, endIndex).map((dg, i) => (
                             <Grid item xs={3} key={i}>
                                 <DietGroupsCard id = {dg.id} img_src={dg.image} name={dg.title} restrictions={dg.prohibits} percentage={dg.percentage}
-                                                desc = {dg.desc} membership={dg.membership}/>
+                                                desc = {dg.desc}/>
                             </Grid>
                         ))}
                     </Grid>
