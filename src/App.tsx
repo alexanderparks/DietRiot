@@ -34,7 +34,7 @@ function App() {
             <Route path="/recipes/view/:id" element={<RecipeInstance />} />
             <Route path="/ingredients/view/:id" element={<IngredientInstance />} />
             <Route path="/dietgroups/view/:id" element={<DietGroupInstance />} />
-            <Route path="/search/:id" element={<UniversalSearch />} />
+            <Route path="/search/:search" element={<UniversalSearch />} />
 
           </Routes>
         </div>
