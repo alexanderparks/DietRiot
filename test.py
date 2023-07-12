@@ -8,7 +8,7 @@ class unitTests(unittest.TestCase):
     def testAllRecipesType(self):
         r = requests.get(self.API_URL + "recipes")
         self.assertEqual(r.status_code, 200)
-        self.assertIsInstance(r.json(), list)
+        self.assertIsInstance(r.json(), dict)
 
     def testRecipeByIDType(self):
         r = requests.get(self.API_URL + "recipes/1")
@@ -23,7 +23,7 @@ class unitTests(unittest.TestCase):
     def testAllIngredientsType(self):
         r = requests.get(self.API_URL + "ingredients")
         self.assertEqual(r.status_code, 200)
-        self.assertIsInstance(r.json(), list)
+        self.assertIsInstance(r.json(), dict)
     
     def testIngredientByIDType(self):
         r = requests.get(self.API_URL + "ingredients/1")
