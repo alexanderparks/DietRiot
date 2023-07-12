@@ -96,6 +96,7 @@ function IngredientLanding() {
         <div>
           {ingredient.image !== null && (
             <img
+              className="ingIMG"
               src={ingredient.image}
               alt="ingredient"
               style={{
@@ -152,10 +153,10 @@ function IngredientLanding() {
             </h2>
             {ingredient.dietgroups.map(function (r) {
               return (
-                <div>
+                <div className="aForIng">
                   <Link
                     to={front_url + "/dietgroups/view/" + r.id}
-                    className="contents-ing"
+                    className="aForIng"
                   >
                     {r.title}
                   </Link>
@@ -181,7 +182,7 @@ function IngredientLanding() {
             <div>
               <Link
                 to={front_url + "/recipes/view/" + r.id}
-                className="contents-ing"
+                className="aForIng"
               >
                 {r.title}
               </Link>

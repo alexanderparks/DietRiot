@@ -49,10 +49,10 @@ h3 {
   background: #e0bead;
   padding-bottom: 15px;
 }
-img {
+.ingIMG {
   transition: transform 0.8s ease-in-out;
 }
-img:hover {
+.ingIMG:hover {
   transform: scale(1.1);
 }
 .contents-ing {
@@ -60,11 +60,11 @@ img:hover {
   color: #75360f;
 }
 
-a:hover {
+.aForIng:hover {
   color: #b57045;
   font-size: 18px;
 }
-a {
+.aForIng {
   transition: font-size 0.2s ease-in-out;
   color: #75360f;
 }

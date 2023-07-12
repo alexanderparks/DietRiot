@@ -86,6 +86,7 @@ function DietGroupLanding() {
         <div>
           {dietgroup.image !== null && (
             <img
+              className="dietIMG"
               src={dietgroup.image}
               alt="dietgroup"
               style={{
@@ -137,7 +138,7 @@ function DietGroupLanding() {
                 <div>
                   <Link
                     to={front_url + "/ingredients/view/" + i.id}
-                    className="contents2-diet"
+                    className="aForDiet"
                   >
                     {i.title}
                   </Link>
@@ -163,7 +164,7 @@ function DietGroupLanding() {
             <div>
               <Link
                 to={front_url + "/recipes/view/" + r.id}
-                className="contents-diet"
+                className="aForDiet"
               >
                 {r.title}
               </Link>

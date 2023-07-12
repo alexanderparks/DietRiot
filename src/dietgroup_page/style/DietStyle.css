@@ -49,10 +49,10 @@ h3 {
   background: #6d9c71;
   padding-bottom: 15px;
 }
-img {
+.dietIMG {
   transition: transform 0.8s ease-in-out;
 }
-img:hover {
+.dietIMG:hover {
   transform: scale(1.1);
 }
 .contents-diet {
@@ -60,11 +60,11 @@ img:hover {
   color: rgb(214, 212, 178);
 }
 
-a:hover {
+.aForDiet:hover {
   font-size: 18px;
   color: rgb(5, 64, 7);
 }
-a {
+.aForDiet {
   transition: font-size 0.2s ease-in-out;
   color: rgb(66, 66, 50);
 }
