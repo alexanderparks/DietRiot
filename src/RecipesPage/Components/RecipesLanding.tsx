@@ -23,7 +23,7 @@ function RecipesLanding() {
 
     // Set the number of cards per page and the total number of pages
     const numPerPage = 8;
-    const totalNumPages = 50;
+    const [totalNumPages, setTotalNumPages] = React.useState(1);
 
     // Set up state for the current page
     const [currPage, setCurrPage] = React.useState(1);
@@ -32,6 +32,8 @@ function RecipesLanding() {
     const location = useLocation();
 
     const [sort, setSort] = React.useState("title");
+
+    const [dietGroup, setDietGroup] = React.useState("");
 
     // Create a new URLSearchParams object from the location's search string
     const query = new URLSearchParams(location.search);
@@ -47,22 +49,29 @@ function RecipesLanding() {
     // Handle page changes
     const changePage = (event: React.ChangeEvent<unknown>, page: number) => {
         setCurrPage(page);
-        make_flask_call(page, sort);
+        make_flask_call(page, sort, dietGroup);
     };
 
     const changeSort = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setSort(event.target.value);
     };
+
+    const changeDietGroup = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        setDietGroup(event.target.value);
+    };
     
-    const api_url = "http://localhost:5000";
-    //const api_url = "http://testingreactdeployment.uc.r.appspot.com";
+    //const api_url = "http://localhost:5000";
+    const api_url = "http://testingreactdeployment.uc.r.appspot.com";
 
     const [recipe, setRecipes] = React.useState<RecipeInstance[]>([]);
 
     const [isLoading, setIsLoading] = React.useState(true);
 
-    const make_flask_call = (page: number, sort: string) => {
-        const ing_url = `${api_url}/recipes/?page=${page}&sort=${sort}`;
+    const make_flask_call = (page: number, sort: string, dietGroup: string) => {
+        let ing_url = `${api_url}/recipes/?page=${page}&sort=${sort}`;
+        if (dietGroup) {
+            ing_url += `&dietgroup=${dietGroup}`;
+        }
         console.log(ing_url);
         axios
             .get(ing_url)
@@ -78,6 +87,8 @@ function RecipesLanding() {
                     servings: item.servings,
                     recipeLink: item.recipeLink
                 })));
+
+                setTotalNumPages(response.data.pages);
     
                 setIsLoading(false);
             })
@@ -90,8 +101,8 @@ function RecipesLanding() {
         
     
     React.useEffect(() => {
-        make_flask_call(page, sort);
-    }, [page, sort]);
+        make_flask_call(page, sort, dietGroup);
+    }, [page, sort, dietGroup]);
 
     return (
         <div className="all-recipe">
@@ -167,6 +178,39 @@ function RecipesLanding() {
                         <option value="title">Title</option>
                         <option value="calories">Calories</option>
                         <option value="servings">Servings</option>
+                    </select>
+                </div>
+                <div style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    fontWeight: 300,
+                    fontFamily: 'gill sans',
+                    fontSize: 16,
+                    color: 'black',
+                    width: 300,
+                    height: 60,
+                    background: 'rgba(255, 255, 255, 0.8)',
+                    float: 'left',
+                    padding: "0 25px",
+                    outline: '1px dashed #b06027',
+                    outlineOffset: -10,
+                    marginBottom: "30px",
+                }}
+                >
+                    <label htmlFor="sort-select" style={{ marginRight: "0.5rem" }}>Diet Group:</label>
+                    <select id="sort-select" onChange={changeDietGroup} style={{ fontSize: "1.0rem", height: "50%", background: 'rgba(255, 255, 255, 0.8)' }}>
+                        <option value="">All</option>
+                        <option value="vegan">Vegan</option>
+                        <option value="dairy%20free">Dairy Free</option>
+                        <option value="gluten%20free">Gluten Free</option>
+                        <option value="lacto%20ovo%20vegetarian">Lacto Ovo Vegetarian</option>
+                        <option value="paleolithic">Paleolithic</option>
+                        <option value="primal">Primal</option>
+                        <option value="whole%2030">Whole 30</option>
+                        <option value="pescatarian">Pescatarian</option>
+                        <option value="ketogenic">Ketogenic</option>
+                        <option value="fodmap%20friendly">Fodmap Friendly</option>
                     </select>
                 </div>
             </div>
