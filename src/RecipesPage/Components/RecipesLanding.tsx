@@ -23,16 +23,15 @@ function RecipesLanding() {
 
     // Set the number of cards per page and the total number of pages
     const numPerPage = 8;
-    const totalNumPages = 15;
+    const totalNumPages = 50;
 
     // Set up state for the current page
     const [currPage, setCurrPage] = React.useState(1);
-    
-    const startIndex = (currPage - 1) * numPerPage;
-    const endIndex = startIndex + numPerPage;
 
     // Get the current location object
     const location = useLocation();
+
+    const [sort, setSort] = React.useState("title");
 
     // Create a new URLSearchParams object from the location's search string
     const query = new URLSearchParams(location.search);
@@ -48,49 +47,51 @@ function RecipesLanding() {
     // Handle page changes
     const changePage = (event: React.ChangeEvent<unknown>, page: number) => {
         setCurrPage(page);
+        make_flask_call(page, sort);
+    };
+
+    const changeSort = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        setSort(event.target.value);
     };
     
-    //const api_url = "http://localhost:5000";
-    const api_url = "http://testingreactdeployment.uc.r.appspot.com";
+    const api_url = "http://localhost:5000";
+    //const api_url = "http://testingreactdeployment.uc.r.appspot.com";
 
     const [recipe, setRecipes] = React.useState<RecipeInstance[]>([]);
 
     const [isLoading, setIsLoading] = React.useState(true);
 
-    const make_flask_call = () => {
-        const ing_url = api_url + "/recipes";
+    const make_flask_call = (page: number, sort: string) => {
+        const ing_url = `${api_url}/recipes/?page=${page}&sort=${sort}`;
         console.log(ing_url);
         axios
             .get(ing_url)
             .then(function (response) {
                 // handle success
-                let res = response.data;
+                let res = response.data.data;
                 console.log(res);
                 setRecipes(res.map((item: any) => ({
                     title: item.title,
                     image: item.src,
                     id: item.id,
-                    aisle: item.aisle,
-                    sugars: item.sugars,
-                    carbs: item.carbs,
-                    protein: item.protein,
                     calories: item.calories,
                     servings: item.servings,
-                    recipes: item.recipes,
+                    recipeLink: item.recipeLink
                 })));
-
+    
                 setIsLoading(false);
             })
             .catch(function (error) {
                 // handle error
                 console.log(error);
+                setIsLoading(false);
             });
     };
-
+        
+    
     React.useEffect(() => {
-        make_flask_call();
-    }, []);
-
+        make_flask_call(page, sort);
+    }, [page, sort]);
 
     return (
         <div className="all-recipe">
@@ -138,6 +139,35 @@ function RecipesLanding() {
                     >
                     Search for recipes!
                     </p>
+                    
+                    
+                </div>
+            </div>
+            <div style={{ display: "flex", justifyContent: "center" }}>
+                <div style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    fontWeight: 300,
+                    fontFamily: 'gill sans',
+                    fontSize: 16,
+                    color: 'black',
+                    width: 240,
+                    height: 60,
+                    background: 'rgba(255, 255, 255, 0.8)',
+                    float: 'left',
+                    padding: "0 25px",
+                    outline: '1px dashed #b06027',
+                    outlineOffset: -10,
+                    marginBottom: "30px",
+                }}
+                >
+                    <label htmlFor="sort-select" style={{ marginRight: "0.5rem" }}>Sort by:</label>
+                    <select id="sort-select" value={sort} onChange={changeSort} style={{ fontSize: "1.0rem", height: "50%", background: 'rgba(255, 255, 255, 0.8)' }}>
+                        <option value="title">Title</option>
+                        <option value="calories">Calories</option>
+                        <option value="servings">Servings</option>
+                    </select>
                 </div>
             </div>
             <div className="CardsWrapper">
@@ -146,12 +176,22 @@ function RecipesLanding() {
                 ) : (
                     <>
                     <Grid container sx={{ marginLeft: 0, marginRight: 10, paddingRight: 5, paddingLeft: 10}}>
-                        {recipe.slice(startIndex, endIndex).map((rec, i) => (
-                            <Grid item xs={12} md={3} key={i}>
-                                <RecipesCard id = {rec.id} img_src={rec.image} name={rec.title}  servings = {rec.servings} carb = {rec.calories}/>
-                            </Grid>
-                        ))}
+                        <Grid container item xs={12} justifyContent="center">
+                            {recipe.slice(0, 3).map((rec, i) => (
+                                <Grid item xs={12} md={3} key={i}>
+                                    <RecipesCard id = {rec.id} img_src={rec.image} name={rec.title} servings = {rec.servings} carb = {rec.calories}/>
+                                </Grid>
+                            ))}
+                        </Grid>
+                        <Grid container item xs={12} justifyContent="center">
+                            {recipe.slice(3, 5).map((rec, i) => (
+                                <Grid item xs={12} md={3} key={i}>
+                                    <RecipesCard id = {rec.id} img_src={rec.image} name={rec.title} servings = {rec.servings} carb = {rec.calories}/>
+                                </Grid>
+                            ))}
+                        </Grid>
                     </Grid>
+
                     <br></br>
                     <br></br>
                     <div className="PaginationWrapper" style={{ display: "flex", justifyContent: "center" }}>

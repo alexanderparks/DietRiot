@@ -17,8 +17,6 @@ interface Props {
     restrictions?: string;
     desc: string;
     percentage: number;
-    membership: string[];
-
 }
 
 const DietGroupsCard = (props: Props) => {
@@ -39,25 +37,17 @@ const DietGroupsCard = (props: Props) => {
                 alt="food pic"
                 src={props.img_src}
             />
-            <CardContent sx = {{height:"300px"}}>
+            <CardContent sx = {{height:"200px"}}>
                 <h5 style={{textTransform: "uppercase", textAlign: "center"}}>{props.name}</h5><br></br>
                 <p><strong>Restrictions:</strong> {props.restrictions}</p>
                 <p><strong>Percentage:</strong> {props.percentage}%</p>
-                <p><strong>Contains: </strong>
-                {props.membership.map(function(m) {
-                    return (
-                <span>
-                    {m}{" "}
-                </span>
-                )
-                })}</p>
             </CardContent>
             <Box
                 m={1}
                 display="flex"
                 justifyContent="center"
                 alignItems="center"
-                sx={{marginBottom: "50px", paddingTop: "25px"}}
+                sx={{marginBottom: "25px", paddingTop: "25px"}}
             >
                 <Button variant="contained">
                     <Link to={`/dietgroups/view/${props.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>

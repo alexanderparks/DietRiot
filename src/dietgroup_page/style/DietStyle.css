@@ -1,27 +1,75 @@
-.diet-section-diet{
-    margin-top: -20px;
-    background: #6d9c71;
-    padding-bottom: 30px;
+.diet-section-diet {
+  margin-top: -20px;
+  background: #6d9c71;
+  padding-bottom: 30px;
+}
+h1 {
+  font-weight: bold;
+  letter-spacing: 1.5px;
+  font-size: "30px";
 }
 
-.diet-info-diet{
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+h2 {
+  font-weight: bold;
+  letter-spacing: 1.5px;
+  font-size: "30px";
+  font-family: "georgia";
+  color: black;
+}
+p {
+  font-size: 23px;
+  font-family: "gill sans";
+}
+.diet-info-diet {
+  padding: 30px 30px 30px 30px;
+  margin: 0px 20px -20px 20px;
+  border-bottom: dotted 7px #fff;
+}
+h3 {
+  font-family: "gill-sans";
+  text-transform: "uppercase";
+  font-weight: "300px";
+}
+.ing-section-diet {
+  padding-top: 15px;
+  background: #92cf97;
+  padding-bottom: 15px;
+  margin: 0px 20px -20px 20px;
+  border-bottom: dotted 7px #fff;
+}
+.wrapper-diet {
+  padding: 30px 30px 30px 30px;
+  background: #92cf97;
+}
+.wrapper2-diet {
+  background: #92cf97;
+}
+.recipe-section-diet-2 {
+  padding-top: 15px;
+  background: #6d9c71;
+  padding-bottom: 15px;
+}
+.dietIMG {
+  transition: transform 0.8s ease-in-out;
+}
+.dietIMG:hover {
+  transform: scale(1.1);
+}
+.contents-diet {
+  font-style: "bold";
+  color: rgb(214, 212, 178);
 }
 
-.ing-section-diet{
-    padding-top: 15px;
-    background: #92cf97;
-    padding-bottom: 15px;
+.aForDiet:hover {
+  font-size: 18px;
+  color: rgb(5, 64, 7);
+}
+.aForDiet {
+  transition: font-size 0.2s ease-in-out;
+  color: rgb(66, 66, 50);
 }
 
-.recipe-section-diet{
-    padding-top: 15px;
-    background: #6d9c71;
-    padding-bottom: 15px;
-}
-
-.contents-diet{
-    font-family: "Palatino";
-    font-style: "bold";
-    color:rgb(255, 220, 220);
+.contents2-diet {
+  font-style: "bold";
+  color: rgb(66, 66, 50);
 }

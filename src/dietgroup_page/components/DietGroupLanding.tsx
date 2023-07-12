@@ -1,132 +1,180 @@
 import axios from "axios";
-import React from "react"
+import React from "react";
 import { useState, useEffect, SetStateAction } from "react";
 import DietGroupInstance from "./DietGroupInstance";
 import { Link } from "react-router-dom";
-import "../style/DietStyle.css"
-
+import "../style/DietStyle.css";
 
 function DietGroupLanding() {
-    const [id, setId] = useState(0);
+  const [id, setId] = useState(0);
 
-    useEffect(() => {
-        const my_url = window.location.href;
-        var parts = my_url.split("/");
-        var result = parts[parts.length - 1];
-        const url_id = Number(result);
-        console.log(url_id);
-        setId(url_id);
-      }, []);
-    
-    
-    let initData: DietGroupInstance = {
-        id: 0,
-        recipes: [],
-        title: "",
-        image: "",
-        desc: "",
-        prohibits: "",
-        percentage: 0.0,
-        membership: [],
-        ingredients: [],
-        };
+  useEffect(() => {
+    const my_url = window.location.href;
+    var parts = my_url.split("/");
+    var result = parts[parts.length - 1];
+    const url_id = Number(result);
+    console.log(url_id);
+    setId(url_id);
+  }, []);
 
+  let initData: DietGroupInstance = {
+    id: 0,
+    recipes: [],
+    title: "",
+    image: "",
+    desc: "",
+    prohibits: "",
+    percentage: 0.0,
+    membership: [],
+    ingredients: [],
+  };
 
-    const [dietgroup, setDietGroup] = useState<DietGroupInstance>(initData);
-    const api_url = "http://localhost:5000";
-    // const api_url = "http://testingreactdeployment.uc.r.appspot.com";
+  const [dietgroup, setDietGroup] = useState<DietGroupInstance>(initData);
+  const api_url = "http://localhost:5000";
+  // const api_url = "http://testingreactdeployment.uc.r.appspot.com";
 
-    const front_url = "http://localhost:3000";
-    // FOR LOCAL USE
-    // UNCOMMENT THE LINE BELOW TO RUN LOCALLY
-    // const front_url = "dietriot.me";
-    
+  const front_url = "http://localhost:3000";
+  // FOR LOCAL USE
+  // UNCOMMENT THE LINE BELOW TO RUN LOCALLY
+  // const front_url = "dietriot.me";
 
-    const make_flask_call = () => {
-        const dietgroup_url = api_url + "/dietgroups/" + id;
-        console.log(dietgroup_url);
-        axios
-            .get(dietgroup_url)
-            .then(function (response) {
-                // handle success
-                let res = response.data[0];
-                console.log(res);
-                setDietGroup({
-                    id: res.id,
-                    recipes:  res.recipes,
-                    title: res.title,
-                    image: res.src,
-                    desc: res.desc,
-                    prohibits: res.prohibits,
-                    percentage: res.percentage,
-                    membership: res.membership,
-                    ingredients: res.ingredients.slice(0, 20)
-                });
-            })
-            .catch(function (error) {
-                // handle error
-                console.log(error);
-            });
-    };
+  const make_flask_call = () => {
+    const dietgroup_url = api_url + "/dietgroups/" + id;
+    console.log(dietgroup_url);
+    axios
+      .get(dietgroup_url)
+      .then(function (response) {
+        // handle success
+        let res = response.data[0];
+        console.log(res);
+        setDietGroup({
+          id: res.id,
+          recipes: res.recipes,
+          title: res.title,
+          image: res.src,
+          desc: res.desc,
+          prohibits: res.prohibits,
+          percentage: res.percentage,
+          membership: res.membership,
+          ingredients: res.ingredients.slice(0, 20),
+        });
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      });
+  };
 
-    useEffect(() => {
-        make_flask_call();
-      }, [id]);
+  useEffect(() => {
+    make_flask_call();
+  }, [id]);
 
-    return (
+  return (
     <div className="App">
-        <section className = "diet-section-diet">
-            <h1 style = {{fontFamily: "Georgia", 
-                fontSize: "30px", 
-                paddingTop:"30px", 
-                paddingBottom: "30px"}}>{dietgroup.title}</h1>
-            <div>{dietgroup.image !== null && <img src={dietgroup.image} alt="dietgroup"
-            style = {{width: "50%", 
+      <section className="diet-section-diet">
+        <h2
+          style={{
+            fontSize: "30px",
+            paddingTop: "60px",
+            paddingBottom: "30px",
+            textTransform: "uppercase",
+            fontWeight: "heavy",
+          }}
+        >
+          The {dietgroup.title} DIET
+        </h2>
+        <div>
+          {dietgroup.image !== null && (
+            <img
+              className="dietIMG"
+              src={dietgroup.image}
+              alt="dietgroup"
+              style={{
+                width: "50%",
                 marginBottom: "30px",
-                fontSize:"40px"}}></img>}</div>
-        
-            <div className = "diet-info-diet">
-                <p><span style={{ fontWeight: 'bold' }}>Diet ID: </span>{dietgroup.id}</p>
-                <p style = {{marginLeft: "40px", marginRight: "40px"}}><span style={{ fontWeight: 'bold' }}>Description: </span>{dietgroup.desc}</p>
-                <p><span style={{ fontWeight: 'bold' }}>Restrictions: </span>{dietgroup.prohibits}</p>
-                <p><span style={{ fontWeight: 'bold' }}>Percentage in the Population: </span>{dietgroup.percentage}%</p>
-                <span style={{ fontWeight: 'bold' }}>Contains: </span>
-                {dietgroup.membership.map(function(m) {
-                    return (
+                fontSize: "40px",
+                border: "5px solid #555",
+              }}
+            ></img>
+          )}
+        </div>
+
+        <div className="diet-info-diet">
+          <p></p>
+          <p
+            style={{
+              marginLeft: "40px",
+              marginRight: "40px",
+              marginTop: "-25px",
+            }}
+          >
+            <span style={{ fontWeight: "bold" }}>Description: </span>
+            {dietgroup.desc}
+          </p>
+          <p>
+            <span style={{ fontWeight: "bold" }}>Restrictions: </span>
+            {dietgroup.prohibits}
+          </p>
+          <p>
+            <span style={{ fontWeight: "bold" }}>
+              Percentage of U.S. Population:{" "}
+            </span>
+            {dietgroup.percentage}%
+          </p>
+          <p>
+            <span style={{ fontWeight: "bold" }}>Contains: </span>
+            {dietgroup.membership.join(", ")}
+          </p>
+        </div>
+      </section>
+      <div className="wrapper2-diet">
+        <div className="wrapper-diet">
+          <section className="ing-section-diet">
+            <h2 style={{ fontSize: "30px", paddingBottom: "15px" }}>
+              INGREDIENTS WITHIN THIS DIET GROUP:
+            </h2>
+            {dietgroup.ingredients.map(function (i) {
+              return (
                 <div>
-                    {m}
+                  <Link
+                    to={front_url + "/ingredients/view/" + i.id}
+                    className="aForDiet"
+                  >
+                    {i.title}
+                  </Link>
                 </div>
-                )
-                })}
+              );
+            })}
+          </section>
+        </div>
+      </div>
+
+      <section className="recipe-section-diet-2">
+        <h2
+          style={{
+            fontSize: "30px",
+            paddingBottom: "15px",
+            paddingTop: "15px",
+          }}
+        >
+          RECIPES WITHIN THIS DIET GROUP:
+        </h2>
+        {dietgroup.recipes.map(function (r) {
+          return (
+            <div>
+              <Link
+                to={front_url + "/recipes/view/" + r.id}
+                className="aForDiet"
+              >
+                {r.title}
+              </Link>
             </div>
-        </section>
-        
-        <section className = "ing-section-diet">
-            <h3 style = {{fontFamily:"Verdana"}}>Ingredients that Cater the Diet Group</h3>
-            {dietgroup.ingredients.map(function(i) {
-                return (
-                <div>
-                    <Link to={front_url + "/ingredients/view/" + i.id} className = "contents-diet">{i.title}</Link>
-                </div>
-                )
-                })}
-
-        </section>
-
-        <section className = "recipe-section-diet">
-            <h3 style = {{fontFamily:"Verdana"}}>Recipes that Support the Diet Group</h3>
-            {dietgroup.recipes.map(function(r) {
-                return (
-                <div>
-                    <Link to={front_url + "/recipes/view/" + r.id} className = "contents-diet">{r.title}</Link>
-                </div>
-                )
-                })}
+          );
+        })}
         <br></br>
-        </section>
+      </section>
     </div>
-    );
+  );
 }
 
 export default DietGroupLanding;
-
