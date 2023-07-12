@@ -30,8 +30,8 @@ function DietGroupLanding() {
   };
 
   const [dietgroup, setDietGroup] = useState<DietGroupInstance>(initData);
-  const api_url = "http://localhost:5000";
-  // const api_url = "http://testingreactdeployment.uc.r.appspot.com";
+  // const api_url = "http://localhost:5000";
+  const api_url = "http://testingreactdeployment.uc.r.appspot.com";
 
   const front_url = "http://localhost:3000";
   // FOR LOCAL USE
