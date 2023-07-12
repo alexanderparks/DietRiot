@@ -73,6 +73,7 @@ function DietGroupLanding() {
     <div className="App">
       <section className="diet-section-diet">
         <h2
+          className="instance-h2-styling"
           style={{
             fontSize: "30px",
             paddingTop: "60px",
@@ -100,8 +101,9 @@ function DietGroupLanding() {
         </div>
 
         <div className="diet-info-diet">
-          <p></p>
+          <p className="p-instance-pages"></p>
           <p
+            className="p-instance-pages"
             style={{
               marginLeft: "40px",
               marginRight: "40px",
@@ -111,17 +113,17 @@ function DietGroupLanding() {
             <span style={{ fontWeight: "bold" }}>Description: </span>
             {dietgroup.desc}
           </p>
-          <p>
+          <p className="p-instance-pages">
             <span style={{ fontWeight: "bold" }}>Restrictions: </span>
             {dietgroup.prohibits}
           </p>
-          <p>
+          <p className="p-instance-pages">
             <span style={{ fontWeight: "bold" }}>
               Percentage of U.S. Population:{" "}
             </span>
             {dietgroup.percentage}%
           </p>
-          <p>
+          <p className="p-instance-pages">
             <span style={{ fontWeight: "bold" }}>Contains: </span>
             {dietgroup.membership.join(", ")}
           </p>
@@ -130,7 +132,10 @@ function DietGroupLanding() {
       <div className="wrapper2-diet">
         <div className="wrapper-diet">
           <section className="ing-section-diet">
-            <h2 style={{ fontSize: "30px", paddingBottom: "15px" }}>
+            <h2
+              style={{ fontSize: "30px", paddingBottom: "15px" }}
+              className="instance-h2-styling"
+            >
               INGREDIENTS WITHIN THIS DIET GROUP:
             </h2>
             {dietgroup.ingredients.map(function (i) {
@@ -151,6 +156,7 @@ function DietGroupLanding() {
 
       <section className="recipe-section-diet-2">
         <h2
+          className="instance-h2-styling"
           style={{
             fontSize: "30px",
             paddingBottom: "15px",

@@ -3,20 +3,15 @@
   background: #e0bead;
   padding-bottom: 30px;
 }
-h1 {
-  font-weight: bold;
-  letter-spacing: 1.5px;
-  font-size: "30px";
-}
 
-h2 {
+.instance-h2-styling {
   font-weight: bold;
   letter-spacing: 1.5px;
   font-size: "30px";
   font-family: "georgia";
   color: black;
 }
-p {
+.p-instance-pages {
   font-size: 23px;
   font-family: "gill sans";
 }
@@ -25,11 +20,7 @@ p {
   margin: 0px 20px -20px 20px;
   border-bottom: dotted 7px #fff;
 }
-h3 {
-  font-family: "gill-sans";
-  text-transform: "uppercase";
-  font-weight: "300px";
-}
+
 .diet-section-ing-2 {
   padding-top: 15px;
   background: #f2d8cb;

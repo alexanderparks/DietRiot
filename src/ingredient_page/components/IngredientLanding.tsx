@@ -83,6 +83,7 @@ function IngredientLanding() {
     <div className="App">
       <section className="ing-section-ing">
         <h2
+          className="instance-h2-styling"
           style={{
             fontSize: "30px",
             paddingTop: "60px",
@@ -110,35 +111,36 @@ function IngredientLanding() {
         </div>
 
         <div className="ing-info-ing">
-          <p></p>
+          <p className="p-instance-pages"></p>
           <p
+            className="p-instance-pages"
             style={{
               marginLeft: "40px",
               marginRight: "40px",
               marginTop: "-25px",
             }}
           >
-            <p>
+            <p className="p-instance-pages">
               <span style={{ fontWeight: "bold" }}>Calories: </span>
               {ingredient.calories}
             </p>
-            <p>
+            <p className="p-instance-pages">
               <span style={{ fontWeight: "bold" }}>Sugars: </span>
               {ingredient.sugars}
             </p>
-            <p>
+            <p className="p-instance-pages">
               <span style={{ fontWeight: "bold" }}>Carbohydrates: </span>
               {ingredient.carbs}
             </p>
-            <p>
+            <p className="p-instance-pages">
               <span style={{ fontWeight: "bold" }}>Protein: </span>
               {ingredient.protein}
             </p>
-            <p>
+            <p className="p-instance-pages">
               <span style={{ fontWeight: "bold" }}>Serving(s) </span>
               {ingredient.serving}
             </p>
-            <p>
+            <p className="p-instance-pages">
               <span style={{ fontWeight: "bold" }}>Aisle: </span>
               {ingredient.aisle}
             </p>
@@ -148,7 +150,10 @@ function IngredientLanding() {
       <div className="wrapper2">
         <div className="wrapper">
           <section className="diet-section-ing-2">
-            <h2 style={{ fontSize: "30px", paddingBottom: "15px" }}>
+            <h2
+              style={{ fontSize: "30px", paddingBottom: "15px" }}
+              className="instance-h2-styling"
+            >
               DIET GROUPS THAT CONTAIN THIS INGREDIENT:
             </h2>
             {ingredient.dietgroups.map(function (r) {
@@ -169,6 +174,7 @@ function IngredientLanding() {
 
       <section className="recipe-section-diet">
         <h2
+          className="instance-h2-styling"
           style={{
             fontSize: "30px",
             paddingBottom: "15px",
