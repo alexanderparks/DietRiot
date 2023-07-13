@@ -1,62 +1,59 @@
-import 'bootstrap/dist/css/bootstrap.min.css';  
+import "bootstrap/dist/css/bootstrap.min.css";
 import IngArray from "../../IngredientsPage/Components/IngredientInstance";
 import RecipeArray from "../../RecipesPage/Components/RecipeInstance";
 import DietArray from "../../DietGroupsPage/Components/DietGroupInstance";
 import IngredientsCard from "../../IngredientsPage/Components/IngredientsCard";
+import RecipesCard from "../../RecipesPage/Components/RecipesCard";
+import DietCard from "../../DietGroupsPage/Components/DietGroupsCard";
 import React from "react";
 import axios from "axios";
 import Grid from "@mui/material/Grid";
-function UnivSearchLanding() {
-    const [search, setSearch] = React.useState("");
-    const [didMount, setDidMount] = React.useState(false);
-    console.log("entered file")
-    // Get search query
-    React.useEffect(() => {
-      const my_url = window.location.href;
-      var windows = my_url.split("/");
-      var currentPage = windows[windows.length - 1];
-      const url_search = currentPage;
-      console.log("url_search: " + url_search)
-      setSearch(decodeURI(url_search));
-      setDidMount(true);
-    }, []);
-    
-    let initData: IngArray = {
-        title: "",
-        id: 0,
-        aisle: "",
-        sugars: 0.0,
-        carbs: 0.0,
-        protein: 0.0,
-        calories: 0.0,
-        serving: "",
-        recipes: [],
-        image: "",
-        };
+import "../style/univSearchStyle.css";
 
-    const [recipeData, setRecipeData] = React.useState<RecipeArray[]>([]);
-    const [ingData, setIngData] = React.useState<IngArray[]>([]);
-    const [dietData, setDietData] = React.useState<DietArray[]>([]);
-    const [loading, setLoading] = React.useState(true);
-    //change this?
-    const api_url = "http://localhost:5000/";
-    
-    React.useEffect(() => {
-      if (didMount) {
-        const local_url = "http://localhost:3000/search/" + search;
-        const url = api_url+ "search/" + search;
-  
-        console.log(url);
-        axios
-          .get(url)
-          .then(function (response) {
-            let recipeData = response.data.recipeList;
-            
-            let ingData = response.data.ingredients;
-            let dietData = response.data.dietgroupList;
-            setRecipeData(recipeData);
-            setIngData(ingData);
-            setIngData(ingData.map((item: any) => ({
+function UnivSearchLanding() {
+  console.log("entered file");
+  const [search, setSearch] = React.useState("");
+  const [didMount, setDidMount] = React.useState(false);
+  // reloads the page whenever hit back button
+  React.useEffect(() => {
+    const handlePopstate = () => {
+      window.location.reload();
+    };
+    window.addEventListener("popstate", handlePopstate);
+    return () => {
+      window.removeEventListener("popstate", handlePopstate);
+    };
+  }, []);
+  // Get search query
+  React.useEffect(() => {
+    const my_url = window.location.href;
+    var windows = my_url.split("/");
+    var currentPage = windows[windows.length - 1];
+    const url_search = currentPage;
+    console.log("url_search: " + url_search);
+    setSearch(decodeURI(url_search));
+    setDidMount(true);
+  }, []);
+
+  const [recipeData, setRecipeData] = React.useState<RecipeArray[]>([]);
+  const [ingData, setIngData] = React.useState<IngArray[]>([]);
+  const [dietData, setDietData] = React.useState<DietArray[]>([]);
+  const [loading, setLoading] = React.useState(true);
+  //change this?
+  const api_url = "http://localhost:5000/";
+  const make_flask_call = (search: string) => {
+    if (didMount) {
+      const local_url = "http://localhost:3000/search/" + search;
+      const url = api_url + "search/" + search;
+      console.log("url: " + url);
+      axios
+        .get(url)
+        .then(function (response) {
+          let recipeData = response.data.recipes;
+          let ingData = response.data.ingredients;
+          let dietData = response.data.dietgroups;
+          setIngData(
+            ingData.map((item: any) => ({
               title: item.title,
               image: item.src,
               id: item.id,
@@ -67,81 +64,221 @@ function UnivSearchLanding() {
               calories: item.calories,
               serving: item.serving,
               recipes: item.recipes,
-          })));
-            setDietData(dietData);
-            setLoading(false);
-  
-            // handle succes
-          })
-          .catch(function (error) {
-            // handle error
-            console.log(error);
-          })
-          .then(function () {
-            // always executed
-          });
-      }
-    }, [search]);
-  
-    /*
-    const getHighlightedText = (text: string, highlight: any) => {
-      // Split on highlight term and include term into parts, ignore case
-      const parts = text.split(new RegExp(`(${highlight})`, "gi"));
-      return (
-        <span>
-          {" "}
-          {parts.map((part: any, i: any) => (
-            <span
-              key={i}
-              style={
-                part.toLowerCase() === highlight.toLowerCase()
-                  ? { fontWeight: "bold" }
-                  : {}
-              }
-            >
-              {part}
-            </span>
-          ))}{" "}
-        </span>
-      );
-    };
-  */
-    return (
-      <div className="Search">
-        <>
+            }))
+          );
+          setRecipeData(
+            recipeData.map((item: any) => ({
+              image: item.src,
+              id: item.id,
+              calories: item.calories,
+              servings: item.servings,
+              recipeLink: item.recipeLink,
+              title: item.title,
+            }))
+          );
+          setDietData(
+            dietData.map((item: any) => ({
+              id: item.id,
+              recipes: item.recipes,
+              title: item.title,
+              image: item.src,
+              desc: item.desc,
+              prohibits: item.prohibits,
+              percentage: item.percentage,
+            }))
+          );
+          setLoading(false);
+          // handle succes
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+        })
+        .then(function () {
+          // always executed
+        });
+    }
+  };
+  React.useEffect(() => {
+    make_flask_call(search);
+  }, [search]);
+  return (
+    <div className="Search">
+      <>
+      
         {loading ? (
           console.log("loading")
         ) : (
-          <h1>
+          <div className = "searchRow">
+            <br></br>
+          <h1 style={{ marginLeft: "30px", fontFamily: "Arial"}}>
             Search Results for "{search}"
           </h1>
+          </div>
         )}
-  
-        <h3>
-          Ingredients
-        </h3>
-            
-        <Grid container sx={{ marginLeft: 0, marginRight: 10, paddingRight: 5, paddingLeft: 10}}>
-                        {ingData.slice().map((ingredient, i) => (
-                            <Grid item xs={3} key = {i}>
-                                <IngredientsCard 
-                                id = {ingredient.id} 
-                                img_src={ingredient.image} 
-                                name={ingredient.title}
-                                calories={ingredient.calories} 
-                                sugars={ingredient.sugars} 
-                                carbs={ingredient.carbs} 
-                                protein={ingredient.protein}
-                                serving={ingredient.serving}/>
-                            </Grid>
-                        ))}
-        </Grid>
-        </>
-      </div>
-    );
-  }
-  
 
-export {
-    UnivSearchLanding
-};
+        <div className = "ingRow">
+        <h3 className="names">Ingredients</h3>
+
+        {loading ? (
+          <p
+            style={{
+              textAlign: "center",
+              fontWeight: "bold",
+              fontSize: "24px",
+            }}
+          >
+            Loading...
+          </p>
+        ) : (
+          <Grid
+            container
+            sx={{
+              marginLeft: 0,
+              marginRight: 10,
+              paddingRight: 5,
+              paddingLeft: 10,
+            }}
+          >
+            {ingData.length === 0 ? (
+              <p
+                style={{
+                  textAlign: "center",
+                  fontWeight: "bold",
+                  fontSize: "24px",
+                  marginBottom: "150px",
+                }}
+              >
+                No Results
+              </p>
+            ) : (
+              ingData.slice().map((ingredient, i) => (
+                <Grid item xs={3} key={i}>
+                  <IngredientsCard
+                    id={ingredient.id}
+                    img_src={ingredient.image}
+                    name={ingredient.title}
+                    calories={ingredient.calories}
+                    sugars={ingredient.sugars}
+                    carbs={ingredient.carbs}
+                    protein={ingredient.protein}
+                    serving={ingredient.serving}
+                    aisle={ingredient.aisle}
+                    search={search}
+                  />
+                </Grid>
+              ))
+            )}
+          </Grid>
+        )}
+      </div>
+
+      <div className = "recRow">
+        <h3 className="names">Recipes</h3>
+
+        {loading ? (
+          <p
+            style={{
+              textAlign: "center",
+              fontWeight: "bold",
+              fontSize: "24px",
+            }}
+          >
+            Loading...
+          </p>
+        ) : (
+          <Grid
+            container
+            sx={{
+              marginLeft: 0,
+              marginRight: 10,
+              paddingRight: 5,
+              paddingLeft: 10,
+            }}
+          >
+            {recipeData.length === 0 ? (
+              <p
+                style={{
+                  textAlign: "center",
+                  fontWeight: "bold",
+                  fontSize: "24px",
+                  marginBottom: "150px",
+                }}
+              >
+                No Results
+              </p>
+            ) : (
+              recipeData.slice().map((recipes, i) => (
+                <Grid item xs={3} key={i}>
+                  <RecipesCard
+                    id={recipes.id}
+                    img_src={recipes.image}
+                    name={recipes.title}
+                    carb={recipes.calories}
+                    servings={recipes.servings}
+                    search={search}
+                  />
+                </Grid>
+              ))
+            )}
+          </Grid>
+        )}
+        </div>
+
+        <div className = "dietRow">
+        <h3 className="names"> Diet Groups</h3>
+        {loading ? (
+          <p
+            style={{
+              textAlign: "center",
+              fontWeight: "bold",
+              fontSize: "24px",
+            }}
+          >
+            Loading...
+          </p>
+        ) : (
+          <Grid
+            container
+            sx={{
+              marginLeft: 0,
+              marginRight: 10,
+              paddingRight: 5,
+              paddingLeft: 10,
+            }}
+          >
+            {dietData.length === 0 ? (
+              <p
+                style={{
+                  textAlign: "center",
+                  fontWeight: "bold",
+                  fontSize: "24px",
+                  marginBottom: "150px",
+                }}
+              >
+                No Results
+              </p>
+            ) : (
+              dietData.slice().map((diets, i) => (
+                <Grid item xs={3} key={i}>
+                  <DietCard
+                    id={diets.id}
+                    img_src={diets.image}
+                    name={diets.title}
+                    restrictions={diets.prohibits}
+                    desc={diets.desc}
+                    percentage={diets.percentage}
+                    search={search}
+                  />
+                </Grid>
+              ))
+            )}
+          </Grid>
+        )}
+        </div>
+      </>
+    </div>
+  );
+}
+
+export default UnivSearchLanding;

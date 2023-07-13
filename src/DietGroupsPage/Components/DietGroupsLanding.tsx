@@ -10,11 +10,8 @@ import { Link, useLocation } from "react-router-dom";
 import DietGroupInstance from "./DietGroupInstance";
 
 function DietGroupsLanding() {
-    
-
     // Set the number of cards per page and the total number of pages
     const numPerPage = 4;
-    const totalNumPages = 3;
 
     // Set up state for the current page
     const [currPage, setCurrPage] = useState(1);
@@ -24,6 +21,10 @@ function DietGroupsLanding() {
 
     // Get the current location object
     const location = useLocation();
+
+    const [sort, setSort] = React.useState("title");
+
+    const [membership, setMembership] = React.useState("");
 
     // Create a new URLSearchParams object from the location's search string
     const query = new URLSearchParams(location.search);
@@ -39,17 +40,34 @@ function DietGroupsLanding() {
     // Handle page changes
     const changePage = (event: React.ChangeEvent<unknown>, page: number) => {
         setCurrPage(page);
+        make_flask_call(sort, membership);
+    };
+
+    const changeSort = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        setSort(event.target.value);
+        setCurrPage(1);
+    };
+
+    const changeMembership = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        setMembership(event.target.value);
+        setCurrPage(1);
     };
     
-    const api_url = "http://localhost:5000";
-    // const api_url = "http://testingreactdeployment.uc.r.appspot.com";
+    //const api_url = "http://localhost:5000";
+    const api_url = "http://testingreactdeployment.uc.r.appspot.com";
 
     const [dietgroup, setDietGroups] = useState<DietGroupInstance[]>([]);
 
+    
+    const totalNumPages = Math.ceil(dietgroup.length / numPerPage);;
+
     const [isLoading, setIsLoading] = React.useState(true);
 
-    const make_flask_call = () => {
-        const dietgroup_url = api_url + "/dietgroups";
+    const make_flask_call = (sort: string, membership: string) => {
+        let dietgroup_url = `${api_url}/dietgroups/?sort=${sort}`;
+        if (membership) {
+            dietgroup_url += `&membership=${membership}`;
+        }
         console.log(dietgroup_url);
         axios
             .get(dietgroup_url)
@@ -77,8 +95,8 @@ function DietGroupsLanding() {
     
 
     React.useEffect(() => {
-        make_flask_call();
-    }, []);
+        make_flask_call(sort, membership);
+    }, [sort, membership]);
 
 
     return (
@@ -127,6 +145,60 @@ function DietGroupsLanding() {
                     >
                     Search for diet groups!
                     </p>
+                </div>
+            </div>
+            <div style={{ display: "flex", justifyContent: "center" }}>
+                <div style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    fontWeight: 300,
+                    fontFamily: 'gill sans',
+                    fontSize: 16,
+                    color: 'black',
+                    width: 300,
+                    height: 60,
+                    background: 'rgba(255, 255, 255, 0.8)',
+                    float: 'left',
+                    padding: "0 25px",
+                    outline: '1px dashed #b06027',
+                    outlineOffset: -10,
+                    marginBottom: "30px",
+                }}
+                >
+                    <label htmlFor="sort-select" style={{ marginRight: "0.5rem" }}>Sort by:</label>
+                    <select id="sort-select" value={sort} onChange={changeSort} style={{ fontSize: "1.0rem", height: "50%", background: 'rgba(255, 255, 255, 0.8)' }}>
+                        <option value="title">Title</option>
+                        <option value="percentage">Percentage</option>
+                        <option value="numIngredients">Number of Ingredients</option>
+                        <option value="numRecipes">Number of Recipes</option>
+                    </select>
+                </div>
+                <div style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    fontWeight: 300,
+                    fontFamily: 'gill sans',
+                    fontSize: 16,
+                    color: 'black',
+                    width: 250,
+                    height: 60,
+                    background: 'rgba(255, 255, 255, 0.8)',
+                    float: 'left',
+                    padding: "0 25px",
+                    outline: '1px dashed #b06027',
+                    outlineOffset: -10,
+                    marginBottom: "30px",
+                }}
+                >
+                    <label htmlFor="sort-select" style={{ marginRight: "0.5rem" }}>Membership:</label>
+                    <select id="sort-select" onChange={changeMembership} style={{ fontSize: "1.0rem", height: "50%", background: 'rgba(255, 255, 255, 0.8)' }}>
+                        <option value="">All</option>
+                        <option value="meat">Meat</option>
+                        <option value="dairy">Dairy</option>
+                        <option value="gluten">Gluten</option>
+                    </select>
                 </div>
             </div>
             <div className="CardsWrapper">
