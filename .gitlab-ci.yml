@@ -1,19 +1,21 @@
 # Official framework image. Look for the different tagged releases at:
 # https://hub.docker.com/r/library/python
-image: python:3.6
+
+
+image: docker
+
+
 
 # Pick zero or more services to be used on all builds.
 # Only needed when using a docker container to run your tests in.
 # Check out: http://docs.gitlab.com/ce/ci/docker/using_docker_images.html#what-is-a-service
 services:
-  - postgres:latest
+  - docker:dind
 
 variables:
-  POSTGRES_DB: database
-  POSTGRES_USER: postgres
-  POSTGRES_PASSWORD: ""
-  POSTGRES_HOST_AUTH_METHOD: trust
-  DB_STRING: "postgresql://$POSTGRES_USER@postgres:5432/$POSTGRES_DB"
+  DOCKER_HOST: tcp://docker:2375
+  DOCKER_TLS_CERTDIR: ""
+  DOCKER_DRIVER: overlay2
 
 before_script:
     - date
@@ -27,12 +29,4 @@ test:
   - python3 test.py
   
 
-  image: docker
 
-  services:
-    - docker:dind
-
-  variables:
-    DOCKER_HOST: tcp://docker:2375
-    DOCKER_TLS_CERTDIR: ""
-    DOCKER_DRIVER: overlay2
