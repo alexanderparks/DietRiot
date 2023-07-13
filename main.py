@@ -11,6 +11,7 @@ from models import (
     Ingredient,
     DietGroup,
     ingredient_link,
+    ingredient_dietgroup_link,
     dietgroup_link,
     DietGroupSchema,
 )
@@ -245,9 +246,11 @@ def getDietGroup():
         dietgroupList = dietgroupList.filter(DietGroup.membership.any(membership))
     if sort:
         if sort == "numIngredients":
-            dietgroupList = dietgroupList.order_by(len(DietGroup.ingredients))
+            subquery = db.session.query(ingredient_dietgroup_link.c.dietgroup_id, func.count(ingredient_dietgroup_link.c.ingredient_id).label('num_ingredients')).group_by(ingredient_dietgroup_link.c.dietgroup_id).subquery()
+            dietgroupList = dietgroupList.join(subquery, DietGroup.id == subquery.c.dietgroup_id).order_by(subquery.c.num_ingredients)
         if sort == "numRecipes":
-            dietgroupList = dietgroupList.order_by(len(DietGroup.recipes))
+            subquery = db.session.query(dietgroup_link.c.dietgroup_id, func.count(dietgroup_link.c.recipe_id).label('num_recipes')).group_by(dietgroup_link.c.dietgroup_id).subquery()
+            dietgroupList = dietgroupList.join(subquery, DietGroup.id == subquery.c.dietgroup_id).order_by(subquery.c.num_recipes)
         if sort == "title":
             dietgroupList = dietgroupList.order_by(DietGroup.title)
         if sort == "percentage":
