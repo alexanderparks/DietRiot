@@ -86,7 +86,7 @@ def getSearch(search):
         "r_pages": r_totalNumPages,
         "i_pages": i_totalNumPages,
         "d_pages": d_totalNumPages,
-        "recipes": models.schema_for_simple_recipe.dump(recipeList),
+        "recipes": models.schema_for_simple_recipe.dump(recipeList.items),
         "ingredients": models.schema_for_simple_ingredient.dump(ingredientList.items),
         "dietgroups": models.schema_for_simple_dietgroup.dump(dietgroupList.items),
     }
