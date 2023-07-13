@@ -11,6 +11,7 @@ from models import (
     Ingredient,
     DietGroup,
     ingredient_link,
+    ingredient_dietgroup_link,
     dietgroup_link,
     DietGroupSchema,
 )
@@ -79,9 +80,9 @@ def getSearch(search):
     ingredientList = ingredientList.paginate(page=page, max_per_page=numPerPage)
     result = { 
         "pages": 5,
-        "recipes": models.schema_for_simple_recipe.dump(recipeList),
-        "ingredients": models.schema_for_simple_ingredient.dump(ingredientList),
-        "dietgroups": models.schema_for_simple_dietgroup.dump(dietgroupList),
+        "recipes": models.schema_for_simple_recipe.dump(recipeList.items),
+        "ingredients": models.schema_for_simple_ingredient.dump(ingredientList.items),
+        "dietgroups": models.schema_for_simple_dietgroup.dump(dietgroupList.items),
     }
     
     return jsonify(result)
@@ -132,7 +133,8 @@ def getRecipe():
         )
     if sort:
         if sort == "numIngredients":
-            recipeList = recipeList.order_by(len(Recipe.ingredients))
+            subquery = db.session.query(ingredient_link.c.recipe_id, func.count(ingredient_link.c.ingredient_id).label('num_ingredients')).group_by(ingredient_link.c.recipe_id).subquery()
+            recipeList = recipeList.join(subquery, Recipe.id == subquery.c.recipe_id).order_by(subquery.c.num_ingredients.desc())
         if sort == "title":
             recipeList = recipeList.order_by(Recipe.title)
         if sort == "servings":
@@ -153,7 +155,7 @@ def getRecipe():
     totalNumPages = recipeFinal.pages
     response = { 
         "pages": totalNumPages,
-        "data": models.schema_for_simple_recipe.dump(recipeFinal),
+        "data": models.schema_for_simple_recipe.dump(recipeFinal.items),
         }
     return jsonify(response)
 
@@ -209,7 +211,7 @@ def getIngredient():
     totalNumPages = ingFinal.pages
     response = { 
         "pages": totalNumPages,
-        "data": models.schema_for_simple_ingredient.dump(ingFinal),
+        "data": models.schema_for_simple_ingredient.dump(ingFinal.items),
         }
 
     return jsonify(response)
@@ -245,9 +247,11 @@ def getDietGroup():
         dietgroupList = dietgroupList.filter(DietGroup.membership.any(membership))
     if sort:
         if sort == "numIngredients":
-            dietgroupList = dietgroupList.order_by(len(DietGroup.ingredients))
+            subquery = db.session.query(ingredient_dietgroup_link.c.dietgroup_id, func.count(ingredient_dietgroup_link.c.ingredient_id).label('num_ingredients')).group_by(ingredient_dietgroup_link.c.dietgroup_id).subquery()
+            dietgroupList = dietgroupList.join(subquery, DietGroup.id == subquery.c.dietgroup_id).order_by(subquery.c.num_ingredients)
         if sort == "numRecipes":
-            dietgroupList = dietgroupList.order_by(len(DietGroup.recipes))
+            subquery = db.session.query(dietgroup_link.c.dietgroup_id, func.count(dietgroup_link.c.recipe_id).label('num_recipes')).group_by(dietgroup_link.c.dietgroup_id).subquery()
+            dietgroupList = dietgroupList.join(subquery, DietGroup.id == subquery.c.dietgroup_id).order_by(subquery.c.num_recipes)
         if sort == "title":
             dietgroupList = dietgroupList.order_by(DietGroup.title)
         if sort == "percentage":
