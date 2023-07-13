@@ -277,6 +277,7 @@ function UnivSearchLanding() {
                       to={`/search/${search}?r_page=${currRPage}&$i_page=${item.page}&d_page=${currDPage}`}
                       {...item}
                       sx={{
+                        color: "white",
                         "&.Mui-selected": {
                           backgroundColor: "primary.main",
                           color: "white",
@@ -376,6 +377,7 @@ function UnivSearchLanding() {
                       to={`/search/${search}?r_page=${item.page}&$i_page=${currIPage}&d_page=${currDPage}`}
                       {...item}
                       sx={{
+                        color: "white",
                         "&.Mui-selected": {
                           backgroundColor: "primary.main",
                           color: "white",
@@ -474,6 +476,7 @@ function UnivSearchLanding() {
                       to={`/search/${search}?r_page=${currRPage}&$i_page=${currIPage}&d_page=${item.page}`}
                       {...item}
                       sx={{
+                        color: "white",
                         "&.Mui-selected": {
                           backgroundColor: "primary.main",
                           color: "white",

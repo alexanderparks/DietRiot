@@ -48,7 +48,6 @@ const Highlighted = ({ text = "", highlight = "" }) => {
 const RecipesCard = (props: Props) => {
   let carls_string = props.carlories!.toString();
   let serving_string = props.servings!.toString();
-  console.log(props.ingredients)
   const HighlightedButton = () => {
     if(not_highlighted){
       return <mark>View Details</mark>
