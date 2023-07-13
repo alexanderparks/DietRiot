@@ -55,8 +55,8 @@ function RecipesLanding() {
   };
 
 const changeSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const query = event.target.value;
-    setSearchQuery(query);
+    const newQuery = event.target.value;
+    setSearchQuery(newQuery);
     navigate("/recipes");
   };
   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -267,7 +267,7 @@ const changeSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
         >
           <input
             type="text"
-            placeholder="Search recipes..."
+            placeholder="Search recipes"
             value={searchQuery}
             onChange={changeSearch}
             onKeyDown={handleKeyPress}

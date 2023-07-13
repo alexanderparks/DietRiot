@@ -24,7 +24,10 @@ interface Props {
 }
 
 const Highlighted = ({ text = "", highlight = "" }) => {
-  if (!highlight.trim()) {
+  if (text == null){
+    return <span>{text}</span>;
+  }
+  if (!highlight) {
     return <span>{text}</span>;
   }
   const regex = new RegExp(`(${highlight})`, "gi");
@@ -65,7 +68,7 @@ const IngredientsCard = (props: Props) => {
           src={props.img_src}
           sx={{ objectFit: "contain" }}
         />
-        <CardContent sx={{ height: "600px" }}>
+        <CardContent sx={{ height: "500px" }}>
           <h5 style={{ textTransform: "uppercase", textAlign: "center" }}>
             <Highlighted text={props.name} highlight={props.search} />
           </h5>

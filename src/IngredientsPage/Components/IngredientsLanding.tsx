@@ -25,6 +25,8 @@ function IngredientsLanding() {
 
     const [aisle, setAisle] = React.useState("");
 
+    const [searchQuery, setSearchQuery] = useState("");
+
     // Create a new URLSearchParams object from the location's search string
     const query = new URLSearchParams(location.search);
 
@@ -51,6 +53,19 @@ function IngredientsLanding() {
         setAisle(event.target.value);
         navigate('/ingredients');
     };
+
+    const changeSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const newQuery = event.target.value;
+        setSearchQuery(newQuery);
+        navigate('/ingredients');
+      };
+    
+      const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+        if (event.key === "Enter") {
+          event.preventDefault();
+          make_flask_call(page, sort, aisle);
+        }
+      };
     
     // const api_url = "http://localhost:5000";
     const api_url = "http://testingreactdeployment.uc.r.appspot.com";
@@ -64,6 +79,9 @@ function IngredientsLanding() {
         if (aisle) {
             ing_url += `&aisle=${aisle}`;
         }
+        if (searchQuery.trim()) {
+            ing_url += `&search=${encodeURIComponent(searchQuery)}`;
+          }
         console.log(ing_url);
         axios
             .get(ing_url)
@@ -206,6 +224,35 @@ function IngredientsLanding() {
                         <option value="Spices%20and%20Seasonings">Spices and Seasonings</option>
                     </select>
                 </div>
+                <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            fontWeight: 300,
+            fontFamily: "gill sans",
+            fontSize: 16,
+            color: "black",
+            width: 300,
+            height: 60,
+            background: "rgba(255, 255, 255, 0.8)",
+            float: "left",
+            padding: "0 25px",
+            outline: "1px dashed #b06027",
+            outlineOffset: -10,
+            marginBottom: "30px",
+          }}
+        >
+          <input
+            type="text"
+            placeholder="Search recipes..."
+            value={searchQuery}
+            onChange={changeSearch}
+            onKeyDown={handleKeyPress}
+            />
+        
+        <button onClick={() => make_flask_call(page, sort, aisle)}>Search</button>
+        </div>
             </div>
             <div className="CardsWrapper">
                 {isLoading ? (
@@ -218,7 +265,7 @@ function IngredientsLanding() {
                                 <Grid item xs={3} key={i}>
                                     <IngredientsCard id = {ingredient.id} img_src={ingredient.image} name={ingredient.title}
                                                         calories={ingredient.calories} sugars={ingredient.sugars} carbs={ingredient.carbs} protein={ingredient.protein}
-                                                            serving={ingredient.serving} aisle = {ingredient.aisle}/>
+                                                            serving={ingredient.serving} aisle = {ingredient.aisle} search = {searchQuery.trim()}/>
                                 </Grid>
                             ))}
                         </Grid>
@@ -227,7 +274,7 @@ function IngredientsLanding() {
                                 <Grid item xs={3} key={i}>
                                     <IngredientsCard id = {ingredient.id} img_src={ingredient.image} name={ingredient.title}
                                                         calories={ingredient.calories} sugars={ingredient.sugars} carbs={ingredient.carbs} protein={ingredient.protein}
-                                                            serving={ingredient.serving} aisle = {ingredient.aisle}/>
+                                                            serving={ingredient.serving} aisle = {ingredient.aisle} search = {searchQuery.trim()}/>
                                 </Grid>
                             ))}
                         </Grid>
