@@ -20,7 +20,8 @@ interface Props {
   search?: string;
 }
 
-let already_highlight: boolean = false;
+
+let not_highlight: boolean = true;
 const Highlighted = ({ text = "", highlight = "" }) => {
   if (text == null) {
     return <span>{text}</span>;
@@ -34,8 +35,7 @@ const Highlighted = ({ text = "", highlight = "" }) => {
     <span>
       {parts.filter(String).map((part, i) => {
         return regex.test(part) ? (
-         
-          <mark key={i}>{part}{already_highlight = true}</mark>
+          <mark key={i}>{part}{not_highlight = false}</mark>
         ) : (
           <span key={i}>{part}</span>
         );
@@ -46,32 +46,11 @@ const Highlighted = ({ text = "", highlight = "" }) => {
 
 const DietGroupsCard = (props: Props) => {
   let percent_string = props.percentage!.toString();
-  const HighlightedButton = ({ text = "", highlight = "" }) => {
-    if(already_highlight){
-      return <span>View Details</span>
-    }
-    if (text == null) {
-      return <span>View Details</span>;
-    }
-    if (!highlight.trim()) {
-      return <span>View Details</span>;
-    }
-
-    const regex = new RegExp(`(${highlight})`, "gi");
-    const parts = text.split(regex);
-    return (
-      <span>
-        <>
-          {parts.filter(String).map((part, i) => {
-            return regex.test(part) ? (
-              <mark key={i}>{ <span>View Details</span>}</mark>
-            ) : (
-              <span key={i}></span>
-            );
-          })}
-        </>
-      </span>
-    );
+  const HighlightedButton = () => {
+    if(not_highlight){
+      return <mark>View Details</mark>
+    } 
+    return <span>View Details</span>
   };
 
   return (
@@ -117,7 +96,7 @@ const DietGroupsCard = (props: Props) => {
               to={`/dietgroups/view/${props.id}`}
               style={{ textDecoration: "none", color: "inherit" }}
             >
-              <HighlightedButton text={props.desc} highlight={props.search} />
+              <HighlightedButton/>
             </Link>
             
           </Button>
