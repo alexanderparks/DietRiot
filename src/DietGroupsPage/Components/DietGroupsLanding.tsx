@@ -285,7 +285,7 @@ function DietGroupsLanding() {
           </p>
         ) : (
           <>
-            <Grid container spacing={2} sx={{ marginLeft: 4 }}>
+            <Grid container spacing={2} style={{paddingLeft: "40px"}}>
               {dietgroup.slice(startIndex, endIndex).map((dg, i) => (
                 <Grid item xs={3} key={i}>
                   <DietGroupsCard
