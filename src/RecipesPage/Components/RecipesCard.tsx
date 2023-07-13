@@ -21,6 +21,7 @@ interface Props {
   ingredients: any[];
 }
 
+let not_highlighted: boolean = true;
 const Highlighted = ({ text = "", highlight = "" }) => {
   if (text == null) {
     return <span>{text}</span>;
@@ -34,7 +35,7 @@ const Highlighted = ({ text = "", highlight = "" }) => {
     <span>
       {parts.filter(String).map((part, i) => {
         return regex.test(part) ? (
-          <mark key={i}>{part}</mark>
+          <mark key={i}>{part}{not_highlighted = false}</mark>
         ) : (
           <span key={i}>{part}</span>
         );
@@ -43,33 +44,16 @@ const Highlighted = ({ text = "", highlight = "" }) => {
   );
 };
 
+
 const RecipesCard = (props: Props) => {
   let carls_string = props.carlories!.toString();
   let serving_string = props.servings!.toString();
   console.log(props.ingredients)
-  const HighlightedButton = ({ text = "", highlight = "" }) => {
-    let hasHighlight: boolean = false;
-    if (text == null) {
-      return <span>View Details</span>;
-    }
-    if (!highlight.trim()) {
-      return <span>View Details</span>;
-    }
-    const regex = new RegExp(`(${highlight})`, "gi");
-    const parts = text.split(regex);
-    return (
-      <span>
-        <>
-          {parts.filter(String).map((part, i) => {
-            return regex.test(part) ? (
-              <mark key={i}>{ <span>View Details</span>}</mark>
-            ) : (
-              <span key={i}></span>
-            );
-          })}
-        </>
-      </span>
-    );
+  const HighlightedButton = () => {
+    if(not_highlighted){
+      return <mark>View Details</mark>
+    } 
+    return <span>View Details</span>
   };
 
   return (
@@ -95,11 +79,11 @@ const RecipesCard = (props: Props) => {
           </h5>
           <br></br>
           <p>
-            <strong>Carbs</strong>:
+            <strong>Carbs</strong>:{" "}
             <Highlighted text={carls_string} highlight={props.search} />
           </p>
           <p>
-            <strong>Serving(s)</strong>: {props.servings}
+            <strong>Serving(s)</strong>: {" "}
             <Highlighted text={serving_string} highlight={props.search} />
           </p>
         </CardContent>
@@ -115,8 +99,7 @@ const RecipesCard = (props: Props) => {
               to={`/recipes/view/${props.id}`}
               style={{ textDecoration: "none", color: "inherit" }}
             >
-              View Details
-              {/* <HighlightedButton text={props.ingredients[0]} highlight={props.search} /> */}
+              <HighlightedButton/>
               
             </Link>
             
