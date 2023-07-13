@@ -20,6 +20,7 @@ interface Props {
   search?: string;
 }
 
+let already_highlight: boolean = false;
 const Highlighted = ({ text = "", highlight = "" }) => {
   if (text == null) {
     return <span>{text}</span>;
@@ -33,7 +34,8 @@ const Highlighted = ({ text = "", highlight = "" }) => {
     <span>
       {parts.filter(String).map((part, i) => {
         return regex.test(part) ? (
-          <mark key={i}>{part}</mark>
+         
+          <mark key={i}>{part}{already_highlight = true}</mark>
         ) : (
           <span key={i}>{part}</span>
         );
@@ -46,12 +48,16 @@ const DietGroupsCard = (props: Props) => {
   let percent_string = props.percentage!.toString();
   const HighlightedButton = ({ text = "", highlight = "" }) => {
     let hasHighlight: boolean = false;
+    if(already_highlight){
+      return <span>View Details</span>
+    }
     if (text == null) {
       return <span>View Details</span>;
     }
     if (!highlight.trim()) {
       return <span>View Details</span>;
     }
+
     const regex = new RegExp(`(${highlight})`, "gi");
     const parts = text.split(regex);
     return (
