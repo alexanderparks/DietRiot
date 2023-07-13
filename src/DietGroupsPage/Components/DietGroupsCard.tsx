@@ -47,7 +47,6 @@ const Highlighted = ({ text = "", highlight = "" }) => {
 const DietGroupsCard = (props: Props) => {
   let percent_string = props.percentage!.toString();
   const HighlightedButton = ({ text = "", highlight = "" }) => {
-    let hasHighlight: boolean = false;
     if(already_highlight){
       return <span>View Details</span>
     }
@@ -98,11 +97,11 @@ const DietGroupsCard = (props: Props) => {
           </h5>
           <br></br>
           <p>
-            <strong>Restrictions:</strong>
+            <strong>Restrictions:</strong>{" "}
             <Highlighted text={props.restrictions} highlight={props.search} />
           </p>
           <p>
-            <strong>Percentage:</strong>
+            <strong>Percentage:</strong>{" "}
             <Highlighted text={percent_string} highlight={props.search} />%
           </p>
         </CardContent>
