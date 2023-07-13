@@ -152,7 +152,7 @@ function IngredientsLanding() {
                                 <Grid item xs={3} key={i}>
                                     <IngredientsCard id = {ingredient.id} img_src={ingredient.image} name={ingredient.title}
                                                         calories={ingredient.calories} sugars={ingredient.sugars} carbs={ingredient.carbs} protein={ingredient.protein}
-                                                            serving={ingredient.serving}/>
+                                                            serving={ingredient.serving} aisle = {ingredient.aisle}/>
                                 </Grid>
                             ))}
                         </Grid>
@@ -161,7 +161,7 @@ function IngredientsLanding() {
                                 <Grid item xs={3} key={i}>
                                     <IngredientsCard id = {ingredient.id} img_src={ingredient.image} name={ingredient.title}
                                                         calories={ingredient.calories} sugars={ingredient.sugars} carbs={ingredient.carbs} protein={ingredient.protein}
-                                                            serving={ingredient.serving}/>
+                                                            serving={ingredient.serving} aisle = {ingredient.aisle}/>
                                 </Grid>
                             ))}
                         </Grid>

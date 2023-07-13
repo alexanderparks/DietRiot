@@ -112,7 +112,12 @@ function UnivSearchLanding() {
             Search Results for "{search}"
           </h1>
         )}
+        
         <h3 className="names">Ingredients</h3>
+
+        {loading ? (
+          <p style={{textAlign: "center", fontWeight: "bold", fontSize: "24px"}}>Loading...</p>
+        ) : (
         <Grid
           container
           sx={{
@@ -133,13 +138,19 @@ function UnivSearchLanding() {
                 carbs={ingredient.carbs}
                 protein={ingredient.protein}
                 serving={ingredient.serving}
+                aisle = {ingredient.aisle}
                 search={search}
               />
             </Grid>
           ))}
         </Grid>
+        )}
 
         <h3 className="names">Recipes</h3>
+
+        {loading ? (
+          <p style={{textAlign: "center", fontWeight: "bold", fontSize: "24px"}}>Loading...</p>
+        ) : (
         <Grid
           container
           sx={{
@@ -161,8 +172,12 @@ function UnivSearchLanding() {
             </Grid>
           ))}
         </Grid>
+        )}
 
         <h3 className="names">Diet Groups</h3>
+        {loading ? (
+          <p style={{textAlign: "center", fontWeight: "bold", fontSize: "24px"}}>Loading...</p>
+        ) : (
         <Grid
           container
           sx={{
@@ -185,6 +200,7 @@ function UnivSearchLanding() {
             </Grid>
           ))}
         </Grid>
+        )}
       </>
     </div>
   );

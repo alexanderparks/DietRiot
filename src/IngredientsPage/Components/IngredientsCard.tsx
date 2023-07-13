@@ -20,6 +20,7 @@ interface Props {
   protein?: number;
   serving?: string;
   search?: string;
+  aisle?: string;
 }
 
 const Highlighted = ({ text = "", highlight = "" }) => {
@@ -47,7 +48,7 @@ const IngredientsCard = (props: Props) => {
   let carbs_string = props.carbs!.toString();
   let protein_string = props.protein!.toString();
   return (
-    <Grid item xs={8} md={10} alignItems="stretch" paddingBottom={5}>
+    <Grid item xs={8} sm = {4} md={10} alignItems="stretch" paddingBottom={5}>
       <Card
         sx={{
           transition: "transform 0.15s ease-in-out",
@@ -64,34 +65,35 @@ const IngredientsCard = (props: Props) => {
           src={props.img_src}
           sx={{ objectFit: "contain" }}
         />
-        <CardContent sx={{ height: "330px" }}>
+        <CardContent sx={{ height: "600px" }}>
           <h5 style={{ textTransform: "uppercase", textAlign: "center" }}>
-            {props.name}
             <Highlighted text={props.name} highlight={props.search} />
           </h5>
           <br></br>
           <p>
             <strong>Calories:</strong>{" "}
-            {props.calories ? props.calories.toFixed(2) : 0}
+            
             <Highlighted text={calories_string} highlight={props.search} />
           </p>
           <p>
             <strong>Sugars:</strong>{" "}
-            {props.sugars ? props.sugars.toFixed(2) : 0}
             <Highlighted text={sugars_string} highlight={props.search} />
           </p>
           <p>
-            <strong>Carbs:</strong> {props.carbs ? props.carbs.toFixed(2) : 0}
+            <strong>Carbs:</strong> {" "}
             <Highlighted text={carbs_string} highlight={props.search} />
           </p>
           <p>
             <strong>Protein:</strong>{" "}
-            {props.protein ? props.protein.toFixed(2) : 0}
             <Highlighted text={protein_string} highlight={props.search} />
           </p>
           <p>
-            <strong>Serving(s):</strong> {props.serving}
+            <strong>Serving(s):</strong>{" "}
             <Highlighted text={props.serving} highlight={props.search} />
+          </p>
+          <p>
+            <strong>Aisle:</strong>{" "}
+            <Highlighted text={props.aisle} highlight={props.search} />
           </p>
         </CardContent>
 
