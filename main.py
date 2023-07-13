@@ -13,7 +13,6 @@ from models import (
     ingredient_link,
     ingredient_dietgroup_link,
     dietgroup_link,
-    DietGroupSchema,
 )
 from sqlalchemy import or_, func, cast
 from sqlalchemy.sql.sqltypes import String
@@ -120,6 +119,9 @@ def getRecipe():
                 (Recipe.recipeLink).contains(search),
             )
         )
+        recipe_ids = [r.id for r in recipeList.all()]
+        recipeList = db.session.query(Recipe).filter(Recipe.id.in_(recipe_ids))
+
 
     if dietgroup:
         subquery = (
@@ -141,8 +143,6 @@ def getRecipe():
             recipeList = recipeList.order_by(Recipe.servings)
         if sort == "calories":
             recipeList = recipeList.order_by(Recipe.calories)
-			
-			
     
     numPerPage = request.args.get("numPerPage", 5, type=int)
     page = request.args.get("page", 1, type=int)
@@ -167,10 +167,8 @@ def getIngredient():
     search = request.args.get("search", None, type=str)
     if search:
         search = search.lower()
-        # recipe_subquery = db.session.query(Ingredient.id).join(Ingredient.recipes).filter(Recipe.title.ilike(f'%{search}%'))
         ingredientList = ingredientList.filter(
             or_(
-                # Ingredient.id.in_(recipe_subquery),
                 func.lower(Ingredient.title).contains(search),
                 func.lower(Ingredient.aisle).contains(search),
                 cast(Ingredient.calories, String) == search,
@@ -256,8 +254,6 @@ def getDietGroup():
             dietgroupList = dietgroupList.order_by(DietGroup.title)
         if sort == "percentage":
             dietgroupList = dietgroupList.order_by(DietGroup.percentage)
-
-	
 
     response = models.schema_for_simple_dietgroup.dump(dietgroupList)
     return jsonify(response)
