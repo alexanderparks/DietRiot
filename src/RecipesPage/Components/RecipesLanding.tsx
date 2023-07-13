@@ -95,6 +95,7 @@ function RecipesLanding() {
             calories: item.calories,
             servings: item.servings,
             recipeLink: item.recipeLink,
+            ingredients: item.ingredients,
           }))
         );
 
@@ -308,7 +309,9 @@ function RecipesLanding() {
                       name={rec.title}
                       servings={rec.servings}
                       carb={rec.calories}
+                      ingredients={rec.ingredients}
                       search = {searchQuery}
+
                     />
                   </Grid>
                 ))}
@@ -322,6 +325,7 @@ function RecipesLanding() {
                       name={rec.title}
                       servings={rec.servings}
                       carb={rec.calories}
+                      ingredients={rec.ingredients}
                       search = {searchQuery}
                     />
                   </Grid>

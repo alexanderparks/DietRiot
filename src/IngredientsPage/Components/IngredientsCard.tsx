@@ -50,8 +50,32 @@ const IngredientsCard = (props: Props) => {
   let sugars_string = props.sugars!.toString();
   let carbs_string = props.carbs!.toString();
   let protein_string = props.protein!.toString();
+  const HighlightedButton = ({ text = "", highlight = "" }) => {
+    let hasHighlight: boolean = false;
+    if (text == null) {
+      return <span>View Details</span>;
+    }
+    if (!highlight.trim()) {
+      return <span>View Details</span>;
+    }
+    const regex = new RegExp(`(${highlight})`, "gi");
+    const parts = text.split(regex);
+    return (
+      <span>
+        <>
+          {parts.filter(String).map((part, i) => {
+            return regex.test(part) ? (
+              <mark key={i}>{ <span>View Details</span>}</mark>
+            ) : (
+              <span key={i}></span>
+            );
+          })}
+        </>
+      </span>
+    );
+  };
   return (
-    <Grid item xs={8} sm = {4} md={10} alignItems="stretch" paddingBottom={5}>
+    <Grid item xs={12} sm = {12} md={10} alignItems="stretch" paddingBottom={5}>
       <Card
         sx={{
           transition: "transform 0.15s ease-in-out",

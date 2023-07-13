@@ -70,7 +70,7 @@ const DietGroupsCard = (props: Props) => {
   };
 
   return (
-    <Grid item xs={8} md={10} alignItems="stretch" paddingBottom={5}>
+    <Grid item xs={12} md={10} alignItems="stretch" paddingBottom={5}>
       <Card
         sx={{
           transition: "transform 0.15s ease-in-out",

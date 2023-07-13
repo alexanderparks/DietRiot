@@ -18,6 +18,7 @@ interface Props {
   carb?: number;
   servings?: number;
   search?: string;
+  ingredients: any[];
 }
 
 const Highlighted = ({ text = "", highlight = "" }) => {
@@ -45,6 +46,37 @@ const Highlighted = ({ text = "", highlight = "" }) => {
 const RecipesCard = (props: Props) => {
   let carbs_string = props.carb!.toString();
   let serving_string = props.servings!.toString();
+ // console.log(props.ingredients.slice(""));
+  // let val: keyof (typeof props.ingredients);
+  // for (val in props.ingredients){
+  //   console.log("entered for loop");
+  //   console.log(val['name']);
+  // }
+  const HighlightedButton = ({ text = "", highlight = "" }) => {
+    let hasHighlight: boolean = false;
+    if (text == null) {
+      return <span>View Details</span>;
+    }
+    if (!highlight.trim()) {
+      return <span>View Details</span>;
+    }
+    const regex = new RegExp(`(${highlight})`, "gi");
+    const parts = text.split(regex);
+    return (
+      <span>
+        <>
+          {parts.filter(String).map((part, i) => {
+            return regex.test(part) ? (
+              <mark key={i}>{ <span>View Details</span>}</mark>
+            ) : (
+              <span key={i}></span>
+            );
+          })}
+        </>
+      </span>
+    );
+  };
+
   return (
     <Grid item xs={12} md={10} alignItems="stretch" paddingBottom={5}>
       <Card
@@ -85,11 +117,14 @@ const RecipesCard = (props: Props) => {
         >
           <Button variant="contained">
             <Link
-              to={`/recipes/view/${props.id}`}
+              to={`/dietgroups/view/${props.id}`}
               style={{ textDecoration: "none", color: "inherit" }}
             >
-              View Details
+              
+              {/* <HighlightedButton text={props.ingredients[0]} highlight={props.search} /> */}
+              
             </Link>
+            
           </Button>
         </Box>
       </Card>

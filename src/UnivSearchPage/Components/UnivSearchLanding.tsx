@@ -74,6 +74,8 @@ function UnivSearchLanding() {
               servings: item.servings,
               recipeLink: item.recipeLink,
               title: item.title,
+              ingredients: item.ingredients,
+              dietgroups: item.dietgroups,
             }))
           );
           setDietData(
@@ -217,6 +219,7 @@ function UnivSearchLanding() {
                     carb={recipes.calories}
                     servings={recipes.servings}
                     search={search}
+                    ingredients = {recipes.ingredients}
                   />
                 </Grid>
               ))
