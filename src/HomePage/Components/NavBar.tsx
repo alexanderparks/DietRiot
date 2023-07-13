@@ -9,9 +9,9 @@ import "../style/NavBar.css";
 const NavigationBar = () => {
 const navigate = useNavigate();
 function search(val: string) {
-navigate("/search/" + val);
+navigate("/search/" + val.trim());
 window.location.reload();
-console.log("navigate to: /search/" + val.trim())
+console.log("navigate to: /search/" + val)
 }
 return (
 <Navbar className="navbar navbar-expand-lg fixed-top bg-body-tertiary">
