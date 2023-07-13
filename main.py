@@ -68,15 +68,18 @@ def getSearch(search):
         )
     )
     
-    page = request.args.get("page", 1, type=int)
     numPerPage = request.args.get("numPerPage", 5, type=int)
     
     if numPerPage == 0:
         numPerPage = 5
     
-    recipeList = recipeList.paginate(page=page, max_per_page=numPerPage)
-    dietgroupList = dietgroupList.paginate(page=page, max_per_page=numPerPage)
-    ingredientList = ingredientList.paginate(page=page, max_per_page=numPerPage)
+    rpage = request.args.get("r_page", 1, type=int)
+    ipage = request.args.get("i_page", 1, type=int)
+    dpage = request.args.get("d_page", 1, type=int)
+
+    recipeList = recipeList.paginate(page=rpage, max_per_page=numPerPage)
+    ingredientList = ingredientList.paginate(page=ipage, max_per_page=numPerPage)
+    dietgroupList = dietgroupList.paginate(page=dpage, max_per_page=numPerPage)
 
     r_totalNumPages = recipeList.pages
     i_totalNumPages = ingredientList.pages
