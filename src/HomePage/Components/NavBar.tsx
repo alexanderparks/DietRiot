@@ -11,17 +11,8 @@ const navigate = useNavigate();
 function search(val: string) {
 navigate("/search/" + val);
 window.location.reload();
-console.log("navigate to: /search/" + val)
+console.log("navigate to: /search/" + val.trim())
 }
-// const NavigationBar = () => {
-// const navigate = useNavigate();
-// const [searchTerm, setSearchTerm] = useState('');
-// const handleSearch = (event: React.FormEvent<HTMLFormElement>) => {
-// event.preventDefault();
-// navigate("/search/" + searchTerm);
-// console.log("navigate: " + searchTerm)
-// window.location.reload();
-// };
 return (
 <Navbar className="navbar navbar-expand-lg fixed-top bg-body-tertiary">
 <Container className="justify-content-start">
@@ -44,15 +35,6 @@ search((event.target as HTMLTextAreaElement).value);
 }
 }}
 />
-{/* <Form onSubmit={handleSearch}>
-<Form.Control
-type="search"
-placeholder="Search"
-aria-describedby="searchHelpBlock"
-value={searchTerm}
-onChange={(event) => setSearchTerm(event.target.value)}
-/>
-</Form> */}
 </div>
 </Container>
 </Navbar>
