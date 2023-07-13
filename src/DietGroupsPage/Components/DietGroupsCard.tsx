@@ -58,33 +58,12 @@ const DietGroupsCard = (props: Props) => {
       <span>
         <>
           {parts.filter(String).map((part, i) => {
-            regex.test(part) ? (
-              <mark key={i}>{(hasHighlight = true)}</mark>
+            return regex.test(part) ? (
+              <mark key={i}>{ <span>View Details</span>}</mark>
             ) : (
               <span key={i}></span>
             );
           })}
-          return hasHighlight ? (
-          <Button variant="contained">
-            <Link
-              to={`/dietgroups/view/${props.id}`}
-              style={{ textDecoration: "none", color: "inherit" }}
-            >
-              <mark>View Details</mark>
-            </Link>
-            <HighlightedButton text={props.desc} highlight={props.search} />
-          </Button>
-          ) : (
-          <Button variant="contained">
-            <Link
-              to={`/dietgroups/view/${props.id}`}
-              style={{ textDecoration: "none", color: "inherit" }}
-            >
-              View Details
-            </Link>
-            <HighlightedButton text={props.desc} highlight={props.search} />
-          </Button>
-          );
         </>
       </span>
     );
@@ -128,7 +107,15 @@ const DietGroupsCard = (props: Props) => {
           alignItems="center"
           sx={{ marginBottom: "25px", paddingTop: "25px" }}
         >
-          <HighlightedButton text={props.desc} highlight={props.search} />
+          <Button variant="contained">
+            <Link
+              to={`/dietgroups/view/${props.id}`}
+              style={{ textDecoration: "none", color: "inherit" }}
+            >
+              <HighlightedButton text={props.desc} highlight={props.search} />
+            </Link>
+            
+          </Button>
         </Box>
       </Card>
     </Grid>
