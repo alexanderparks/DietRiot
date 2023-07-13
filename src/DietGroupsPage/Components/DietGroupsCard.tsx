@@ -21,6 +21,9 @@ interface Props {
 }
 
 const Highlighted = ({ text = "", highlight = "" }) => {
+  if (text == null) {
+    return <span>{text}</span>;
+  }
     if (!highlight.trim()) {
       return <span>{text}</span>;
     }
