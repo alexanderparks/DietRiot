@@ -72,6 +72,17 @@ function RecipesLanding() {
 
   const [isLoading, setIsLoading] = React.useState(true);
 
+  let initData: RecipeInstance = {
+    calories: 0,
+    id: 0,
+    ingredients: [],
+    dietgroups: [],
+    title: "",
+    recipeLink: "",
+    image: "",
+    servings: 0,
+  };
+
   const make_flask_call = (page: number, sort: string, dietGroup: string) => {
     let rec_url = `${api_url}/recipes/?page=${page}&sort=${sort}`;
     if (dietGroup) {
@@ -308,7 +319,7 @@ function RecipesLanding() {
                       img_src={rec.image}
                       name={rec.title}
                       servings={rec.servings}
-                      carb={rec.calories}
+                      carlories={rec.calories}
                       ingredients={rec.ingredients}
                       search = {searchQuery}
 
@@ -324,10 +335,11 @@ function RecipesLanding() {
                       img_src={rec.image}
                       name={rec.title}
                       servings={rec.servings}
-                      carb={rec.calories}
+                      carlories={rec.calories}
                       ingredients={rec.ingredients}
                       search = {searchQuery}
                     />
+                    
                   </Grid>
                 ))}
               </Grid>

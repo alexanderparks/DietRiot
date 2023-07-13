@@ -50,7 +50,7 @@ function RecipeLanding() {
         setRecipe({
           calories: res.calories,
           id: res.id,
-          ingredients: res.ingredients,
+          ingredients: res.ingredients.slice(),
           dietgroups: res.dietgroups,
           title: res.title,
           recipeLink: res.recipeLink,

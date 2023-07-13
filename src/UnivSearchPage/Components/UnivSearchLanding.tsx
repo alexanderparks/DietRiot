@@ -216,7 +216,7 @@ function UnivSearchLanding() {
                     id={recipes.id}
                     img_src={recipes.image}
                     name={recipes.title}
-                    carb={recipes.calories}
+                    carlories={recipes.calories}
                     servings={recipes.servings}
                     search={search}
                     ingredients = {recipes.ingredients}

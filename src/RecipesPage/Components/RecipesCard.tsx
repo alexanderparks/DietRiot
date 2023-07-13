@@ -15,7 +15,7 @@ interface Props {
   id?: number;
   img_src?: string;
   name?: string;
-  carb?: number;
+  carlories?: number;
   servings?: number;
   search?: string;
   ingredients: any[];
@@ -44,14 +44,9 @@ const Highlighted = ({ text = "", highlight = "" }) => {
 };
 
 const RecipesCard = (props: Props) => {
-  let carbs_string = props.carb!.toString();
+  let carls_string = props.carlories!.toString();
   let serving_string = props.servings!.toString();
- // console.log(props.ingredients.slice(""));
-  // let val: keyof (typeof props.ingredients);
-  // for (val in props.ingredients){
-  //   console.log("entered for loop");
-  //   console.log(val['name']);
-  // }
+  console.log(props.ingredients)
   const HighlightedButton = ({ text = "", highlight = "" }) => {
     let hasHighlight: boolean = false;
     if (text == null) {
@@ -101,7 +96,7 @@ const RecipesCard = (props: Props) => {
           <br></br>
           <p>
             <strong>Carbs</strong>:
-            <Highlighted text={carbs_string} highlight={props.search} />
+            <Highlighted text={carls_string} highlight={props.search} />
           </p>
           <p>
             <strong>Serving(s)</strong>: {props.servings}
@@ -117,10 +112,10 @@ const RecipesCard = (props: Props) => {
         >
           <Button variant="contained">
             <Link
-              to={`/dietgroups/view/${props.id}`}
+              to={`/recipes/view/${props.id}`}
               style={{ textDecoration: "none", color: "inherit" }}
             >
-              
+              View Details
               {/* <HighlightedButton text={props.ingredients[0]} highlight={props.search} /> */}
               
             </Link>

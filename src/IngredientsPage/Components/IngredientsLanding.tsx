@@ -274,7 +274,7 @@ function IngredientsLanding() {
         >
           <input
             type="text"
-            placeholder="Search recipes..."
+            placeholder="Search ingredients"
             value={searchQuery}
             onChange={changeSearch}
             onKeyDown={handleKeyPress}

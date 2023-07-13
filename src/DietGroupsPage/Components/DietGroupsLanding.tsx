@@ -261,7 +261,7 @@ function DietGroupsLanding() {
         >
           <input
             type="text"
-            placeholder="Search recipes"
+            placeholder="Search diet groups"
             value={searchQuery}
             onChange={changeSearch}
             onKeyDown={handleKeyPress}
