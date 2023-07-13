@@ -61,7 +61,7 @@ const DietGroupsCard = (props: Props) => {
                 alt="food pic"
                 src={props.img_src}
             />
-            <CardContent sx = {{height:"230px"}}>
+            <CardContent sx = {{height:"270px"}}>
                 <h5 style={{textTransform: "uppercase", textAlign: "center"}}>
                 <Highlighted text={props.name} highlight={props.search} />
                 </h5><br></br>
