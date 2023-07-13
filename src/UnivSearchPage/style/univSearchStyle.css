@@ -4,16 +4,114 @@
     padding-top:10px;
 }
 .searchRow{
-    background: #ffffff; 
+    background-image: radial-gradient(#283593, #42a5f5);
     margin-top: -20px;
     padding-bottom: 30px;
 }
 .ingRow{
     padding-top: 5px;
-    background: #f0f0f0c3;
+    margin-bottom:0px;
+    padding-bottom: 0px;
+}
+.recRow{
+    padding-top: 5px;
     margin-bottom:0px;
     padding-bottom: 0px;
 }
 .dietRow{
-    background: #f0f0f0c3;
+    padding-top: 5px;
 }
+.card {
+    box-shadow: 0px 0px 15px -5px;
+    transition: 0.5s;
+    animation: ease-in-out;
+    margin: 15px 15px 15px 15px;
+    display: flex;
+    border: none;
+  }
+  .card:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 0px 15px 0px;
+  }
+  .bg-cover {
+    background-size: cover !important;
+    height: 300px;
+  }
+  .jumbotron bg-cover text-white:before {
+    filter: 40%;
+  }
+  .row {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+  .all-recipe {
+    background-image: radial-gradient(#a67b0c, #f2ca63, #dbb75a);
+  }
+  .display-4 font-weight-bold {
+    font-weight: strong;
+  }
+  .font-italic text-muted {
+    color: white;
+  }
+  .container py-5 {
+    color: white;
+  }
+  .btn {
+    width: 150px;
+    justify-content: center;
+    padding: 0/5rem;
+    background-color: rgba(7, 69, 12, 0.2);
+    transition: 0.2s;
+    border-radius: 3px;
+  }
+  .btn-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .btn:hover {
+    background: rgba(27, 156, 252, 0.1);
+    transform: scale();
+  }
+
+  a {
+    text-transform: uppercase;
+    color: #189cfc;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  .card-img-top {
+    width: 305px;
+    height: 200px;
+  }
+  .rounded-square {
+    border-radius: 10px;
+  }
+  .highlight {
+    font-weight: bold;
+  }
+  .social-icons {
+    display: flex;
+    justify-content: center;
+      font-size: 60px !important;
+  }
+  .social-icon i {
+    font-size: 60px !important;
+    margin: 0 10px;
+
+  }
+  .card-text a {
+    text-transform: none;
+  }
+  div.all {
+    padding-bottom: 50px;
+  }
+
+  .nav-link{
+    transition: 0.5s;
+    animation: ease-in-out;
+  }
+  .nav-link:hover{
+    color:black;
+     font-weight:bold;
+  }
