@@ -37,7 +37,7 @@ const DietGroupsCard = (props: Props) => {
                 alt="food pic"
                 src={props.img_src}
             />
-            <CardContent sx = {{height:"200px"}}>
+            <CardContent sx = {{height:"230px"}}>
                 <h5 style={{textTransform: "uppercase", textAlign: "center"}}>{props.name}</h5><br></br>
                 <p><strong>Restrictions:</strong> {props.restrictions}</p>
                 <p><strong>Percentage:</strong> {props.percentage}%</p>

@@ -10,19 +10,7 @@ import { Link, useLocation } from "react-router-dom";
 import RecipeInstance from "./RecipeInstance";
 
 function RecipesLanding() {
-    let initData: RecipeInstance = {
-        calories: 0,
-        id: 0,
-        ingredients: [],
-        dietgroups: [],
-        title: "",
-        recipeLink: "",
-        image: "",
-        servings: 0,
-        };
-
     // Set the number of cards per page and the total number of pages
-    const numPerPage = 8;
     const [totalNumPages, setTotalNumPages] = React.useState(1);
 
     // Set up state for the current page
