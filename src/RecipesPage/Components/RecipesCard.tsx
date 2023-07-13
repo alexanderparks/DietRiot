@@ -17,9 +17,31 @@ interface Props {
     name?: string;
     carb?: number;
     servings?: number;
+    search?: string;
 }
 
+const Highlighted = ({ text = "", highlight = "" }) => {
+    if (!highlight.trim()) {
+      return <span>{text}</span>;
+    }
+    const regex = new RegExp(`(${highlight})`, "gi");
+    const parts = text.split(regex);
+    return (
+      <span>
+        {parts.filter(String).map((part, i) => {
+          return regex.test(part) ? (
+            <mark key={i}>{part}</mark>
+          ) : (
+            <span key={i}>{part}</span>
+          );
+        })}
+      </span>
+    );
+  };
+
 const RecipesCard = (props: Props) => {
+    let carbs_string = props.carb!.toString();
+    let serving_string = props.servings!.toString();
     return (
         <Grid item xs = {12}  md = {10} alignItems="stretch" paddingBottom={5}>
             <Card
@@ -38,9 +60,15 @@ const RecipesCard = (props: Props) => {
                 src={props.img_src}
             />
             <CardContent sx = {{height:"220px"}}>
-                <h5 style={{textTransform: "uppercase", textAlign: "center"}}>{props.name}</h5><br></br>
-                <p><strong>Carbs</strong>: {props.carb}</p>
-                <p><strong>Serving(s)</strong>: {props.servings}</p>
+                <h5 style={{textTransform: "uppercase", textAlign: "center"}}>
+                <Highlighted text={props.name} highlight={props.search} />
+                </h5><br></br>
+                <p><strong>Carbs</strong>: 
+                <Highlighted text={carbs_string} highlight={props.search} />
+                </p>
+                <p><strong>Serving(s)</strong>: {props.servings}
+                <Highlighted text={serving_string} highlight={props.search} />
+                </p>
             </CardContent>
             <Box
                 m={1}

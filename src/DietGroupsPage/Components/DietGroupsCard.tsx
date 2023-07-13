@@ -17,9 +17,30 @@ interface Props {
     restrictions?: string;
     desc: string;
     percentage: number;
+    search?: string;
 }
 
+const Highlighted = ({ text = "", highlight = "" }) => {
+    if (!highlight.trim()) {
+      return <span>{text}</span>;
+    }
+    const regex = new RegExp(`(${highlight})`, "gi");
+    const parts = text.split(regex);
+    return (
+      <span>
+        {parts.filter(String).map((part, i) => {
+          return regex.test(part) ? (
+            <mark key={i}>{part}</mark>
+          ) : (
+            <span key={i}>{part}</span>
+          );
+        })}
+      </span>
+    );
+  };
+
 const DietGroupsCard = (props: Props) => {
+    let percent_string = props.percentage!.toString();
     return (
         <Grid item xs={8} md = {10} alignItems="stretch" paddingBottom={5}>
             <Card
@@ -38,9 +59,14 @@ const DietGroupsCard = (props: Props) => {
                 src={props.img_src}
             />
             <CardContent sx = {{height:"230px"}}>
-                <h5 style={{textTransform: "uppercase", textAlign: "center"}}>{props.name}</h5><br></br>
-                <p><strong>Restrictions:</strong> {props.restrictions}</p>
-                <p><strong>Percentage:</strong> {props.percentage}%</p>
+                <h5 style={{textTransform: "uppercase", textAlign: "center"}}>
+                <Highlighted text={props.name} highlight={props.search} />
+                </h5><br></br>
+                <p><strong>Restrictions:</strong> 
+                <Highlighted text={props.restrictions} highlight={props.search} />
+                </p>
+                <p><strong>Percentage:</strong>
+                <Highlighted text={percent_string} highlight={props.search} />%</p>
             </CardContent>
             <Box
                 m={1}

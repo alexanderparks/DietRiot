@@ -112,94 +112,158 @@ function UnivSearchLanding() {
             Search Results for "{search}"
           </h1>
         )}
-        
+
         <h3 className="names">Ingredients</h3>
 
         {loading ? (
-          <p style={{textAlign: "center", fontWeight: "bold", fontSize: "24px"}}>Loading...</p>
+          <p
+            style={{
+              textAlign: "center",
+              fontWeight: "bold",
+              fontSize: "24px",
+            }}
+          >
+            Loading...
+          </p>
         ) : (
-        <Grid
-          container
-          sx={{
-            marginLeft: 0,
-            marginRight: 10,
-            paddingRight: 5,
-            paddingLeft: 10,
-          }}
-        >
-          {ingData.slice().map((ingredient, i) => (
-            <Grid item xs={3} key={i}>
-              <IngredientsCard
-                id={ingredient.id}
-                img_src={ingredient.image}
-                name={ingredient.title}
-                calories={ingredient.calories}
-                sugars={ingredient.sugars}
-                carbs={ingredient.carbs}
-                protein={ingredient.protein}
-                serving={ingredient.serving}
-                aisle = {ingredient.aisle}
-                search={search}
-              />
-            </Grid>
-          ))}
-        </Grid>
+          <Grid
+            container
+            sx={{
+              marginLeft: 0,
+              marginRight: 10,
+              paddingRight: 5,
+              paddingLeft: 10,
+            }}
+          >
+            {ingData.length === 0 ? (
+              <p
+                style={{
+                  textAlign: "center",
+                  fontWeight: "bold",
+                  fontSize: "24px",
+                  marginBottom: "150px",
+                }}
+              >
+                No Results
+              </p>
+            ) : (
+              ingData.slice().map((ingredient, i) => (
+                <Grid item xs={3} key={i}>
+                  <IngredientsCard
+                    id={ingredient.id}
+                    img_src={ingredient.image}
+                    name={ingredient.title}
+                    calories={ingredient.calories}
+                    sugars={ingredient.sugars}
+                    carbs={ingredient.carbs}
+                    protein={ingredient.protein}
+                    serving={ingredient.serving}
+                    aisle={ingredient.aisle}
+                    search={search}
+                  />
+                </Grid>
+              ))
+            )}
+          </Grid>
         )}
 
         <h3 className="names">Recipes</h3>
 
         {loading ? (
-          <p style={{textAlign: "center", fontWeight: "bold", fontSize: "24px"}}>Loading...</p>
+          <p
+            style={{
+              textAlign: "center",
+              fontWeight: "bold",
+              fontSize: "24px",
+            }}
+          >
+            Loading...
+          </p>
         ) : (
-        <Grid
-          container
-          sx={{
-            marginLeft: 0,
-            marginRight: 10,
-            paddingRight: 5,
-            paddingLeft: 10,
-          }}
-        >
-          {recipeData.slice().map((recipes, i) => (
-            <Grid item xs={3} key={i}>
-              <RecipesCard
-                id={recipes.id}
-                img_src={recipes.image}
-                name={recipes.title}
-                carb={recipes.calories}
-                servings={recipes.servings}
-              />
-            </Grid>
-          ))}
-        </Grid>
+          <Grid
+            container
+            sx={{
+              marginLeft: 0,
+              marginRight: 10,
+              paddingRight: 5,
+              paddingLeft: 10,
+            }}
+          >
+            {recipeData.length === 0 ? (
+              <p
+                style={{
+                  textAlign: "center",
+                  fontWeight: "bold",
+                  fontSize: "24px",
+                  marginBottom: "150px",
+                }}
+              >
+                No Results
+              </p>
+            ) : (
+              recipeData.slice().map((recipes, i) => (
+                <Grid item xs={3} key={i}>
+                  <RecipesCard
+                    id={recipes.id}
+                    img_src={recipes.image}
+                    name={recipes.title}
+                    carb={recipes.calories}
+                    servings={recipes.servings}
+                    search={search}
+                  />
+                </Grid>
+              ))
+            )}
+          </Grid>
         )}
-
         <h3 className="names">Diet Groups</h3>
         {loading ? (
-          <p style={{textAlign: "center", fontWeight: "bold", fontSize: "24px"}}>Loading...</p>
+          <p
+            style={{
+              textAlign: "center",
+              fontWeight: "bold",
+              fontSize: "24px",
+            }}
+          >
+            Loading...
+          </p>
         ) : (
-        <Grid
-          container
-          sx={{
-            marginLeft: 0,
-            marginRight: 10,
-            paddingRight: 5,
-            paddingLeft: 10,
-          }}
-        >
-          {dietData.slice().map((diets, i) => (
-            <Grid item xs={3} key={i}>
-              <DietCard
-                id={diets.id}
-                img_src={diets.image}
-                name={diets.title}
-                restrictions={diets.prohibits}
-                desc={diets.desc}
-                percentage={diets.percentage}
-              />
-            </Grid>
-          ))}
-        </Grid>
+          <Grid
+            container
+            sx={{
+              marginLeft: 0,
+              marginRight: 10,
+              paddingRight: 5,
+              paddingLeft: 10,
+            }}
+          >
+            {dietData.length === 0 ? (
+              <p
+                style={{
+                  textAlign: "center",
+                  fontWeight: "bold",
+                  fontSize: "24px",
+                  marginBottom: "150px",
+                }}
+              >
+                No Results
+              </p>
+            ) : (
+              dietData.slice().map((diets, i) => (
+                <Grid item xs={3} key={i}>
+                  <DietCard
+                    id={diets.id}
+                    img_src={diets.image}
+                    name={diets.title}
+                    restrictions={diets.prohibits}
+                    desc={diets.desc}
+                    percentage={diets.percentage}
+                    search={search}
+                  />
+                </Grid>
+              ))
+            )}
+          </Grid>
         )}
       </>
     </div>
