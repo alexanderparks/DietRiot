@@ -155,22 +155,59 @@ function UnivSearchLanding() {
   }, [search, r_page, i_page, d_page]);
 
   return (
-    <div className="Search">
+    <div className="searchRow">
       <>
       
         {loading ? (
           console.log("loading")
         ) : (
-          <div className = "searchRow">
-            <br></br>
-          <h1 style={{ marginLeft: "30px", fontFamily: "Arial"}}>
-            Search Results for "{search}"
-          </h1>
+          <div
+            style={{
+              background:
+                "linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(https://images.food52.com/rXVXOeF9qPDQxUo5yMI5Qrplp1E=/fit-in/1200x1200/dd6b1621-4b08-4b52-88f9-a0b60e89816d--2020-1013_sponsored_LG_fridge_article-hero_3x2_rocky-luten_012.jpg)",
+              marginTop: "-20px",
+            }}
+            className="jumbotron bg-cover text-white"
+          >
+            <div className="container py-5 text-center">
+              <br></br>
+              <h1
+                style={{
+                  fontWeight: 300,
+                  fontSize: 60,
+                  fontFamily: "gill sans",
+                  paddingTop: 60,
+                }}
+              >
+                Search Results for "{search}"
+              </h1>
+            </div>
           </div>
         )}
 
         <div className = "ingRow">
-          <h3 className="names">Ingredients</h3>
+          <div className="container py-5">
+              <div className="row" style={{ justifyContent: "center" }}>
+              <p
+                style={{
+                  textAlign: "center",
+                  fontWeight: 300,
+                  fontFamily: "gill sans",
+                  fontSize: 20,
+                  color: "black",
+                  width: 275,
+                  height: 80,
+                  background: "rgba(255, 255, 255, 0.8)",
+                  float: "left",
+                  padding: 25,
+                  outline: "1px dashed #b06027",
+                  outlineOffset: -10,
+                }}
+              >
+                INGREDIENTS
+              </p>
+            </div>
+          </div>
 
           {loading ? (
             <p
@@ -252,7 +289,28 @@ function UnivSearchLanding() {
         </div>
 
       <div className = "recRow">
-        <h3 className="names">Recipes</h3>
+        <div className="container py-5">
+                <div className="row" style={{ justifyContent: "center" }}>
+                <p
+                  style={{
+                    textAlign: "center",
+                    fontWeight: 300,
+                    fontFamily: "gill sans",
+                    fontSize: 20,
+                    color: "black",
+                    width: 275,
+                    height: 80,
+                    background: "rgba(255, 255, 255, 0.8)",
+                    float: "left",
+                    padding: 25,
+                    outline: "1px dashed #b06027",
+                    outlineOffset: -10,
+                  }}
+                >
+                  RECIPES
+                </p>
+              </div>
+        </div>
 
         {loading ? (
           <p
@@ -330,7 +388,28 @@ function UnivSearchLanding() {
         </div>
 
         <div className = "dietRow">
-        <h3 className="names"> Diet Groups</h3>
+          <div className="container py-5">
+            <div className="row" style={{ justifyContent: "center" }}>
+              <p
+                style={{
+                  textAlign: "center",
+                  fontWeight: 300,
+                  fontFamily: "gill sans",
+                  fontSize: 20,
+                  color: "black",
+                  width: 275,
+                  height: 80,
+                  background: "rgba(255, 255, 255, 0.8)",
+                  float: "left",
+                  padding: 25,
+                  outline: "1px dashed #b06027",
+                  outlineOffset: -10,
+                }}
+              >
+                DIET GROUPS
+              </p>
+            </div>
+          </div>
         {loading ? (
           <p
             style={{

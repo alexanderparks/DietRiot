@@ -92,7 +92,7 @@ const IngredientsCard = (props: Props) => {
           src={props.img_src}
           sx={{ objectFit: "contain" }}
         />
-        <CardContent sx={{ height: "500px" }}>
+        <CardContent sx={{ height: "350px" }}>
           <h5 style={{ textTransform: "uppercase", textAlign: "center" }}>
             <Highlighted text={props.name} highlight={props.search} />
           </h5>
