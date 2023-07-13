@@ -35,9 +35,9 @@ function IngredientLanding() {
     React.useState<IngredientInstance>(initData);
   const [ingredientID, setIngredientID] = useState(1);
   // const api_url = "http://localhost:5000";
-  const api_url = "http://testingreactdeployment.uc.r.appspot.com";
+  const api_url = "https://dietriot-392023.uc.r.appspot.com/";
 
-  const front_url = "http://localhost:3000";
+  const front_url = "https://dietriot.me";
   // FOR LOCAL USE
   // UNCOMMENT THE LINE BELOW TO RUN LOCALLY
   // const front_url = "dietriot.me";

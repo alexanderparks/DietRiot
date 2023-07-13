@@ -68,7 +68,7 @@ function IngredientsLanding() {
   };
 
   // const api_url = "http://localhost:5000";
-  const api_url = "http://testingreactdeployment.uc.r.appspot.com";
+  const api_url = "https://dietriot-392023.uc.r.appspot.com/";
 
   const [ingredients, setIngredients] = React.useState<IngredientInstance[]>(
     []

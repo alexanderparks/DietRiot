@@ -83,10 +83,14 @@ function UnivSearchLanding() {
   const [loading, setLoading] = React.useState(true);
   //change this?
   // const api_url = "http://localhost:5000/";
-  const api_url = "http://testingreactdeployment.uc.r.appspot.com";
+  const api_url = "https://dietriot-392023.uc.r.appspot.com";
 
-
-  const make_flask_call = (search: string, r_page: number, i_page: number, d_page: number) => {
+  const make_flask_call = (
+    search: string,
+    r_page: number,
+    i_page: number,
+    d_page: number
+  ) => {
     if (didMount) {
       const local_url = "http://localhost:3000/search/" + search;
       // const url = api_url + "search/" + search;
@@ -157,7 +161,6 @@ function UnivSearchLanding() {
   return (
     <div className="searchRow">
       <>
-      
         {loading ? (
           console.log("loading")
         ) : (
@@ -185,9 +188,9 @@ function UnivSearchLanding() {
           </div>
         )}
 
-        <div className = "ingRow">
+        <div className="ingRow">
           <div className="container py-5">
-              <div className="row" style={{ justifyContent: "center" }}>
+            <div className="row" style={{ justifyContent: "center" }}>
               <p
                 style={{
                   textAlign: "center",
@@ -257,7 +260,6 @@ function UnivSearchLanding() {
                         search={search}
                       />
                     </Grid>
-                    
                   ))
                 )}
               </Grid>
@@ -288,106 +290,106 @@ function UnivSearchLanding() {
           )}
         </div>
 
-      <div className = "recRow">
-        <div className="container py-5">
-                <div className="row" style={{ justifyContent: "center" }}>
-                <p
-                  style={{
-                    textAlign: "center",
-                    fontWeight: 300,
-                    fontFamily: "gill sans",
-                    fontSize: 20,
-                    color: "black",
-                    width: 275,
-                    height: 80,
-                    background: "rgba(255, 255, 255, 0.8)",
-                    float: "left",
-                    padding: 25,
-                    outline: "1px dashed #b06027",
-                    outlineOffset: -10,
-                  }}
-                >
-                  RECIPES
-                </p>
-              </div>
-        </div>
+        <div className="recRow">
+          <div className="container py-5">
+            <div className="row" style={{ justifyContent: "center" }}>
+              <p
+                style={{
+                  textAlign: "center",
+                  fontWeight: 300,
+                  fontFamily: "gill sans",
+                  fontSize: 20,
+                  color: "black",
+                  width: 275,
+                  height: 80,
+                  background: "rgba(255, 255, 255, 0.8)",
+                  float: "left",
+                  padding: 25,
+                  outline: "1px dashed #b06027",
+                  outlineOffset: -10,
+                }}
+              >
+                RECIPES
+              </p>
+            </div>
+          </div>
 
-        {loading ? (
-          <p
-            style={{
-              textAlign: "center",
-              fontWeight: "bold",
-              fontSize: "24px",
-            }}
-          >
-            Loading...
-          </p>
-        ) : (
-          <>
-            <Grid
-              container
-              sx={{
-                marginLeft: 0,
-                marginRight: 10,
-                paddingRight: 5,
-                paddingLeft: 10,
+          {loading ? (
+            <p
+              style={{
+                textAlign: "center",
+                fontWeight: "bold",
+                fontSize: "24px",
               }}
             >
-              {recipeData.length === 0 ? (
-                <p
-                  style={{
-                    textAlign: "center",
-                    fontWeight: "bold",
-                    fontSize: "24px",
-                    marginBottom: "150px",
-                  }}
-                >
-                  No Results
-                </p>
-              ) : (
-                recipeData.slice().map((recipes, i) => (
-                  <Grid item xs={3} key={i}>
-                    <RecipesCard
-                      id={recipes.id}
-                      img_src={recipes.image}
-                      name={recipes.title}
-                      carlories={recipes.calories}
-                      servings={recipes.servings}
-                      search={search}
-                      ingredients = {recipes.ingredients}
-                    />
-                  </Grid>
-                ))
-              )}
-            </Grid>
-            <div
-              className="PaginationWrapper"
-              style={{ display: "flex", justifyContent: "center" }}
-            >
-              <Pagination
-                page={currRPage}
-                count={totalNumRPages}
-                onChange={changeRPage}
-                renderItem={(item) => (
-                  <PaginationItem
-                    component={Link}
-                    to={`/search/${search}?r_page=${item.page}&$i_page=${currIPage}&d_page=${currDPage}`}
-                    {...item}
-                    sx={{
-                      "&.Mui-selected": {
-                        backgroundColor: "primary.main",
-                        color: "white",
-                      },
+              Loading...
+            </p>
+          ) : (
+            <>
+              <Grid
+                container
+                sx={{
+                  marginLeft: 0,
+                  marginRight: 10,
+                  paddingRight: 5,
+                  paddingLeft: 10,
+                }}
+              >
+                {recipeData.length === 0 ? (
+                  <p
+                    style={{
+                      textAlign: "center",
+                      fontWeight: "bold",
+                      fontSize: "24px",
+                      marginBottom: "150px",
                     }}
-                  />
+                  >
+                    No Results
+                  </p>
+                ) : (
+                  recipeData.slice().map((recipes, i) => (
+                    <Grid item xs={3} key={i}>
+                      <RecipesCard
+                        id={recipes.id}
+                        img_src={recipes.image}
+                        name={recipes.title}
+                        carlories={recipes.calories}
+                        servings={recipes.servings}
+                        search={search}
+                        ingredients={recipes.ingredients}
+                      />
+                    </Grid>
+                  ))
                 )}
-              />
-            </div>
-          </>
-        )}
+              </Grid>
+              <div
+                className="PaginationWrapper"
+                style={{ display: "flex", justifyContent: "center" }}
+              >
+                <Pagination
+                  page={currRPage}
+                  count={totalNumRPages}
+                  onChange={changeRPage}
+                  renderItem={(item) => (
+                    <PaginationItem
+                      component={Link}
+                      to={`/search/${search}?r_page=${item.page}&$i_page=${currIPage}&d_page=${currDPage}`}
+                      {...item}
+                      sx={{
+                        "&.Mui-selected": {
+                          backgroundColor: "primary.main",
+                          color: "white",
+                        },
+                      }}
+                    />
+                  )}
+                />
+              </div>
+            </>
+          )}
         </div>
 
-        <div className = "dietRow">
+        <div className="dietRow">
           <div className="container py-5">
             <div className="row" style={{ justifyContent: "center" }}>
               <p
@@ -410,79 +412,79 @@ function UnivSearchLanding() {
               </p>
             </div>
           </div>
-        {loading ? (
-          <p
-            style={{
-              textAlign: "center",
-              fontWeight: "bold",
-              fontSize: "24px",
-            }}
-          >
-            Loading...
-          </p>
-        ) : (
-          <>
-            <Grid
-              container
-              sx={{
-                marginLeft: 0,
-                marginRight: 10,
-                paddingRight: 5,
-                paddingLeft: 10,
+          {loading ? (
+            <p
+              style={{
+                textAlign: "center",
+                fontWeight: "bold",
+                fontSize: "24px",
               }}
             >
-              {dietData.length === 0 ? (
-                <p
-                  style={{
-                    textAlign: "center",
-                    fontWeight: "bold",
-                    fontSize: "24px",
-                    marginBottom: "150px",
-                  }}
-                >
-                  No Results
-                </p>
-              ) : (
-                dietData.slice().map((diets, i) => (
-                  <Grid item xs={3} key={i}>
-                    <DietCard
-                      id={diets.id}
-                      img_src={diets.image}
-                      name={diets.title}
-                      restrictions={diets.prohibits}
-                      desc={diets.desc}
-                      percentage={diets.percentage}
-                      search={search}
-                    />
-                  </Grid>
-                ))
-              )}
-            </Grid>
-            <div
-              className="PaginationWrapper"
-              style={{ display: "flex", justifyContent: "center" }}
-            >
-              <Pagination
-                page={currDPage}
-                count={totalNumDPages}
-                onChange={changeDPage}
-                renderItem={(item) => (
-                  <PaginationItem
-                    component={Link}
-                    to={`/search/${search}?r_page=${currRPage}&$i_page=${currIPage}&d_page=${item.page}`}
-                    {...item}
-                    sx={{
-                      "&.Mui-selected": {
-                        backgroundColor: "primary.main",
-                        color: "white",
-                      },
+              Loading...
+            </p>
+          ) : (
+            <>
+              <Grid
+                container
+                sx={{
+                  marginLeft: 0,
+                  marginRight: 10,
+                  paddingRight: 5,
+                  paddingLeft: 10,
+                }}
+              >
+                {dietData.length === 0 ? (
+                  <p
+                    style={{
+                      textAlign: "center",
+                      fontWeight: "bold",
+                      fontSize: "24px",
+                      marginBottom: "150px",
                     }}
-                  />
+                  >
+                    No Results
+                  </p>
+                ) : (
+                  dietData.slice().map((diets, i) => (
+                    <Grid item xs={3} key={i}>
+                      <DietCard
+                        id={diets.id}
+                        img_src={diets.image}
+                        name={diets.title}
+                        restrictions={diets.prohibits}
+                        desc={diets.desc}
+                        percentage={diets.percentage}
+                        search={search}
+                      />
+                    </Grid>
+                  ))
                 )}
-              />
-            </div>
-          </>
-        )}
+              </Grid>
+              <div
+                className="PaginationWrapper"
+                style={{ display: "flex", justifyContent: "center" }}
+              >
+                <Pagination
+                  page={currDPage}
+                  count={totalNumDPages}
+                  onChange={changeDPage}
+                  renderItem={(item) => (
+                    <PaginationItem
+                      component={Link}
+                      to={`/search/${search}?r_page=${currRPage}&$i_page=${currIPage}&d_page=${item.page}`}
+                      {...item}
+                      sx={{
+                        "&.Mui-selected": {
+                          backgroundColor: "primary.main",
+                          color: "white",
+                        },
+                      }}
+                    />
+                  )}
+                />
+              </div>
+            </>
+          )}
         </div>
       </>
     </div>
