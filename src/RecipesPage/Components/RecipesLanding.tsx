@@ -60,13 +60,13 @@ function RecipesLanding() {
     const [isLoading, setIsLoading] = React.useState(true);
 
     const make_flask_call = (page: number, sort: string, dietGroup: string) => {
-        let ing_url = `${api_url}/recipes/?page=${page}&sort=${sort}`;
+        let rec_url = `${api_url}/recipes/?page=${page}&sort=${sort}`;
         if (dietGroup) {
-            ing_url += `&dietgroup=${dietGroup}`;
+            rec_url += `&dietgroup=${dietGroup}`;
         }
-        console.log(ing_url);
+        console.log(rec_url);
         axios
-            .get(ing_url)
+            .get(rec_url)
             .then(function (response) {
                 // handle success
                 let res = response.data.data;

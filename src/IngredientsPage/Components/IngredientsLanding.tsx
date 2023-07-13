@@ -6,32 +6,24 @@ import { useState, useEffect, SetStateAction } from "react";
 import Pagination from "@mui/material/Pagination";
 import PaginationItem from "@mui/material/PaginationItem";
 import Grid from "@mui/material/Grid";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import IngredientInstance from "./IngredientInstance";
 
 function IngredientsLanding() {
-    let initData: IngredientInstance = {
-        title: "",
-        id: 0,
-        aisle: "",
-        sugars: 0.0,
-        carbs: 0.0,
-        protein: 0.0,
-        calories: 0.0,
-        serving: "",
-        recipes: [],
-        image: "",
-        };
-
     // Set the number of cards per page and the total number of pages
-    const numPerPage = 8;
-    const totalNumPages = 50;
+    const [totalNumPages, setTotalNumPages] = React.useState(1);
 
     // Set up state for the current page
     const [currPage, setCurrPage] = React.useState(1);
 
     // Get the current location object
     const location = useLocation();
+
+    const navigate = useNavigate();
+
+    const [sort, setSort] = React.useState("title");
+
+    const [aisle, setAisle] = React.useState("");
 
     // Create a new URLSearchParams object from the location's search string
     const query = new URLSearchParams(location.search);
@@ -47,18 +39,31 @@ function IngredientsLanding() {
     // Handle page changes
     const changePage = (event: React.ChangeEvent<unknown>, page: number) => {
         setCurrPage(page);
-        make_flask_call(page);
+        make_flask_call(page, sort, aisle);
+    };
+
+    const changeSort = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        setSort(event.target.value);
+        navigate('/ingredients');
+    };
+
+    const changeAisle = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        setAisle(event.target.value);
+        navigate('/ingredients');
     };
     
-    const api_url = "http://localhost:5000";
-    // const api_url = "http://testingreactdeployment.uc.r.appspot.com";
+    // const api_url = "http://localhost:5000";
+    const api_url = "http://testingreactdeployment.uc.r.appspot.com";
 
     const [ingredients, setIngredients] = React.useState<IngredientInstance[]>([]);
 
     const [isLoading, setIsLoading] = React.useState(true);
 
-    const make_flask_call = (page: number) => {
-        const ing_url = `${api_url}/ingredients/?page=${page}`;
+    const make_flask_call = (page: number, sort: string, aisle: string) => {
+        let ing_url = `${api_url}/ingredients/?page=${page}&sort=${sort}`;
+        if (aisle) {
+            ing_url += `&aisle=${aisle}`;
+        }
         console.log(ing_url);
         axios
             .get(ing_url)
@@ -79,6 +84,7 @@ function IngredientsLanding() {
                     recipes: item.recipes,
                 })));
 
+                setTotalNumPages(response.data.pages);
                 setIsLoading(false);
             })
             .catch(function (error) {
@@ -89,8 +95,8 @@ function IngredientsLanding() {
     };
 
     React.useEffect(() => {
-        make_flask_call(page);
-    }, [page]);
+        make_flask_call(page, sort, aisle);
+    }, [page, sort, aisle]);
 
 
     return (
@@ -139,6 +145,66 @@ function IngredientsLanding() {
                     >
                     Search for ingredients!
                     </p>
+                </div>
+            </div>
+            <div style={{ display: "flex", justifyContent: "center" }}>
+                <div style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    fontWeight: 300,
+                    fontFamily: 'gill sans',
+                    fontSize: 16,
+                    color: 'black',
+                    width: 240,
+                    height: 60,
+                    background: 'rgba(255, 255, 255, 0.8)',
+                    float: 'left',
+                    padding: "0 25px",
+                    outline: '1px dashed #b06027',
+                    outlineOffset: -10,
+                    marginBottom: "30px",
+                }}
+                >
+                    <label htmlFor="sort-select" style={{ marginRight: "0.5rem" }}>Sort by:</label>
+                    <select id="sort-select" value={sort} onChange={changeSort} style={{ fontSize: "1.0rem", height: "50%", background: 'rgba(255, 255, 255, 0.8)' }}>
+                        <option value="title">Title</option>
+                        <option value="calories">Calories</option>
+                        <option value="servings">Servings</option>
+                        <option value="protein">Protein</option>
+                        <option value="carbs">Carbs</option>
+                        <option value="sugars">Sugars</option>
+                    </select>
+                </div>
+                <div style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    fontWeight: 300,
+                    fontFamily: 'gill sans',
+                    fontSize: 16,
+                    color: 'black',
+                    width: 300,
+                    height: 60,
+                    background: 'rgba(255, 255, 255, 0.8)',
+                    float: 'left',
+                    padding: "0 25px",
+                    outline: '1px dashed #b06027',
+                    outlineOffset: -10,
+                    marginBottom: "30px",
+                }}
+                >
+                    <label htmlFor="sort-select" style={{ marginRight: "0.5rem" }}>Aisle:</label>
+                    <select id="sort-select" onChange={changeAisle} style={{ fontSize: "1.0rem", height: "50%", background: 'rgba(255, 255, 255, 0.8)' }}>
+                        <option value="">All</option>
+                        <option value="Produce">Produce</option>
+                        <option value="Meat">Meat</option>
+                        <option value="Beverages">Beverages</option>
+                        <option value="Pasta%20and%20Rice">Pasta and Rice</option>
+                        <option value="Canned%20and%20Jarred">Canned and Jarred</option>
+                        <option value="Ethnic%20Foods">Ethnic Foods</option>
+                        <option value="Spices%20and%20Seasonings">Spices and Seasonings</option>
+                    </select>
                 </div>
             </div>
             <div className="CardsWrapper">
