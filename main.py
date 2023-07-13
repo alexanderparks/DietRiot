@@ -45,7 +45,7 @@ def getSearch(search):
             cast(Recipe.calories, String) == search,
             (Recipe.recipeLink).contains(search),
         )
-    )
+    ).distinct()
     ingredientList = ingredientList.filter(
         or_(
             func.lower(Ingredient.title).contains(search),
@@ -77,9 +77,16 @@ def getSearch(search):
     recipeList = recipeList.paginate(page=page, max_per_page=numPerPage)
     dietgroupList = dietgroupList.paginate(page=page, max_per_page=numPerPage)
     ingredientList = ingredientList.paginate(page=page, max_per_page=numPerPage)
+
+    r_totalNumPages = recipeList.pages
+    i_totalNumPages = ingredientList.pages
+    d_totalNumPages = dietgroupList.pages
+
     result = { 
-        "pages": 5,
-        "recipes": models.schema_for_simple_recipe.dump(recipeList.items),
+        "r_pages": r_totalNumPages,
+        "i_pages": i_totalNumPages,
+        "d_pages": d_totalNumPages,
+        "recipes": models.schema_for_simple_recipe.dump(recipeList),
         "ingredients": models.schema_for_simple_ingredient.dump(ingredientList.items),
         "dietgroups": models.schema_for_simple_dietgroup.dump(dietgroupList.items),
     }
