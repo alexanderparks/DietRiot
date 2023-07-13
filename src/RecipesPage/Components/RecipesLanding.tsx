@@ -54,7 +54,7 @@ function RecipesLanding() {
     navigate("/recipes");
   };
 
-const changeSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const changeSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newQuery = event.target.value;
     setSearchQuery(newQuery);
     navigate("/recipes");
