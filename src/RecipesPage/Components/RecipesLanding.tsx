@@ -282,8 +282,10 @@ const handleSearchQueryChange = (event: React.ChangeEvent<HTMLInputElement>) => 
             value={searchQuery}
             onChange={handleSearchQueryChange}
             />
-        </div>
+        
         <button onClick={() => make_flask_call(page, sort, dietGroup)}>Search</button>
+        </div>
+       
       </div>
       <div className="CardsWrapper">
         {isLoading ? (
