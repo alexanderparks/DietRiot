@@ -1,4 +1,19 @@
 .names{
     font-family: verdana;
     margin: 30px 30px 30px 30px;
+    padding-top:10px;
+}
+.searchRow{
+    background: #ffffff; 
+    margin-top: -20px;
+    padding-bottom: 30px;
+}
+.ingRow{
+    padding-top: 5px;
+    background: #f0f0f0c3;
+    margin-bottom:0px;
+    padding-bottom: 0px;
+}
+.dietRow{
+    background: #f0f0f0c3;
 }

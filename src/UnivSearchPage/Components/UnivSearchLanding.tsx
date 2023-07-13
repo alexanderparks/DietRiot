@@ -105,14 +105,19 @@ function UnivSearchLanding() {
   return (
     <div className="Search">
       <>
+      
         {loading ? (
           console.log("loading")
         ) : (
-          <h1 style={{ marginLeft: "30px", fontFamily: "Arial" }}>
+          <div className = "searchRow">
+            <br></br>
+          <h1 style={{ marginLeft: "30px", fontFamily: "Arial"}}>
             Search Results for "{search}"
           </h1>
+          </div>
         )}
 
+        <div className = "ingRow">
         <h3 className="names">Ingredients</h3>
 
         {loading ? (
@@ -166,7 +171,9 @@ function UnivSearchLanding() {
             )}
           </Grid>
         )}
+      </div>
 
+      <div className = "recRow">
         <h3 className="names">Recipes</h3>
 
         {loading ? (
@@ -216,7 +223,10 @@ function UnivSearchLanding() {
             )}
           </Grid>
         )}
-        <h3 className="names">Diet Groups</h3>
+        </div>
+
+        <div className = "dietRow">
+        <h3 className="names"> Diet Groups</h3>
         {loading ? (
           <p
             style={{
@@ -265,6 +275,7 @@ function UnivSearchLanding() {
             )}
           </Grid>
         )}
+        </div>
       </>
     </div>
   );
