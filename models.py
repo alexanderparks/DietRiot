@@ -17,9 +17,6 @@ CORS(app)
 
 app.app_context().push()
 
-# Make these command line arguments that provide when you deploy the app
-# or use other options like connecting directly from App Engine
-
 # Change this accordingly 
 USER ="yari"
 PASSWORD ="tas2moon"
@@ -29,12 +26,11 @@ DBNAME ="dietriot"
 
 # Configuration 
 
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://yari:tas2moon@localhost:5432/dietriot'
-# old
-# app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql+psycopg2://postgres:asd123123@postgres-1.cwqbn2qubmju.us-east-2.rds.amazonaws.com:5432/postgres"
+#cloud
 app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql+psycopg2://postgres:asd123123@postgres-12.cwqbn2qubmju.us-east-2.rds.amazonaws.com:5432/postgres"
+#local
 # app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DB_STRING",f'postgresql://{USER}:{PASSWORD}@{PUBLIC_IP_ADDRESS}/{DBNAME}')
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # To suppress a warning message
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
 
@@ -103,7 +99,6 @@ class Ingredient(db.Model):
     recipes = db.relationship('Recipe', secondary = 'ingredient_link', backref = 'recipe_link')
 
 
-
 class DietGroup(db.Model):
     """ "
     Recipe has 5 attributes
@@ -126,7 +121,6 @@ class DietGroup(db.Model):
     recipes = db.relationship('Recipe', secondary = 'dietgroup_link', backref = 'recipe2_link')
 
 
-
 class IngredientSchema(ma.SQLAlchemySchema):
     class Meta:
         # Fields to expose
@@ -147,7 +141,6 @@ class IngredientSchema(ma.SQLAlchemySchema):
     recipes = ma.Nested(lambda: RecipeSchema(only=("id", "title")), many=True)
     dietgroups = ma.Nested(lambda: RecipeSchema(only=("id", "title")), many=True)
 
-
 schema_for_ingredient = IngredientSchema(many=True)
 
 class IngredientSimpleSchema(ma.SQLAlchemySchema):
@@ -164,6 +157,7 @@ class IngredientSimpleSchema(ma.SQLAlchemySchema):
             "calories",
             "serving",
         )
+
 schema_for_simple_ingredient = IngredientSimpleSchema(many=True)
 
 class DietGroupSchema(ma.SQLAlchemySchema):
@@ -202,6 +196,7 @@ class DietGroupSimpleSchema(ma.SQLAlchemySchema):
             "prohibits",
             "percentage",
         )
+
 schema_for_simple_dietgroup = DietGroupSimpleSchema(many=True)
 
 class RecipeSchema(ma.SQLAlchemySchema):
@@ -225,9 +220,7 @@ class RecipeSchema(ma.SQLAlchemySchema):
     dietgroups = ma.Nested(lambda: DietGroupSchema(only=("id", "title")), many=True)
     ingredients = ma.Nested(lambda: IngredientSchema(only=("id", "title")), many=True)
 
-
 schema_for_recipe = RecipeSchema(many=True)
-
 
 class RecipeSimpleSchema(ma.SQLAlchemySchema):
     class Meta:
@@ -243,7 +236,6 @@ class RecipeSimpleSchema(ma.SQLAlchemySchema):
             "recipeLink",
         )
 schema_for_simple_recipe = RecipeSimpleSchema(many=True)
-
 
 
 if __name__ == "__main__":
