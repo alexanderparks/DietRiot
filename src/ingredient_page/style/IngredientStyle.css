@@ -44,7 +44,7 @@
   transition: transform 0.8s ease-in-out;
 }
 .ingIMG:hover {
-  transform: scale(1.05);
+  transform: scale(1.03);
 }
 .contents-ing {
   font-style: "bold";

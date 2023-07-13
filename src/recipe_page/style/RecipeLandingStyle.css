@@ -44,7 +44,7 @@
   transition: transform 0.8s ease-in-out;
 }
 .recIMG:hover {
-  transform: scale(1.1);
+  transform: scale(1.03);
 }
 .contents-ing {
   font-style: "bold";
