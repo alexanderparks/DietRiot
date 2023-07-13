@@ -54,28 +54,17 @@ function RecipesLanding() {
     navigate("/recipes");
   };
 
-  
-//   const handleSearchQueryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-//     const query = event.target.value.trim();
-//     setSearchQuery(query);
-//   };
-const handleSearchQueryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+const changeSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     const query = event.target.value.trim();
     setSearchQuery(query);
+    navigate("/recipes");
   };
-//   const [isEnterPressed, setIsEnterPressed] = useState(false);
-//   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
-//     if (event.key === 'Enter') {
-//       setIsEnterPressed(true);
-//     }
-//   };
-  
-
-//   const searchRecipes = (query: string) => {
-//     setIsEnterPressed(false);
-//     navigate("/recipes");
-//   };
-
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      make_flask_call(page, sort, dietGroup);
+    }
+  };
   //const api_url = "http://localhost:5000";
   const api_url = "http://testingreactdeployment.uc.r.appspot.com";
 
@@ -280,7 +269,8 @@ const handleSearchQueryChange = (event: React.ChangeEvent<HTMLInputElement>) => 
             type="text"
             placeholder="Search recipes..."
             value={searchQuery}
-            onChange={handleSearchQueryChange}
+            onChange={changeSearch}
+            onKeyDown={handleKeyPress}
             />
         
         <button onClick={() => make_flask_call(page, sort, dietGroup)}>Search</button>
