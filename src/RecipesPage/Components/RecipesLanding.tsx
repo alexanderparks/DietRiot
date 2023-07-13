@@ -55,7 +55,7 @@ function RecipesLanding() {
   };
 
 const changeSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const query = event.target.value.trim();
+    const query = event.target.value;
     setSearchQuery(query);
     navigate("/recipes");
   };
@@ -77,7 +77,7 @@ const changeSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (dietGroup) {
       rec_url += `&dietgroup=${dietGroup}`;
     }
-    if (searchQuery.trim()) {
+    if (searchQuery) {
         rec_url += `&search=${encodeURIComponent(searchQuery)}`;
       }
     console.log(rec_url);
