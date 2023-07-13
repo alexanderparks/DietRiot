@@ -45,10 +45,12 @@ function DietGroupsLanding() {
 
     const changeSort = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setSort(event.target.value);
+        setCurrPage(1);
     };
 
     const changeMembership = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setMembership(event.target.value);
+        setCurrPage(1);
     };
     
     //const api_url = "http://localhost:5000";
@@ -190,7 +192,7 @@ function DietGroupsLanding() {
                     marginBottom: "30px",
                 }}
                 >
-                    <label htmlFor="sort-select" style={{ marginRight: "0.5rem" }}>Diet Group:</label>
+                    <label htmlFor="sort-select" style={{ marginRight: "0.5rem" }}>Membership:</label>
                     <select id="sort-select" onChange={changeMembership} style={{ fontSize: "1.0rem", height: "50%", background: 'rgba(255, 255, 255, 0.8)' }}>
                         <option value="">All</option>
                         <option value="meat">Meat</option>
