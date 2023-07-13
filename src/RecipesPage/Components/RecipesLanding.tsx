@@ -6,23 +6,11 @@ import { useState, useEffect, SetStateAction } from "react";
 import Pagination from "@mui/material/Pagination";
 import PaginationItem from "@mui/material/PaginationItem";
 import Grid from "@mui/material/Grid";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import RecipeInstance from "./RecipeInstance";
 
 function RecipesLanding() {
-    let initData: RecipeInstance = {
-        calories: 0,
-        id: 0,
-        ingredients: [],
-        dietgroups: [],
-        title: "",
-        recipeLink: "",
-        image: "",
-        servings: 0,
-        };
-
     // Set the number of cards per page and the total number of pages
-    const numPerPage = 8;
     const [totalNumPages, setTotalNumPages] = React.useState(1);
 
     // Set up state for the current page
@@ -30,6 +18,8 @@ function RecipesLanding() {
 
     // Get the current location object
     const location = useLocation();
+
+    const navigate = useNavigate();
 
     const [sort, setSort] = React.useState("title");
 
@@ -54,10 +44,12 @@ function RecipesLanding() {
 
     const changeSort = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setSort(event.target.value);
+        navigate('/recipes');
     };
 
     const changeDietGroup = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setDietGroup(event.target.value);
+        navigate('/recipes');
     };
     
     //const api_url = "http://localhost:5000";
