@@ -94,7 +94,7 @@ function UnivSearchLanding() {
     if (didMount) {
       const local_url = "http://localhost:3000/search/" + search;
       // const url = api_url + "search/" + search;
-      const url = `${api_url}/search/${search}?r_page=${r_page}&i_page=${i_page}&d_page=${d_page}`;
+      const url = `${api_url}/search/${search}?r_page=${r_page}&i_page=${i_page}&d_page=${d_page}&numPerPage=8`;
       console.log("url: " + url);
       axios
         .get(url)
@@ -108,10 +108,10 @@ function UnivSearchLanding() {
               image: item.src,
               id: item.id,
               aisle: item.aisle,
-              sugars: item.sugars,
-              carbs: item.carbs,
-              protein: item.protein,
-              calories: item.calories,
+              sugars: item.sugars.toFixed(2),
+              carbs: item.carbs.toFixed(2),
+              protein: item.protein.toFixed(2),
+              calories: item.calories.toFixed(2),
               serving: item.serving,
               recipes: item.recipes,
             }))

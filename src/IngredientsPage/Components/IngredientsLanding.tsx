@@ -326,7 +326,7 @@ function IngredientsLanding() {
                 ))}
               </Grid>
               <Grid container item xs={12} justifyContent="center">
-                {ingredients.slice(3, 5).map((ingredient, i) => (
+                {ingredients.slice(3, 6).map((ingredient, i) => (
                   <Grid item xs={12} md={3} key={i}>
                     <IngredientsCard
                       id={ingredient.id}
@@ -349,7 +349,11 @@ function IngredientsLanding() {
             <br></br>
             <div
               className="PaginationWrapper"
-              style={{ display: "flex", justifyContent: "center" }}
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                paddingBottom: "60px",
+              }}
             >
               <Pagination
                 page={currPage}

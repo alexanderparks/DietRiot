@@ -171,7 +171,7 @@ function RecipeLanding() {
           return (
             <div>
               <Link
-                to={front_url + "3000/ingredients/view/" + i.id}
+                to={front_url + "/ingredients/view/" + i.id}
                 className="aForRec"
               >
                 {i.title}

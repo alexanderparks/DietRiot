@@ -304,7 +304,11 @@ function DietGroupsLanding() {
             <br></br>
             <div
               className="PaginationWrapper"
-              style={{ display: "flex", justifyContent: "center" }}
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                paddingBottom: "60px",
+              }}
             >
               <Pagination
                 page={currPage}
