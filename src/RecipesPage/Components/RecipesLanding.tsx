@@ -328,7 +328,7 @@ function RecipesLanding() {
                 ))}
               </Grid>
               <Grid container item xs={12} justifyContent="center">
-                {recipe.slice(3, 5).map((rec, i) => (
+                {recipe.slice(3, 6).map((rec, i) => (
                   <Grid item xs={12} md={3} key={i}>
                     <RecipesCard
                       id={rec.id}
