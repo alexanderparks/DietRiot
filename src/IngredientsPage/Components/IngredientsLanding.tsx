@@ -68,7 +68,7 @@ function IngredientsLanding() {
   };
 
   // const api_url = "http://localhost:5000";
-  const api_url = "http://testingreactdeployment.uc.r.appspot.com";
+  const api_url = "https://dietriot-392023.uc.r.appspot.com/";
 
   const [ingredients, setIngredients] = React.useState<IngredientInstance[]>(
     []
@@ -97,10 +97,10 @@ function IngredientsLanding() {
             image: item.src,
             id: item.id,
             aisle: item.aisle,
-            sugars: item.sugars,
-            carbs: item.carbs,
-            protein: item.protein,
-            calories: item.calories,
+            sugars: item.sugars.toFixed(2),
+            carbs: item.carbs.toFixed(2),
+            protein: item.protein.toFixed(2),
+            calories: item.calories.toFixed(2),
             serving: item.serving,
             recipes: item.recipes,
           }))

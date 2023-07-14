@@ -35,9 +35,9 @@ function IngredientLanding() {
     React.useState<IngredientInstance>(initData);
   const [ingredientID, setIngredientID] = useState(1);
   // const api_url = "http://localhost:5000";
-  const api_url = "http://testingreactdeployment.uc.r.appspot.com";
+  const api_url = "https://dietriot-392023.uc.r.appspot.com/";
 
-  const front_url = "http://localhost:3000";
+  const front_url = "https://dietriot.me";
   // FOR LOCAL USE
   // UNCOMMENT THE LINE BELOW TO RUN LOCALLY
   // const front_url = "dietriot.me";
@@ -56,10 +56,10 @@ function IngredientLanding() {
           image: res.src,
           id: res.id,
           aisle: res.aisle,
-          sugars: res.sugars,
-          carbs: res.carbs,
-          protein: res.protein,
-          calories: res.calories,
+          sugars: res.sugars.toFixed(2),
+          carbs: res.carbs.toFixed(2),
+          protein: res.protein.toFixed(2),
+          calories: res.calories.toFixed(2),
           serving: res.serving,
           recipes: res.recipes,
           dietgroups: res.dietgroups,

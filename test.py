@@ -3,7 +3,7 @@ import requests
 import json
 
 class unitTests(unittest.TestCase):
-    API_URL = "http://testingreactdeployment.uc.r.appspot.com/"
+    API_URL = "https://dietriot-392023.uc.r.appspot.com/"
 
     def testAllRecipesType(self):
         r = requests.get(self.API_URL + "recipes")

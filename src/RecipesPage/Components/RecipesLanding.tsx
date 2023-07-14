@@ -66,7 +66,7 @@ function RecipesLanding() {
     }
   };
   //const api_url = "http://localhost:5000";
-  const api_url = "http://testingreactdeployment.uc.r.appspot.com";
+  const api_url = "https://dietriot-392023.uc.r.appspot.com/";
 
   const [recipe, setRecipes] = React.useState<RecipeInstance[]>([]);
 
@@ -89,8 +89,8 @@ function RecipesLanding() {
       rec_url += `&dietgroup=${dietGroup}`;
     }
     if (searchQuery) {
-        rec_url += `&search=${encodeURIComponent(searchQuery)}`;
-      }
+      rec_url += `&search=${encodeURIComponent(searchQuery)}`;
+    }
     console.log(rec_url);
     axios
       .get(rec_url)
@@ -283,11 +283,12 @@ function RecipesLanding() {
             value={searchQuery}
             onChange={changeSearch}
             onKeyDown={handleKeyPress}
-            />
-        
-        <button onClick={() => make_flask_call(page, sort, dietGroup)}>Search</button>
+          />
+
+          <button onClick={() => make_flask_call(page, sort, dietGroup)}>
+            Search
+          </button>
         </div>
-       
       </div>
       <div className="CardsWrapper">
         {isLoading ? (
@@ -321,8 +322,7 @@ function RecipesLanding() {
                       servings={rec.servings}
                       carlories={rec.calories}
                       ingredients={rec.ingredients}
-                      search = {searchQuery}
-
+                      search={searchQuery}
                     />
                   </Grid>
                 ))}
@@ -337,9 +337,8 @@ function RecipesLanding() {
                       servings={rec.servings}
                       carlories={rec.calories}
                       ingredients={rec.ingredients}
-                      search = {searchQuery}
+                      search={searchQuery}
                     />
-                    
                   </Grid>
                 ))}
               </Grid>

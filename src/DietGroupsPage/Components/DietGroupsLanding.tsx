@@ -68,7 +68,7 @@ function DietGroupsLanding() {
   };
 
   //const api_url = "http://localhost:5000";
-  const api_url = "http://testingreactdeployment.uc.r.appspot.com";
+  const api_url = "https://dietriot-392023.uc.r.appspot.com/";
 
   const [dietgroup, setDietGroups] = useState<DietGroupInstance[]>([]);
 
@@ -285,7 +285,7 @@ function DietGroupsLanding() {
           </p>
         ) : (
           <>
-            <Grid container spacing={2} style={{paddingLeft: "40px"}}>
+            <Grid container spacing={2} style={{ paddingLeft: "40px" }}>
               {dietgroup.slice(startIndex, endIndex).map((dg, i) => (
                 <Grid item xs={3} key={i}>
                   <DietGroupsCard
@@ -295,7 +295,7 @@ function DietGroupsLanding() {
                     restrictions={dg.prohibits}
                     percentage={dg.percentage}
                     desc={dg.desc}
-                    search = {searchQuery}
+                    search={searchQuery}
                   />
                 </Grid>
               ))}

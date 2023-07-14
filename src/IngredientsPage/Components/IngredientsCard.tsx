@@ -24,7 +24,7 @@ interface Props {
 }
 
 const Highlighted = ({ text = "", highlight = "" }) => {
-  if (text == null){
+  if (text == null) {
     return <span>{text}</span>;
   }
   if (!highlight) {
@@ -46,10 +46,10 @@ const Highlighted = ({ text = "", highlight = "" }) => {
 };
 
 const IngredientsCard = (props: Props) => {
-  let calories_string = props.calories!.toString();
-  let sugars_string = props.sugars!.toString();
-  let carbs_string = props.carbs!.toString();
-  let protein_string = props.protein!.toString();
+  let calories_string = props.calories!.toFixed(2).toString();
+  let sugars_string = props.sugars!.toFixed(2).toString();
+  let carbs_string = props.carbs!.toFixed(2).toString();
+  let protein_string = props.protein!.toFixed(2).toString();
   const HighlightedButton = ({ text = "", highlight = "" }) => {
     let hasHighlight: boolean = false;
     if (text == null) {
@@ -65,7 +65,7 @@ const IngredientsCard = (props: Props) => {
         <>
           {parts.filter(String).map((part, i) => {
             return regex.test(part) ? (
-              <mark key={i}>{ <span>View Details</span>}</mark>
+              <mark key={i}>{<span>View Details</span>}</mark>
             ) : (
               <span key={i}></span>
             );
@@ -75,7 +75,7 @@ const IngredientsCard = (props: Props) => {
     );
   };
   return (
-    <Grid item xs={12} sm = {12} md={10} alignItems="stretch" paddingBottom={5}>
+    <Grid item xs={12} sm={12} md={10} alignItems="stretch" paddingBottom={5}>
       <Card
         sx={{
           transition: "transform 0.15s ease-in-out",
@@ -99,7 +99,6 @@ const IngredientsCard = (props: Props) => {
           <br></br>
           <p>
             <strong>Calories:</strong>{" "}
-            
             <Highlighted text={calories_string} highlight={props.search} />
           </p>
           <p>
@@ -107,7 +106,7 @@ const IngredientsCard = (props: Props) => {
             <Highlighted text={sugars_string} highlight={props.search} />
           </p>
           <p>
-            <strong>Carbs:</strong> {" "}
+            <strong>Carbs:</strong>{" "}
             <Highlighted text={carbs_string} highlight={props.search} />
           </p>
           <p>
