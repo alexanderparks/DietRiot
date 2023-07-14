@@ -94,7 +94,7 @@ function UnivSearchLanding() {
     if (didMount) {
       const local_url = "http://localhost:3000/search/" + search;
       // const url = api_url + "search/" + search;
-      const url = `${api_url}/search/${search}?r_page=${r_page}&i_page=${i_page}&d_page=${d_page}`;
+      const url = `${api_url}/search/${search}?r_page=${r_page}&i_page=${i_page}&d_page=${d_page}&numPerPage=8`;
       console.log("url: " + url);
       axios
         .get(url)
