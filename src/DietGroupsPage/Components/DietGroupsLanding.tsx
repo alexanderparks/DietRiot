@@ -164,7 +164,9 @@ function DietGroupsLanding() {
           </p>
         </div>
       </div>
-      <div style={{ display: "flex", justifyContent: "center" }}>
+      
+      <div className = ""style={{ display: "flex", justifyContent: "center" }}>
+      <Grid item xs={12} md={3}>
         <div
           style={{
             display: "flex",
@@ -203,6 +205,8 @@ function DietGroupsLanding() {
             <option value="numRecipes">Number of Recipes</option>
           </select>
         </div>
+        </Grid>
+        <Grid item xs={12} md={3}>
         <div
           style={{
             display: "flex",
@@ -240,6 +244,8 @@ function DietGroupsLanding() {
             <option value="gluten">Gluten</option>
           </select>
         </div>
+        </Grid>
+        <Grid item xs={12} md={3}>
         <div
           style={{
             display: "flex",
@@ -271,7 +277,9 @@ function DietGroupsLanding() {
             Search
           </button>
         </div>
+        </Grid>
       </div>
+      
       <div className="CardsWrapper">
         {isLoading ? (
           <p
@@ -287,7 +295,7 @@ function DietGroupsLanding() {
           <>
             <Grid container spacing={2} style={{ paddingLeft: "40px" }}>
               {dietgroup.slice(startIndex, endIndex).map((dg, i) => (
-                <Grid item xs={3} key={i}>
+                <Grid item xs={12} sm = {3} key={i}>
                   <DietGroupsCard
                     id={dg.id}
                     img_src={dg.image}
