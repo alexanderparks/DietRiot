@@ -173,7 +173,9 @@ function AboutPageLanding() {
               calls that will later populate the database and models using
               SQLAlchemy and PostgreSQL, connecting the database to the Flask
               back-end, and populating instance pages with the collected data
-              using React and Axios.
+              using React and Axios. (Phase 3) Group leader, implementing
+              sorting, filtering, and searching into the back-end using Python
+              and SQLAlchemy and hosting using GCP and AWS.
             </div>
             <div>
               <span className="highlight">Number of commits:</span>{" "}
@@ -214,11 +216,13 @@ function AboutPageLanding() {
               later populate the database and models using SQLAlchemy and
               PostgreSQL, connecting the database to the Flask back-end, and
               populating instance pages with the collected data using React and
-              Axios.
+              Axios. (Phase 3) Implementing sorting, filtering, and searching
+              into the back-end using Python and SQLAlchemy and hosting using
+              GCP and AWS.
             </div>
             <div>
               <span className="highlight">Number of commits:</span>{" "}
-              <span id="thomas-commits">{commitData["thejaryak"]}</span>
+              <span id="thomas-commits">92</span>
             </div>
             <div>
               <span className="highlight">Number of issues:</span>{" "}
@@ -247,7 +251,9 @@ function AboutPageLanding() {
               the Gitlab API using Bootstrap. (Phase 2) Using React to develop
               front-end functionality and model cards, adding pagination to the
               site with Material UI, and styling the model and instance pages
-              using React.
+              using React. (Phase 3) Implementing sorting, filtering, and
+              searching into the front-end using TypeScript and completing the
+              pagination of all model pages.
             </div>
             <div>
               <span className="highlight">Number of commits:</span>{" "}
@@ -281,7 +287,9 @@ function AboutPageLanding() {
               Writing an initial technical report using GitLab Wiki and aiding
               in the creation of instance pages for each model. (Phase 2)
               Refining and implementing the RESTful API, writing a technical
-              report, and creating unit tests for the API and models.
+              report, and creating unit tests for the API and models. (Phase 3)
+              Completed the technical report/GitLab Wiki and updated dynamic
+              linkages in the "About Us" page.
             </div>
             <div>
               <span className="highlight">Number of commits:</span>{" "}
@@ -314,7 +322,9 @@ function AboutPageLanding() {
               Bootstrap. (Phase 2) Using yUML to create a UML class diagram,
               converting pages from .html to .tsx files using React, adding
               pagination to the site, and styling the model and instance pages
-              using React.
+              using React. (Phase 3) Implementing and styling sorting,
+              filtering, and searching into the front-end using TypeScript and
+              developing highlighting for search results.
             </div>
             <div>
               <span className="highlight">Number of commits:</span>{" "}
@@ -354,7 +364,7 @@ function AboutPageLanding() {
           <div className="card-body">
             <ul className="list-group list-group-flush">
               <li className="list-group-item" id="total-commits">
-                Total no. of commits: {totalCommitData}
+                Total no. of commits: 324
               </li>
               <li className="list-group-item" id="total-issues">
                 Total no. of issues: {totalIssuesData}
