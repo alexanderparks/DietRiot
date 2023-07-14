@@ -221,7 +221,7 @@ function RecipesLanding() {
             fontFamily: "gill sans",
             fontSize: 16,
             color: "black",
-            width: 300,
+            width: 325,
             height: 60,
             background: "rgba(255, 255, 255, 0.8)",
             float: "left",
