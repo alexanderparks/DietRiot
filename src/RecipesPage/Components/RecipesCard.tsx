@@ -21,39 +21,46 @@ interface Props {
   ingredients: any[];
 }
 
-let not_highlighted: boolean = true;
-const Highlighted = ({ text = "", highlight = "" }) => {
-  if (text == null) {
-    return <span>{text}</span>;
-  }
-  if (!highlight.trim()) {
-    return <span>{text}</span>;
-  }
-  const regex = new RegExp(`(${highlight})`, "gi");
-  const parts = text.split(regex);
-  return (
-    <span>
-      {parts.filter(String).map((part, i) => {
-        return regex.test(part) ? (
-          <mark key={i}>{part}{not_highlighted = false}</mark>
-        ) : (
-          <span key={i}>{part}</span>
-        );
-      })}
-    </span>
-  );
-};
+
+
 
 
 const RecipesCard = (props: Props) => {
-  let carls_string = props.carlories!.toString();
-  let serving_string = props.servings!.toString();
+  let not_highlight: boolean = true;
+  let searched_alr: boolean = true;
+  if(props.search === "" || props.search == null){
+    searched_alr = false;
+  }
   const HighlightedButton = () => {
-    if(not_highlighted){
+    if(not_highlight && searched_alr){
       return <mark>View Details</mark>
     } 
     return <span>View Details</span>
   };
+
+  const Highlighted = ({ text = "", highlight = "" }) => {
+    if (text == null) {
+      return <span>{text}</span>;
+    }
+    if (!highlight.trim()) {
+      return <span>{text}</span>;
+    }
+    const regex = new RegExp(`(${highlight})`, "gi");
+    const parts = text.split(regex);
+    return (
+      <span>
+        {parts.filter(String).map((part, i) => {
+          return regex.test(part) ? (
+            <mark key={i}>{part}{not_highlight = false}</mark>
+          ) : (
+            <span key={i}>{part}</span>
+          );
+        })}
+      </span>
+    );
+  };
+  let carls_string = props.carlories!.toString();
+  let serving_string = props.servings!.toString();
 
   return (
     <Grid item xs={12} md={10} alignItems="stretch" paddingBottom={5}>

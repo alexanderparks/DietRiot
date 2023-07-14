@@ -21,38 +21,44 @@ interface Props {
 }
 
 
-let not_highlight: boolean = true;
-const Highlighted = ({ text = "", highlight = "" }) => {
-  if (text == null) {
-    return <span>{text}</span>;
-  }
-  if (!highlight.trim()) {
-    return <span>{text}</span>;
-  }
-  const regex = new RegExp(`(${highlight})`, "gi");
-  const parts = text.split(regex);
-  return (
-    <span>
-      {parts.filter(String).map((part, i) => {
-        return regex.test(part) ? (
-          <mark key={i}>{part}{not_highlight = false}</mark>
-        ) : (
-          <span key={i}>{part}</span>
-        );
-      })}
-    </span>
-  );
-};
 
 const DietGroupsCard = (props: Props) => {
-  let percent_string = props.percentage!.toString();
+  let not_highlight: boolean = true;
+  let searched: boolean = true;
+  if(props.search === "" || props.search == null){
+    searched = false;
+  }
   const HighlightedButton = () => {
-    if(not_highlight){
+    if(not_highlight && searched){
       return <mark>View Details</mark>
     } 
     return <span>View Details</span>
   };
 
+  const Highlighted = ({ text = "", highlight = "" }) => {
+    if (text == null) {
+      return <span>{text}</span>;
+    }
+    if (!highlight.trim()) {
+      return <span>{text}</span>;
+    }
+    const regex = new RegExp(`(${highlight})`, "gi");
+    const parts = text.split(regex);
+    return (
+      <span>
+        {parts.filter(String).map((part, i) => {
+          return regex.test(part) ? (
+            <mark key={i}>{part}{not_highlight = false}</mark>
+          ) : (
+            <span key={i}>{part}</span>
+          );
+        })}
+      </span>
+    );
+  };
+  
+  let percent_string = props.percentage!.toString();
+  
   return (
     <Grid item xs={12} md={10} alignItems="stretch" paddingBottom={5}>
       <Card
