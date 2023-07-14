@@ -46,10 +46,10 @@ const Highlighted = ({ text = "", highlight = "" }) => {
 };
 
 const IngredientsCard = (props: Props) => {
-  let calories_string = props.calories!.toFixed(2).toString();
-  let sugars_string = props.sugars!.toFixed(2).toString();
-  let carbs_string = props.carbs!.toFixed(2).toString();
-  let protein_string = props.protein!.toFixed(2).toString();
+  let calories_string = props.calories!.toString();
+  let sugars_string = props.sugars!.toString();
+  let carbs_string = props.carbs!.toString();
+  let protein_string = props.protein!.toString();
   const HighlightedButton = ({ text = "", highlight = "" }) => {
     let hasHighlight: boolean = false;
     if (text == null) {
